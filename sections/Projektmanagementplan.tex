@@ -1,0 +1,168 @@
+% !TEX root = PREN2_Dokumentation.tex
+\documentclass[12pt,titlepage]{article}
+
+%Packages
+\usepackage[ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{cite}
+\usepackage{color}
+\usepackage[a4paper,lmargin={3cm},rmargin={3cm},
+tmargin={2.5cm},bmargin = {2.5cm}]{geometry}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage[printonlyused, withpage]{acronym}
+\usepackage{abstract}
+\usepackage{tabularx,ragged2e}
+\usepackage{float}
+\restylefloat{table}
+\newcolumntype{C}{>{\Centering\arraybackslash}X}
+
+\begin{document}
+
+\section{Projektmanagementplan}
+\subsection{Projektorganisation}
+\subsubsection{Organisationsplan, Rollen, Zust\"andigkeiten}\\
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=1\textwidth]{bilder/Organigramm.png}
+    \caption[Organigramm]{Organigramm\\ Quelle: Autoren}
+    \label{img: OrganigrammWiPro}
+\end{figure}
+
+\subsubsection{Projektstrukturplan}
+\subsection{Projektf\"uhrung}
+\subsubsection{Rahmenplan}
+
+Im untenstehenden Rahmenplan wird mittels Zeitplan eine Grobplanung dargestellt. 
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=1\textwidth]{bilder/SoDa_Zeitstrahl.png}
+    \caption[SoDa Rahmenplan]{Rahmenplan,\\ Quelle: Autoren}
+    \label{img: SoDa Rahmenplan}
+\end{figure}
+
+\subsubsection{Meilensteine}
+Wie in Abbildung \ref{img: SoDa Rahmenplan} zu sehen gibt es insgesamt sieben Meilensteine. Diese werden in folgender Tabelle beschrieben sowie die nötigen Deliverables aufgezeigt. 
+
+\begin{table}[H]
+\setlength\extrarowheight{2pt} % for a bit of visual "breathing space"
+\begin{tabularx}{\textwidth}{|C|C|C|}
+\hline
+\textbf{Meilenstein} &  \textbf{Beschreibung} & \textbf{Deliverables}  \\
+
+\hline
+Projektstart & Bei Meilenstein eins wird das Kickoff-Meeting mit allen Projektteilnehmern durchgeführt. & finale Aufgabenstellung\\
+
+\hline
+Start Umsetzung & Bei Meilenstein zwei wird vom klassischen Projektmanagement zum agilen Projektmanagement übergegangen. Dazu muss die Initialisierungsphase abgeschlossen sein& Projektmanagementplan, Systemspezifikation, Anforderungsliste\\
+
+\hline
+Abschluss Systemkontext & Zu diesem Zeitpunkt ist alles bereit, um mit der Entwicklung zu beginnen. Es wurden bereits erste GUI Entwürfe erarbeitet sowie die Systemarchitektur definiert.  & CI/CD Umgebung eingerichtet, GUI-Prototyp, UML-Diagramme  \\
+
+\hline
+Abschluss Schülermodus & Der Entwicklung des Schülermodus ist abgeschlossen. Es können vorgegebene Fragen beantwortet werden sowie eine Statistik zu bisher Gelerntem eingesehen werden.  & Testprotokolle zu Schülermodus, Demo Schülermodus, Release Schülermodus  \\
+
+\hline
+Abschluss Lehrermodus & Der Entwicklung des Lehrermodus ist abgeschlossen. Es können Fragen und Prüfungen erstellt und verteilt werden. Zusätzlich sind die Fragen aus der alten Applikation integriert. & Testprotokolle zu Lehrermodus, Testprotokolle Prüfungsmodus, Integration alte Daten, Demo verschiedene Modis, Release Lehrermodus  \\
+
+\hline
+Start Einführung & Der Auftraggeber erhält eine Einführung in die Software & Sitzungsprotokoll zum Ende der Einführungsphase  \\
+
+\hline
+Projektende & Der Auftraggeber erhält eine Einführung in die Software & Fertige Projektdokumentation, Abgeschlossene Testprotokolle   \\
+\hline
+\end{tabularx}
+\caption{ \label{tbl: Meilensteine}Meilensteine, Quelle: Autoren}
+\end{table}
+
+
+\subsubsection{Projektkontrolle}
+In der Regel Verweise auf Burndown-Charts in der Entwicklungsumgebung und Sprintreview-Protokolle im Anhang.
+\subsubsection{Risikomanagement}
+\subsubsection{Definition of done}
+In jedem Sprint müssen die nachfolgenden Punkte zwingend erreicht werden, um ein potenziell auslieferbares Produkt zu erhalten:
+
+\begin{itemize}
+\item Review durchgeführt
+\item Akzeptanzkriterien erfüllt
+\item Unit Tests Grün
+\item CI/CD ohne Fehler
+\item keine kritischen Bugs
+\item Clean Code Guidelines eingehalten
+\item Dokumentation aktuell
+\end{itemize}
+\subsection{Projektunterst\"utzung}
+\subsubsection{Tools f\"ur Entwicklung, Test und Abnahme}
+\paragraph{Entwicklungstools}
+Bei der Entwicklung des Projekts kommen folgende Programme zum Einsatz: 
+
+\begin{table}[H]
+\setlength\extrarowheight{2pt} % for a bit of visual "breathing space"
+\begin{tabularx}{\textwidth}{|C|C|C|}
+\hline
+\textbf{Typ} &\textbf{Tool} & \textbf{Version}  \\
+
+\hline
+IDE & Intelij Ultimate  & 2020.1\\
+\hline
+IDE & Visual Studio Code & 1.48.2\\
+\hline
+Versionsverwaltung & Git & 2.27.0\\
+\hline
+\end{tabularx}
+\caption{ \label{tbl: Entwicklungstools}Entwicklungstools, Quelle: Autoren}
+\end{table}
+\paragraph{Testtools}
+<tbd>
+Beim Testing kommen folgende Tools zum Einsatz
+
+\begin{table}[H]
+\setlength\extrarowheight{2pt} % for a bit of visual "breathing space"
+\begin{tabularx}{\textwidth}{|C|C|C|}
+\hline
+\textbf{Typ} &\textbf{Tool} & \textbf{Version}  \\
+
+\hline
+IDE & Intelij Ultimate  & 2020.1\\
+\hline
+\end{tabularx}
+\caption{ \label{tbl: Testtools}Testtools, Quelle: Autoren}
+\end{table}
+\subsubsection{Konfigurationsmanagement}
+\subsection{Teststrategie und Drehbuch}
+Bei der Teststrategie wird auf den IEE 829 Standard gesetzt. 
+\subsubsection{Teststrategie}
+Es wird bei diesem Projekt hauptsächlich auf Automated Testing gesetzt. Unit Tests werden dabei Integration Tests vorgezogen. Hierzu wird auf das bewährte JUnit Framework gesetzt. Es wird dabei das Test-First-Prinzip verwendet. 
+
+\paragraph{Automated Testing der REST-Schnittstelle}
+Zum Testen der Rest-Schnittstelle wird Unirest sowie JUnit verwendet.  
+
+
+\subsubsection{Testdrehbuch}
+Wie oben genannt wird hautpsächlich auf Automated Testing gesetzt. Daher werden nur sehr wenige manuelle Tests durchgeführt. Nachfolgend werden diese beschrieben. 
+\
+\begin{landscape}
+\begin{table}
+
+\begin{tabularx}{\textwidth}{|C|}
+  \hline
+  \multicolumn{2}{|c|}{Test Prüfungsmodus} \\
+  \hline
+  Test Nr. & 1\\
+  Beschreibung & Durch diesen Test wird das Durchführen einer Prüfung durch eine Lehrperson und dessen Auswertung getestet\\
+  Randbedingungen & Es wird ein bereits eingerichteter Lehreraccount mit einer ihm zugewiesenen Klasse von 10 Schülern sowie eine vordefinierte Prüfung zur Verfügung gestellt \\
+  erwartete Resultate & Der Lehrer kann die Prüfung den Lernenden freischalten. Nach vorgegebener Zeit wird die Prüfung geschlossen. Im Lehreraccount sind die einzelnen Resultate aufgelistet. Diese können einfach pro Schüler exportiert werden.  \\
+  Testperson & tbd \\
+  Datum & tbd \\
+  Unterschrift & tbd \\
+   \hline
+\end{tabularx}
+\caption{ \label{tbl: Test Pruefungsmodus}Test Prüfungsmodus , Quelle: Autoren}
+\end{table}
+
+\newpage
+
+
+\end{document}

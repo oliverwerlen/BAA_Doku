@@ -1,0 +1,226 @@
+%Packages
+\documentclass[titlepage]{article}
+\usepackage[ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{color}
+\usepackage{import}
+\usepackage{amssymb}
+\usepackage{wrapfig}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage[printonlyused, withpage]{acronym}
+\usepackage{abstract}
+\usepackage{tabularx,ragged2e}
+\usepackage{float}
+\restylefloat{table}
+\usepackage{pdfpages}
+\usepackage{titleref}
+\usepackage{hyperref}
+\usepackage[style=apa]{biblatex}
+\usepackage{glossaries}
+\usepackage{subfigure}
+% compile with pdflatex deckball_bachelorarbeit.tex
+\usepackage{amssymb} 
+\usepackage{color}
+\usepackage[a4paper,bindingoffset=0.2in,%
+	left=3.35cm,right=2.12cm,top=3.75cm,bottom=2.88cm,%
+	footskip=.25in]{geometry}
+\usepackage[T1]{fontenc}
+
+\newcolumntype{C}{>{\Centering\arraybackslash}X}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{BAA}
+\lhead{Oliver Werlen}
+\rfoot{Page \thepage}
+\addbibresource{biblio.bib}
+\makeglossaries
+
+\newglossaryentry{React}
+{
+	name=React,
+	description={Java Script Library zum Erstellen von User Interfaces [\cite{react}]}
+}
+
+\newglossaryentry{Angular}
+{
+	name=AngularJS,
+	description={Framework für Cross Plattform Developing [\cite{angular}]}
+}
+
+\newglossaryentry{Vue}
+{
+	name=VueJS,
+	description={Progressives JavaScript Framework[\cite{vue}]}
+}
+
+\newglossaryentry{Spring}
+{
+	name=Spring,
+	description={Java Framework, um schnellere, eifachere und sicherere Java Applikationen zu erstellen. [\cite{springBoot}]}
+}
+
+\newglossaryentry{Micronaut}
+{
+	name=Micronaut,
+	description={Ein modernes, JVM basiertes full-stack Framework zum Bauen von Microservices und Serverless Applikationen [\cite{micronaut}]}
+}
+
+\newglossaryentry{Spring Boot}
+{
+	name=Spring Boot, 
+	description={Spring Boot nutzt das Spring-Framework und bietet zusätlich einen eingebauten Tomcat Server. Mit Spring Boot bleibt Spring auch weiterhin interessant für Java Enterprise Applications. [\cite{springBoot}]}
+}
+
+\newglossaryentry{Tomcat}
+{
+	name=Tomcat, 
+	description={Open Source Implementation von Java Servlet, Java Server Pages, Java Expression Language und JavaWebSocket [\cite{tomcat}]}
+}
+
+\newglossaryentry{KISS}
+{
+	name=Keep it simple stupid, 
+	description={Zu einem Problem eine möglichst einfache Lösung herstellen.}
+}
+\newglossaryentry{MariaDb}
+{
+	name=Maria DB, 
+	description={Relationales Open Source Datenbankmanagementsystem [\cite{mariadb}]}
+}
+\newglossaryentry{Hibernate}
+{
+	name=Hibernate ORM, 
+	description={Hibernate Object/Relational Mapping ist ein Framework, das es Entwicklern ermöglicht, einfach Applikationen mit persistenten Daten zu entwickeln. [\cite{hibernate}]}
+}
+
+\newglossaryentry{SoDa}
+{
+	name=SoDa, 
+	description={Hybrides Projektmanagementvorgehen der Hochschule Luzern}
+}
+
+\newglossaryentry{JSX}
+{
+	name=JSX, 
+	description={Syntax extension für Java Script [\cite{jsx}]}
+}
+
+\newglossaryentry{Integration Test}
+{
+	name=Integrations Test, 
+	description={Test, der das Zusammenspiel von mehreren Komponenten testet. Integration Tests können durch Mocking zu Unit Tests gemacht werden. }
+}
+
+\newglossaryentry{Unit Test}
+{
+	name=Unit Test, 
+	description={Test, der nur eine einzelne Unit testet, beispielsweise nur eine Methoden.}
+}
+\newglossaryentry{Postman}
+{
+	name=Postman, 
+	description={Collaberationsplattform für API Development, bietet auch Funktionen für automated Testing}
+}
+\newglossaryentry{Latex}
+{
+	name=Latex, 
+	description={Markup Sprache, besonders geeignet für wissenschaftliche Arbeiten}
+}
+\newglossaryentry{Github}
+{
+	name=Github, 
+	description={grösste Versionskontrollplattform [\cite{Github}]}
+}
+
+\newglossaryentry{User Story}
+{
+	name=User Story, 
+	description={Element in SoDa, werden aus Epics im Format \qlqq Als Rolle möchte ich Ziel/Wunsch, um Nutzen\qrqq{} erstellt [\cite{userStory}]}
+}
+
+\newglossaryentry{Intellij}
+{
+	name=Intellij, 
+	description={\ac{IDE} von JetBrains}
+}
+\newglossaryentry{SpringBoot Initlializer}
+{
+	name=Spring Boot Initlializer, 
+	description={Tool, das ein vordefiniertes Spring Boot Projekt mit Mavenunterstützung erstellt. }
+}
+
+\newglossaryentry{Propertie-File}
+{
+	name=Propertie-File, 
+	description={Datei, welche bei Java die Konfigurationen enthält. Hat die Dateiendung .propertie}
+}
+
+\newglossaryentry{MySQL}
+{
+	name=MySQL, 
+	description={Datenbankmanagementsystem von Oracle}
+}
+\newglossaryentry{GitLab}
+{
+	name=GitLab, 
+	description={Versionskontrollsystem aufbauend auf git, Alternative zu \gls{Github}}
+}
+
+\newglossaryentry{Docker}
+{
+	name=Docker, 
+	description={Software zur Containervirtualisierung}
+}
+
+\newglossaryentry{Proxy}
+{
+	name=Proxy, 
+	description={Kommunikationsschnittstelle in einem Netzwerk}
+}
+
+\newglossaryentry{Spring Security}
+{
+	name=Spring Security, 
+	description={De-Facto Standardframework für die Sicherung von \gls{Spring} basierten Applikationen [\cite{SpringSecurity}]}
+}
+
+\newglossaryentry{Token Based Authentication}
+{
+	name=Token Based Authentication, 
+	description={Authentifizierungart bei API's, ein definierter Token wird dabei bei jedem Request mitgesendet. Anhand von diesem Entscheidet die API, ob eine Berechtigung vorliegt.}
+}
+
+
+
+
+
+
+
+\begin{document}
+%TITELSEITE
+\include{Titlepage}
+
+\begin{abstract}
+
+\end{abstract}
+\tableofcontents 
+\newpage
+
+\include{ProblemFragestellungVision}
+\include{StandderPraxisoderTechnik}
+\include{IdeenundKonzepte}
+ \include{Methoden}
+\include{Realisierung}
+\include{EvaluationundValidation}
+\include{Ausblick}
+\include{Abkuerzungen}
+\appendix
+\include{Testprotokolle}
+\include{Projektmanagementplan}
+\include{SystemSpezifikation}
+\include{Anforderungen}
+\include{Sitzungsprotokolle}
+\include{PdfDocuments}
+\end{document}
