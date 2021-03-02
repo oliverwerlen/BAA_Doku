@@ -4,7 +4,7 @@
 \subsubsection{Systemarchitektur}
 \begin{figure}[H]
     \centering
-    %\includegraphics[width=1\textwidth]{bilder/systemuebersicht.png}
+    \includegraphics[width=1\textwidth]{images/systemoverview.png}
     \caption[Systemarchitektur]{Systemarchitektur,\\ Quelle: Autoren}
     \label{img: Systemarchitektur des Projektes}
 \end{figure}
@@ -12,7 +12,7 @@
 \subsubsection{Kontextdiagram}\label{Kontextdiagram}
 \begin{figure}[H]
     \centering
-   % \includegraphics[width=1\textwidth]{bilder/Kontextdiagramm.png}
+   \includegraphics[width=1\textwidth]{images/kontextdiagramm.png}
     \caption[Kontextdiagramm]{Kontextdiagramm,\\ Quelle: Autoren}
     \label{img: Kontextdiagramm des Projektes}
 \end{figure}
@@ -21,13 +21,12 @@
 
 \newpage
 \subsection{Architektur und Designentscheide}
-Da es sich bei dieser Appplikation um eine Webapplikation handelt, wurde diese mit einer Client-Server-Architektur aufgebaut. Im Rahmen dieses Projektes musste das Frontend lediglich für den Browser realisiert werden. Damit diese Applikation bezüglich einer Weiterentwicklung bspw. auch mit einer App verwendbar sein soll, hat man sich aus Architekturgründen für eine REST-Schnitstelle entschieden.
+Es wurde bei diesem Projekt auf eine REST-Architektur gesetzt. Die Web-Applikation wird als \ac{PWA} umgesetzt. 
 \subsubsection{Modelle und Sichten}
-In diesem Projekt wird zwischen vier verschiedenen Sichten unterschieden:
+In diesem Projekt wird zwischen zwei verschiedenen Sichten unterschieden:
 \begin{itemize}
-    \item \textbf{Schüler:} Dabei handelt es sich um einen Nutzer der Applikation mit eingeschränkten Rechten.
-    \item \textbf{Lehrer:} Der Lehrer hat dieselben Rechte wie der Schüler, ist jedoch zusätzich berechtigt weitere administrativen Tätigkeiten auf dem System durchzuführen.
-    \item \textbf{Administrator: } Dieser kann Konfigurationen an der Applikation sowie am Server vornehmen. Dazu gehören bspw. die Benutzerverwaltung oder administrative Tätigkeiten an der Datenbank sowie Applikation.
+    \item \textbf{Kunde} Es handelt sich dabei um die Person, welche in der \ac{PWA} Produkte bestellt und diese anschliessend abholt. 
+    \item \textbf{Administrator} Dem Administrator ist es möglich, Produkt hinzuzufügen, zu verändern oder auch zu löschen. 
     \item \textbf{Programmierer: } Dieser konzipiert und realisiert die Applikation gemäss den Anforderungen des Auftraggebers.
 \end{itemize}
 \subsubsection{Daten (Mengengerüst und Strukturen)}

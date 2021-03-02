@@ -1,67 +1,86 @@
 % !TEX root = PREN2_Dokumentation.tex
-\section{Anforderungen}\label{Anforderungen}
-\subsection{Einführung}
+\section{Software Requirements Specification}\label{RSR}
 
-\subsection{Einzelanforderungen}
+\subsection{Zweck}
+Der Auftraggeber will durch die JTI Pickup Station einen neuen Absatzkanal zum Vertrieb seiner Produkte an Endkunden erstellen. Durch das Erstellen einer Softwarelösung soll es möglich sein, Kunden inklusive einer Altersverifikation zu erfassen. Auch ist die Umsetzung einer Kaufabwicklung sowie die Auswahl einer Pick-Up Station Teil dieses Projekts. Die Applikation wird dabei als \ac{PWA} umgesetzt. Die Software soll dabei mit der physischen Pick-Up Station kompatibel sein. Die Umsetzung von diesen ist Teil von zwei weiteren Bachelorarbeiten an der Hochschule Luzern.  
+"Verweis auf Aufgabenstellung"
+\subsubsection{Zielgruppe}
+Zur Zielgruppe dieser Software gehören Kunden und Kundinnen von \ac{JTI} auf der ganzen Welt. Die Software in Kombination mit den physischen Pick-Up Stations soll international eingesetzt werden. 
+\subsubsection{Produktumfang}
+Der Umfang der Software beginnt bei der Registrierung der Nutzer. Hierbei wird eine bereits vorhandene Alterverifikation eingesetzt, um dies gesetzeskonform Umsetzen zu können. Im Onlineshop werden die verfügbaren Produkte von \ac{JTI} gelistet. Der Nutzer kann diese Auswählen, anschliessend werden ihm alle Pick-Up Stations, in denen das Produkt verfügbar ist, angezeigt. Der Käufer kann die von ihm gewünschte Station auswählen. Anschliessend wird die Bezahlung per Kreditkarte durchgeführt. In anderen Projekten wurde dabei von \ac{JTI} bereits ein bekannter Anbieter genutzt. In dieser Software wird darauf zurückgegriffen. Nach erfolgreicher Bezahlung wird ein Code auf dem Gerät des Nutzers gespeichert. Mit diesem kann an der gewünschten Pick-Up Station das bestellte Produkt abgeholt werden. 
+
+\subsubsection{Definitionen}
+\paragraph{Risken}
+Das Risikomanagement wird im Projektmanagementplan in Kapitel \ref{risikomanagement} detailliert aufgeführt. 
+\subsubsection{Systemübersicht}
+Die Systemübersicht ist in der Systemspezifikation im Kapitel \ref{SystemSpezifikation} zu finden. 
+\subsubsection{Abhängigkeiten}
+Die Erfüllung der Requirements hängt von diversen Faktoren ab. Wesentlich dabei ist die Abhängigkeit von den Bachelorarbeiten der Studierenden an der Hochschule Luzern Technik und Architektur. Die hier vorhandenen Abhängigkeiten werden während der Realisierung möglichst minimiert. 
+\subsection{Spezifische Anforderungen}
+
 \subsubsection{Funktionale Anforderungen}
 \begin{table}[H]
-    \setlength\extrarowheight{2pt} % for a bit of visual "breathing space"
-    \begin{tabularx}{\textwidth}{|l|X|l|}
-        \hline
-        \textbf{ID} &  \textbf{Anforderung} & \textbf{Muss/Kann}  \\
-        \hline
-        F.1 & Die Web-Applikation muss die Punkte in der von Google aufgestellten Core Progressive Web App checklist \cite{pwaChecklist} erfüllen& Muss \\
-        \hline
-        F.2 & Die Web-Applikation ist auf eine phyisische Pick-Up Station abgestimmt. & Muss \\
-        \hline
-        F.3 & Die Web-Applikation ist international einsetzbar & Kann \\
-        \hline
+	\setlength\extrarowheight{2pt} % for a bit of visual "breathing space"
+	\begin{tabularx}{\textwidth}{|l|X|l|}
+		\hline
+		F.1 & Das System muss die Punkte in der von Google aufgestellten Core Progressive Web App checklist erfüllen. \cite{pwaChecklist} & Muss \\
+		\hline
+		F.2 & Das System ist auf eine physische Pick-Up Station abgestimmt. & Muss \\
 
-    \end{tabularx}
-    \caption{ \label{tbl: Funktionsanforderungen}Anforderungen, Quelle: Autoren}
-\end{table}
-\subsubsection{Anforderungen an den Kaufprozess}
-\begin{table}[H]
-    \setlength\extrarowheight{2pt} % for a bit of visual "breathing space"
-    \begin{tabularx}{\textwidth}{|l|X|l|}
-    	\hline
-        F.1 & Die Web-Applikation bietet die Möglichkeit, Kunden zu Erfassen & Muss \\
 		\hline
-		F.2 & Die Web-Applikation bietet die Möglichkeit, durch die Anbindung an eine 3rd Party eine Altersverifikation durchzuführen  & Muss \\
+		F.4 & Das System bietet dem Anwender die Möglichkeit, sich zu registrieren. & Muss \\
 		\hline
-		F.3 & Die Web-Applikation ermöglicht es, verschiedene Produkte zu bestellen & Kann \\
+		F.5 & Das System bietet die Möglichkeit, durch die Anbindung an eine 3rd Party, eine Altersverifikation durchzuführen.  & Muss \\
 		\hline
-		F.4 & Die Web-Applikation ermöglicht die Anbindung an einen bereits bekannten Bezahldienst, um eine sichere Bezahlung zu garantieren & Muss \\
+		F.6 & Das System bietet dem Kunden die Möglichkeit, verschiedene Produkte zu bestellen. & Kann \\
 		\hline
-		F.5 & Die Web-Applikation ermöglicht es, verschiedene Produkte zu bestellen & Kann \\
+		F.7 & Das System ermöglicht die Anbindung an einen bereits bekannten Bezahldienst, um eine sichere Bezahlung zu garantieren. & Muss \\
 		\hline
-		F.6 & Dem Kunden kann eine Pick-Up Station zur Abholung auswählen, um die für Ihn nächstgelegene Station auswählen zu können  & Kann \\
+		F.8 & Das System bietet dem Kunden die Möglichkeit, verschiedene Produkte zu bestellen. & Kann \\
 		\hline
-    \end{tabularx}
-    \caption{ \label{tbl: Anforderungen an die Benutzbarkeit}Anforderungen, Quelle: Autoren}
-\end{table}
-\subsubsection{Anforderungen an die Leistungsfähigkeit}
-\begin{table}[H]
-    \setlength\extrarowheight{2pt} % for a bit of visual "breathing space"
-    \begin{tabularx}{\textwidth}{|l|X|l|}
-        \hline
-        \textbf{ID} &  \textbf{Anforderung} & \textbf{Muss/Kann}  \\
-        \hline
-        L.1 & Das System muss jederzeit von mindestens 100 bis 120 Benutzern gleichzeitig verwendet werden können. & Muss \\
-        \hline
- \end{tabularx}
-    \caption{ \label{tbl: Anforderungen an die Leistungsfaehigkeit}Anforderungen, Quelle: Autoren}
+		F.9 & Das System bietet dem Kunden die Möglichkeit, die für Ihn nächstgelegene Station auswählen zu können.  & Muss \\
+		\hline
+		F.10 & Das System bietet dem Kunden die Möglichkeit, alle vorhandenen Pick-Up Stations anzuzeigen.  & Muss \\
+		\hline
+		F.11 & Das System bietet dem Kunden die Möglichkeit, seine beliebtesten Produkte direkt zu bestellen. & Kann \\
+		\hline
+		F.12 & Das System bietet dem Dienstleister die Möglichkeit, einen aktuellen Warenbestand zu erhalten. & Kann \\
+		\hline
+		F.13 & Das System bietet dem Dienstleister die Möglichkeit, bei zu geringem Warenbestand eine Benachrichtigung zu senden & Kann \\
+		
+	\end{tabularx}
+	\caption{ \label{tbl: FunktionaleAnforderungent}Funktionale Anforderungen, Quelle: Autoren}
 \end{table}
 \subsubsection{Nicht funktionale Anforderungen}
 \begin{table}[H]
-    \setlength\extrarowheight{2pt} % for a bit of visual "breathing space"
-    \begin{tabularx}{\textwidth}{|l|X|l|}
+	\setlength\extrarowheight{2pt} % for a bit of visual "breathing space"
+	\begin{tabularx}{\textwidth}{|l|X|l|}
+		\hline
+		\textbf{ID} &  \textbf{Anforderung} & \textbf{Muss/Kann}  \\
         \hline
-        \textbf{ID} &  \textbf{Anforderung} & \textbf{Muss/Kann}  \\
-        \hline
-        Q.1 & Als Benutzer muss ich mich bei vorhandener Internetverbindung jederzeit im System einloggen können. & Muss \\
-        \hline
-    \end{tabularx}
-    \caption{ \label{tbl: Anforderungen an die Qualitaet}Anforderungen, Quelle: Autoren}
+		L.1 & Das System soll dem Kunden die Möglichkeit bieten, eine Bestellung mit 5 Klicks zu platzieren  & Kann \\
+		\hline
+		L.2 & Das System bietet die Möglichkeit, International eingesetzt zu werden. & Kann \\
+		\hline
+		L.3 & Das System muss via HTTPS kommunizieren & Muss \\
+		\hline
+		L.4 & Das System muss durch einen modernen und sicheren Authentifizierungsmechanismus geschützt sein & Muss \\
+		\hline
+		L.5 & Das System bietet die Möglichkeit, durch die Verwendung von bewährten Programmiervorgehen von einem externen Fachmann verstanden zu werden & Muss \\
+		\hline
+	\end{tabularx}
+	\caption{ \label{tbl: NichtFunktionaleAnforderungent}Nicht Funktionale Anforderungen, Quelle: Autoren}
 \end{table}
+
+\subsection{Bemerkungen}
+Als Grundstruktur für die SRS wurde eine Vorlage von Perforce genutzt. [\cite{srsdocument}]
+Als Basis dazu diente die IEEE Spezifikation 29148-2018. [\cite{ieeeSrs}]
+
+\subsection{Unterschriften}
+Mit der Unterschrift gilt die Software Requirement Specification als bestätigt.\\
+
+Ort, Datum:	\underline{\hspace*{6cm}}	\hspace*{1cm} Visum:	\underline{\hspace*{4cm}}
+%\includegraphics[width=1\textwidth]{bilder/unterschriften}
+
+
 \newpage
