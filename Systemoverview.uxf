@@ -4,8 +4,8 @@
   <element>
     <id>Text</id>
     <coordinates>
-      <x>620</x>
-      <y>710</y>
+      <x>390</x>
+      <y>730</y>
       <w>100</w>
       <h>80</h>
     </coordinates>
@@ -25,8 +25,8 @@ drawArc(0,height*3/5,width,height*2/5,180,180,true) fg=black bg=#222222 //Parame
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>400</x>
-      <y>540</y>
+      <x>170</x>
+      <y>560</y>
       <w>520</w>
       <h>100</h>
     </coordinates>
@@ -40,8 +40,8 @@ bg=blue</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>650</x>
-      <y>630</y>
+      <x>420</x>
+      <y>650</y>
       <w>30</w>
       <h>100</h>
     </coordinates>
@@ -52,8 +52,8 @@ bg=blue</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>670</x>
-      <y>630</y>
+      <x>440</x>
+      <y>650</y>
       <w>30</w>
       <h>100</h>
     </coordinates>
@@ -64,8 +64,8 @@ bg=blue</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>390</x>
-      <y>370</y>
+      <x>160</x>
+      <y>390</y>
       <w>530</w>
       <h>100</h>
     </coordinates>
@@ -79,8 +79,8 @@ bg=orange</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>620</x>
-      <y>460</y>
+      <x>390</x>
+      <y>480</y>
       <w>60</w>
       <h>100</h>
     </coordinates>
@@ -91,8 +91,8 @@ JSON</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>680</x>
-      <y>460</y>
+      <x>450</x>
+      <y>480</y>
       <w>130</w>
       <h>100</h>
     </coordinates>
@@ -104,8 +104,8 @@ HTTP-Requests
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>510</x>
-      <y>310</y>
+      <x>280</x>
+      <y>330</y>
       <w>90</w>
       <h>40</h>
     </coordinates>
@@ -116,20 +116,8 @@ halign=center</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>690</x>
-      <y>310</y>
-      <w>110</w>
-      <h>40</h>
-    </coordinates>
-    <panel_attributes>Pick-Up Client
-halign=left</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLGeneric</id>
-    <coordinates>
-      <x>1630</x>
-      <y>120</y>
+      <x>1400</x>
+      <y>140</y>
       <w>100</w>
       <h>100</h>
     </coordinates>
@@ -140,21 +128,8 @@ halign=left</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>730</x>
-      <y>340</y>
-      <w>30</w>
-      <h>50</h>
-    </coordinates>
-    <panel_attributes>lt=-
-
-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;30.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>540</x>
-      <y>340</y>
+      <x>310</x>
+      <y>360</y>
       <w>30</w>
       <h>50</h>
     </coordinates>
@@ -166,8 +141,8 @@ halign=left</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>880</x>
-      <y>120</y>
+      <x>240</x>
+      <y>160</y>
       <w>190</w>
       <h>100</h>
     </coordinates>
@@ -181,13 +156,13 @@ bg=red</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>730</x>
-      <y>210</y>
-      <w>260</w>
-      <h>120</h>
+      <x>310</x>
+      <y>250</y>
+      <w>110</w>
+      <h>100</h>
     </coordinates>
     <panel_attributes>lt=-&gt;
-orderData</panel_attributes>
-    <additional_attributes>10.0;100.0;10.0;40.0;240.0;40.0;240.0;10.0</additional_attributes>
+orderToken</panel_attributes>
+    <additional_attributes>10.0;80.0;10.0;10.0</additional_attributes>
   </element>
 </diagram>
