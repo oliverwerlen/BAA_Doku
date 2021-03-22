@@ -1,6 +1,6 @@
 % !TEX root = PREN2_Dokumentation.tex
 
-\section{Projektmanagementplan}
+\section{Projektmanagementplan}\label{Projektmanagementplan}
 
 \subsection{Projektorganisation}
 \subsubsection{Organisationsplan, Rollen, Zuständigkeiten}
@@ -45,7 +45,7 @@ Im untenstehenden Rahmenplan wird mittels Zeitstrahl eine Grobplanung dargestell
     \caption[SoDa Rahmenplan]{Rahmenplan,\\ Quelle: Autoren}
     \label{img: SoDa Rahmenplan}
 \end{figure}
-Der Rahmenplan wurde zu Beginn des Projekts grob dargestellt. Im Verlauf des Projekts kann dieser bei Bedarf angepasst werden.  
+Der Rahmenplan wurde zu Beginn des Projekts grob dargestellt. Im Verlauf des Projekts kann dieser bei Bedarf angepasst werden. Die einzelnen Versionen des Rahmenplans sind im Anhang \ref{Rahmenplaene} zu finden. 
 \newpage
 \subsubsection{Meilensteine}\label{Meilensteine}
 Wie in Abbildung \ref{img: SoDa Rahmenplan} zu sehen gibt es insgesamt sieben Meilensteine.
@@ -74,6 +74,11 @@ Abschluss Bestellprozess & Der Bestellprozess "Artikelauswahl, Artikel in Warenk
 \newline
 \textbf{Release 2}
  \\
+ 
+ \hline
+Zwischenpräsentation & Die Zwischenpräsentation ist durchgeführt worden.  & Zwischenpräsentation im Anhang
+ \newline
+ \\
 
 \hline
 Abschluss Realisierungsphase & Die noch fehlenden Anforderungen aus dem vorherigen Meilenstein sind hier abzuliefern. Es handelt sich dabei um die Auswahl sowie die Abholung an einer Pick-Up Station. Zudem ist die Abfrage des Warenbestandes Teil dieses Meilensteins. & Testprotokolle zu Abholung, Testprotokolle Auswahl, Integration alte Daten, Demo verschiedene Features
@@ -91,6 +96,11 @@ Projektende & Der Auftraggeber erhält eine Einführung in die Software & Fertig
 \textbf{Release 4}
 \\
 \hline
+Abschlusspräsentation & Die Abschlusspräsentation ist durchgeführt worden.  & - 
+\newline
+\\
+\hline
+
 \end{tabularx}
 \caption{ \label{tbl: Meilensteine}Meilensteine, Quelle: Autoren}
 \end{table}
@@ -241,7 +251,7 @@ Bei diesem Projekt besteht eine Konfigurationseinheit aus mehreren Teilen. Dabei
 \textbf{Typ} &  \textbf{Version}  \\
 
 \hline
-API &  1.0.0\\
+API & 1.0.0\\
 \hline
 Datenbank &  x\\
 \hline
@@ -258,10 +268,14 @@ Die gesamten Testprotokolle sind im Anhang \ref{Testprotokolle} zu finden.
 \newpage
 \subsection{Teststrategie und Drehbuch}
 \subsubsection{Teststrategie}
-hauptsächlich auf Automated Testing gesetzt.
-Unit Tests werden dabei Integration Tests vorgezogen.
-Hierzu wird auf das bewährte JUnit Framework gesetzt.
-Es wird dabei das Test-First-Prinzip verwendet.
+Es handelt sich hier um die Entwicklung eines Prototypen. Die Priorität wird entsprechend gesetzt. 
+\begin{itemize}
+	\item Funktionalität vor Design
+	\item Sicherheit vor Tempo
+	\item Funktionalität vor Testing
+\end{itemize}
+Es wurde sich dabei bewusst auf diese Priorisierungen beschränkt. 
+Für das Testing wird in erster Linie auf Automated Tests gesetzt. Hinzu kommen die Abnahmetests zu den jeweiligen Meilensteine. Diese werden durch ausgewählte Testpersonen ausgeführt. 
 
 \paragraph{Automated Testing der REST-Schnittstelle}
 Zum Testen der REST-Schnittstelle wird dabei in erster Linie immer Postman genutzt. Es wird auf die darin enthaltene "automated Testing" Funktion gesetzt. 
