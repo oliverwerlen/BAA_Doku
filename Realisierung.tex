@@ -184,11 +184,11 @@ Das Erstellen der CI/CD Pipelines des Projekts verlief grösstenteils problemlos
 Beim Backend wurde auf eine zusätzliche Test-Stage verzichtet. Die gesamten Tests werden bereits im Maven-Build ausgeführt. Beim Frontendprojekt wurde dazu eine eigene Stage für e2e Tests festgelegt. 
 Die fertigen Konfigurationen sind im GitLab Projekt enthalten und können dort eingesehen werden. 
 
-\paragraph{Bestellen von Produkten}
+\paragraph{Bestellen von Produkten}\label{order}
 Um eine Bestellung durchführen zu können, wurde in einem ersten Schritt das Article Object definiert. Basierend auf diesem wurde das passende \ac{DTO} definiert. Um das Mapping zwischen DTOs und Objekt zu vereinfachen, wurde der Object Mapper modelmapper genutzt. 
 Zudem wurde direkt mit \ac{HATEOAS} gearbeitet. Der Controller stellt dabei die gewohnten CRUD-Operationen zur Verfügung. \\
 
-\paragraph{Abstimmung auf physische Pick Up Station}
+\paragraph{Abstimmung auf physische Pick Up Station}\label{abstimmungPickUp}
 Im Meeting von dieser Woche wurden dem Auftraggeber die beiden in Kapitel \ref{qrcode} erarbeiteten Lösungen vorgestellt. Der Entscheid fiel dabei zugunsten der ersten Alternative. Dabei befindet sich der QR-Code fix auf der Station. Diese ist deutlich robuster und einfacher umzusetzen. \\\\
 Die Schnittstellen zwischen Elektrotechnik und Informatik sind essentiell für die Funktionalität des Endprodukts. Aus diesem Grund wurde in diesem Sprint ein Meeting zwischen den Projektbeteiligten einberufen. Besonders das Senden der Ausgabeanforderung führte dabei zu Problemen. Hierbei soll auf einen Busy-Waiting Ansatz verzichtet werden. Jedoch soll die Lösung auch sehr energiesparend und effizient umsetzbar sein. Da beide Beteiligten keine Erfahrung im \ac{IoT}-Umfeld besitzen, wurde hier der Betreuer Michael Handschuh um Hilfe gebeten. 
 
@@ -200,4 +200,220 @@ In Sprint 2 konnten nicht alle User Stories vollständig erfüllt werden. Es wer
 \paragraph{User Stories}
 In diesem Sprint wurden keine neuen User Stories zum Sprint Backlog hinzugefügt. Es wird weiterhin an den beiden verbleibenden User Stories gearbeitet. 
 
+\paragraph{Abstimmung auf eine physische Pick Up Station}
+Bei der Abstimmung auf die physische Pick Up Station musste das geplante Vorgehen mit dem Projektbetreuer besprochen werden. Im Meeting \ref{Beteuermeeting2} wurde eine geeignete Lösung gesucht. Dabei standen zwei Möglichkeiten zur Auswahl. 
+\subparagraph{WebHooks}
+WebHooks werden dabei zur Kommunikation zwischen zwei Diensten genutzt. Das Vorgehen ist dabei vergleichbar mit dem aus der Programmierung bekannten Observer Pattern. Dabei wird das Push-Verhalten genutzt. Es sind keine Requests nötig, um allfällige neue Daten zu bemerken. Die API pusht die Daten zum WebHooks-Endpoint. Der Event wird dabei mit POST-Request ausgelöst. Dabei wird Webhooks auch von diversen Zahlungsanbietern wie PayPal genutzt. Es handelt sich hierbei um eine asynchrone Kommunikation. [\cite{webhooksExplained}] WebHooks erfüllt dabei alle Anforderungen, welche zur Kommunikation zwischen API und PickUp Station benötigt werden.  \\Allerdings ist noch keine Erfahrung mit WebHooks vorhanden. Jedoch kann zur Erstellung auch Node.js mit Express verwendet werden. Dieses ist bekannt und wurde auch schon in anderen Projekten genutzt. 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{images/webhooks_fun.png}
+	\caption[Webhooks Funktionsweise]{Webhooks Funktionsweise,\\ Quelle: \cite{webhooksImage}}
+	\label{img: webhooks_fun}
+\end{figure}
+
+Sobald die entsprechende User Story bearbeitet wird, wird der entsprechende WebHooks-Endpoint erstellt. 
+
+\paragraph{Produktbestellung}
+In diesem Sprint wurde zudem an der Produktbestellung gearbeitet. Als Erstes wurde das Darstellen von Produkten ins Auge gefasst. Zudem wurde die Grundstruktur der Angular Applikation erstellt. 
+Dabei wurde strikt nach dem Mobile First Ansatz gearbeitet. Durch Schemantic konnte das responsive Menu sowie die Anzeige für die Produkte sehr schnell erstellt werden. Im Anschluss wurde das Menü mit den gewünschten Inhalten gefüllt. 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.7]{images/nav.png}
+	\caption[Navigation]{Navigation,\\ Quelle: Autor }
+	\label{img: navigation}
+\end{figure}
+
+Bei den Produkten wurde das Card Element von Angular Material gesetzt. Dieses wurde in ein Grid Layout verpackt. Damit die Seite auf allen Geräten optimal aussieht, wird das Layout basierend auf der Displaygrösse angepasst. Um dies mit TypeScript umzusetzen, wurde ein Breakpoint Observer eingesetzt. Mithilfe von diesem wird die Anzahl Spalten und die Spaltenhöhe abhängig von der Geräteauflösung festgelegt. Sie wird dabei beim Laden der Seite festgelegt. Es ist hier kein Listener Mechanismus nötig, da sich die Auflösung nicht während der Laufzeit ändert.\\ Um die Anzahl Spalten bei einem Wechsel in den Landscape Modus anzupassen, wurde ein neuer Observer eingesetzt. Dieser legt die entsprechende Anzahl fest. 
+\begin{figure}[h]
+	\begin{subfigure}[b]{0.4\textwidth}
+		\includegraphics[scale=0.4]{images/rowsLand.PNG}
+		\caption[Observer, Wechsel Landscape/Portrait Tablet]{Observer, Wechsel Landscape/Portrait Tablet,\\ Quelle: Autor}
+		\label{img: Landscape observer}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[b]{0.4\textwidth}
+		\includegraphics[scale=0.6]{images/rowsRes.PNG}
+		\caption[Spaltenanzahl- und Höhe abhängig von Auflösung]{Spaltenanzahl- und Höhe abhängig von Auflösung,\\ Quelle: Autor}
+		\label{img: Resolution Observer}
+	\end{subfigure}
+\end{figure} 
+
+\subparagraph{Anzeige der Produkte}
+Die Abfrage der Produkte war bereits in einem vorderen Sprint \ref{order} im Backend erstellt. Ergänzend dazu wurde ein Image Controller definiert. Dieser ermöglicht es, via dem Bildnamen das passende Bild zu erhalten. Bei der Abfrage eines Produkts wird dieser dabei als Link mitgesendet. Die Produkte wurden analog zur Java Klasse als TypeScript Klasse definiert. Die Links via HATEAOS wurden dabei als eigendes Property links[] definiert. 
+
+Anschliessend wurde mittels Angular-http Client ein Get-Request an die entsprechende URL gesendet. Das resultierende Observable wurde abonniert und anschliessend mittels Angular Direktive als Card Element dargestellt. 
+
+\begin{figure}[h]
+		\centering
+		\includegraphics[scale=0.3]{images/productsPhone.PNG}
+		\caption[Produktanzeige auf Pixel Phone]{Produktanzeige auf Pixel Phone,\\ Quelle: Autor}
+		\label{img: Prodcuts pixel}
+\end{figure}
+
+\begin{figure}[h]
+		\centering
+		\includegraphics[scale=0.3]{images/productsTablet.PNG}
+		\caption[Produktanzeige auf iPad]{Produktanzeige auf iPad,\\ Quelle: Autor}
+		\label{img: Products iPad}
+\end{figure} 
+
+Anschliessend wurde mittels CSS das Design wie gewünscht angepasst. 
+
+\paragraph{Sprintreview Sprint 3}
+Die Userstory von dieser Woche konnten erneut nicht abgeschlossen werden. Aus diesem Grund wird sie für den nächsten Sprint weiter verfeinert. Die resultierenden Stories sind dabei: 
+\begin{itemize}
+	\item Das System bietet die Möglichkeit, Produkte anzuzeigen
+	\item Das System bietet die Möglichkeit, ein Produkt dem Warenkorb hinzuzufügen
+\end{itemize}
+
+Diese Userstories ersetzen die bestehende.
+
+
+\subsubsection{Sprint 4}
+\begin{table}[H]
+	\begin{tabularx}{\textwidth}{|l|X|}
+		\hline
+		\textbf{User Story} & \textbf{Number} \\
+		\hline
+		Das System bietet die Möglichkeit, ein Produkt anzuzeigen& F.2\\
+		\hline
+		Das System bietet die Möglichkeit, ein Produkt dem Warenkorb hinzuzufügen& F.2\\
+		\hline
+	\end{tabularx} 
+	\caption[Userstories Sprint 4]{Userstories Sprint 4,\\ Quelle: Autor}
+\end{table}\label{userStoriesSprint4}
+
+\subparagraph{Produkte anzuzeigen}
+Vom Auftraggeber wurden die Produkte in einer Excel Liste abgegeben. Hierbei war auch ein Packshot vorhanden. Es wurde relativ schnell klar, dass dieser nur für die mobile Ansicht geeignet war, da die Auflösung sehr gering war. Auf Nachfrage wurden anschliessend hochauflösende Bilder zur Verfügung gestellt. Allerdings war hier die Qualität zu gut. Das Laden der Seite verzögerte sich merklich. Aus diesem Grund mussten die Bilder komprimiert und in der Auflösung angepasst werden. Zur Komprimierung wurde das Online Tool von https://compresspng.com/ genutzt. Die Auflösung wurde mit dem Preview Programm von MacOS angepasst. Dadurch konnte die Grösse eines Bildes von ca. 2MB auf 100KB heruntergebrochen werden. Die Bilder sehen dabei für den Betrachter immer noch scharf aus. Zudem konnten die Bilder so alle auf das selbe Format gebracht werden. \\
+Um die Produkte hinzuzufügen, wurde Postman genutzt. Die einzelnen Produkte-JSONs wurden dabei einmal erstellt und könnten bequem via Runner hinzugefügt werden. 
+Zusätzlich wurde eine Sortier-Funktion implementiert. Mittels dieser kann die Darstellungsreihenfolge angepasst werden. Es wurde hier die ngx Order-Pipe genutzt. \\
+Bei einem Klick auf ein Produkt soll zudem die Detail View von diesem angezeigt werden. Dies war mittels Router Link sehr leicht umzusetzen. Mittels dem ProductService wird das ausgewählte Produkt gesetzt und auf der Detail View angezeigt. Das Design dieser Komponente wird auf später verschoben, da die Warenkorbfunktionalität wichtiger ist. 
+
+\subparagraph{Produkte dem Warenkorb hinzufügen}
+Für die Realisierung des Warenkorbes gestaltete sich als simpel. Angular liefert hierzu ein hauseigenes Tutorial. Dieses wurde erweiter, sodass CartItems gespeichert werden. Zusätzlich werden diese im Local Storage des Browser gespeichert, sodass der Warenkorb auch nach einem Reload noch vorhanden ist [\cite{cartAngular}].
+
+Der Warenkorb wird als Angular Material List dargestellt. Die Artikelanzahl kann mittels Buttons angepasst werden. Ein Löschen wird durch einen zusätzlichen Button ermöglicht. Zusätzlich wird das Gesamttotal der im Warenkorb befindlichen Artikel bei jeder Änderung neu berechnet. 
+
+\begin{figure}[h]
+	\begin{subfigure}[b]{0.4\textwidth}
+		\includegraphics[scale=0.4]{images/cartEmpty.PNG}
+		\caption[Leerer Warenkorb]{Leerer Warenkorb,\\ Quelle: Autor}
+		\label{img: cartEmpty}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[b]{0.4\textwidth}
+		\includegraphics[scale=0.4]{images/cartFull.PNG}
+		\caption[Warenkorb mit Produkten]{Warenkorb mit Produkten,\\ Quelle: Autor}
+		\label{img: cartFull}
+	\end{subfigure}
+\end{figure} 
+
+\subparagraph{Https bei Backend}
+Moderne Browser erlauben das Laden von sogenanntem Mixed-Content per Default nicht mehr. Mixed Content steht dabei für das Laden von Daten via http von einer https Seite. Um dieses Problem zu beheben, muss das Spring Boot Backend auch via https zugreifbar sein.  [\cite{mixedContent}]. Mit dem Tool Certbot kann ein gültiges Zertifikat erstellt werden. Dieses muss nun im application.propertie des Spring Projekts angegeben werden. Das Tutorial verwendete dabei eine deprecated Version von Certbot. Dank einem Hinweis von Ubuntu wurde auf die neue Version gewechselt [\cite{springSSL}]. 
+
+\begin{verbatim}
+	certbot certonly --webroot  -d bdaf21-owerlen.enterpriselab.ch 
+	--staple-ocsp -m oliverwerlen@bluewin.ch --agree-tos
+\end{verbatim}
+
+Es wird empfohlen, in Spring mit PKCS12 Files zu arbeiten. Daher wurde das erstellte PEM File zu einem solchen konvertiert. \\\\
+Certbot führt die Zertifikatserneuerung von selbst aus. Das jetzt verwendete Zertifikat ist 90 Tage gültig, es sollte daher bis zum Projektende keine Probleme bereiten. \\
+
+\begin{verbatim}
+	openssl pkcs12 -export -in fullchain.pem -inkey privkey.pem -out 
+	keystore.p12 -name jtipickupbackend -CAfile chain.pem -caname root
+\end{verbatim}
+
+\subparagraph{Sprintreview Sprint 4}
+Im Sprint 4 konnte die Warenkorbfunktionalität abgeschlossen werden. Zudem läuft die Applikation nun auch im produktiven Umfeld.
+Um die Bestellung abschliessen zu können, muss im nächsten Schritt die Authentifizierung implementiert werden.  
+
+\subsubsection{Sprint 5}
+\begin{table}[H]
+	\begin{tabularx}{\textwidth}{|l|X|}
+		\hline
+		\textbf{User Story} & \textbf{Number} \\
+		\hline
+		Das System bietet dem Anwender die Möglichkeit, sich zu registrieren& F.2\\
+		\hline
+	\end{tabularx} 
+	\caption[Userstories Sprint 5]{Userstories Sprint 5,\\ Quelle: Autor}
+\end{table}\label{userStoriesSprint5}
+ In vorherigen Sprints konnten die User Stories selten Fertiggestellt werden. Aus diesem Grund wurde hier nur eine kleine Story hinzugenommen.
+ 
+\paragraph{Authentifizierung}
+\subparagraph{Backend}
+ In einem vorherigen Projekt wurde bereits eine Authentifizierung in Spring Boot umgesetzt. Das dort verwendete Tutorial funktionierte dabei tadellos. Aus diesem Grund wurde entschieden, bei diesem Projekt identisch vorzugehen. Nachfolgendes Sequenzdiagramm zeigt dabei auf, wie die einzelnen Teile miteinander kommunizieren. Dabei wurde auf eine Token Based Authentifizierung realisiert. Umgesetzt wurde sie mittels Spring Security. Der Token muss dabei bei jedem Request mitgesendet werden. [\cite{authAPISpring}]
+  
+\begin{figure}[H]
+  	\centering
+  	\includegraphics[width=1\textwidth]{images/Authentication.PNG}
+  	\caption[Authentication im Backend]{Authentication im Backend,\\ Quelle: Autor}
+  	\label{img: AuthenticationBackend}
+\end{figure} 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{images/jwtIO.PNG}
+	\caption[Token Auflösung mit jwt.io]{Token Auflösung mit jwt.io,\\ Quelle: Autor}
+	\label{img: jwtio}
+\end{figure} 
+
+Es wurden zudem Rollen definiert, um die API feingranular sichern zu können. Die Rollen lauten dabei: 
+
+\begin{itemize}
+	\item User
+	\item Admin
+	\item Maintenance
+\end{itemize}
+
+Ein entsprechendes Rollenkonzept wird bei Bedarf erstellt und der Dokumentation angefügt. 
+
+\subparagraph{Frontend}
+
+Um einen ensprechenden Nutzer zu erstellen bzw. die Eingabe von Logininformationen zu ermöglichen, mussten die entsprechenden Formulare erstellt werden. Dies wurde dabei mittels Reactive Forms umgesetzt. Durch die damit verbundenen Validators wird Clientseitig auf die Komplexität des Passworts, das Übereinstimmen der beiden sowie die Korrektheit der Email Adresse getestet. 
+
+\begin{figure}[H]]
+ 	\begin{subfigure}[b]{0.4\textwidth}
+ 		\includegraphics[scale=0.3]{images/loginForm.PNG}
+ 		\caption[Login Formular]{Login Formular,\\ Quelle: Autor}
+ 		\label{img: loginForm}
+ 	\end{subfigure}
+ 	\hfill
+ 	\begin{subfigure}[b]{0.4\textwidth}
+ 		\includegraphics[scale=0.3]{images/registerForm.PNG}
+ 		\caption[Registrierungsformular]{Registrierungsformular,\\ Quelle: Autor}
+ 		\label{img: registerForm}
+ 	\end{subfigure}
+\end{figure} 
+ 
+ Die Email-Adresse sowie der Nutzername wird Serverseitig auf die Einzigartigkeit überprüft. 
+ 
+Wie oben erwähnt, muss bei jedem Request der passende Header mitgesendet werden. Um dies ohne grossen Aufwand durchführen zu können, wird analog zum Backend ein passendes Tutorial zum Frontend bereitgestellt. Angular bietet dabei die Möglichkeit, mit Auth-Interceptors zu arbeiten. Dieser fügt jedem API Call den entsprechenden Token im Header an. Der Interceptor dient als Proxy. [\cite{authAPIAngular}]
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{images/authInterceptor.PNG}
+	\caption[Authentication Interceptor]{Authentication Interceptor,\\ Quelle: Autor}
+	\label{img: authInterceptor}
+\end{figure} 
+  
+Beim erfolgreichen Anmelden wird der Token im Session Storage gespeichert. Zudem wird der Nutzernamen mitgespeichert. 
+
+\begin{figure}[H]
+ 	\centering
+ 	\includegraphics[width=1\textwidth]{images/sessionStorage.PNG}
+ 	\caption[Token im Session Storage]{Token im Session Storage,\\ Quelle: Autor}
+ 	\label{img: sessionStorage}
+\end{figure} 
+ 
+ Mittels Angular Direktiven wird das Menu für eingeloggte User angepasst. Es wird der Logout Button eingeblendet. Bei einem Klick auf diesen wird der Session Storage gelöscht. 
+ 
+\subsubsection{Sprintreview Sprint 5}
+ Im Sprint 5 konnte die geplante User Story erfolgreich abgeschlossen werden.
+ 
+ 
+ 
+ 
 \newpage
