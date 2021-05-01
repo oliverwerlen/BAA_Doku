@@ -1,7 +1,7 @@
 % !TEX root = PREN2_Dokumentation.tex
 \section{Testprotokolle}\label{Testprotokolle}
 
-\subsection{Testprotokolle Schülermodus}\label{testprotokolleSchuelermodus}
+\subsection{Testprotokolle Bestellung}\label{testprotokolleBestellung}
 
 \begin{table}[H]
     \setlength\extrarowheight{2pt} % for a bit of visual "breathing space"
@@ -9,42 +9,42 @@
         \hline
         \textbf{Test Nr.} & 1 \\
         \hline
-        \textbf{Beschreibung} & Durch diesen Test wird die Lernfunktion sowie die Lernstatistik für Lernende manuell getestet.\\
+        \textbf{Beschreibung} & Durch diesen Test wird die Registrierung eines neuen Kunden getestet. \\
         \hline
         \textbf{Randbedingungen} &
         \begin{minipage}[t]{0.6\textwidth}
             \begin{itemize}
-                \item Die Testperson besitzt einen Account bzw. besitzt den Zugriff auf die Applikation.
-                \item Die Testperson kann selbstständig auf die Fragen zugreifen.\\
+                \item Die Testperson hat sich mit ihrer Email-Adresse und Benutzernamen noch nie Registriert.
+                \item Die Testperson nutzt den Nutzernamen "test" , die Email-Adresse "test@gmail.com" und das Passwort "ABC*1234" ein
             \end{itemize}
         \end{minipage} \\
         \hline
         \textbf{erwartete Resultate}  &
         \begin{minipage}[t]{0.6\textwidth}
             \begin{itemize}
-                \item Wenn die Testperson ein Quiz startet, wird diesem eine Frage angezeigt. \\
-                \item Der Testperson wird neben der Frage auch die Antwortmöglichkeiten angezeigt. \\
+                \item Das Konto der Testperson wird korrekt angelegt. 
+                \item Ein Popup zeigt dem Nutzer den Status an
             \end{itemize}
         \end{minipage} \\
         \hline
-        \textbf{Testperson} & Frederico Fischer \\
+        \textbf{Testperson} & Oliver Werlen \\
         \hline
-        \textbf{Datum} & 01.10.2020 \\
+        \textbf{Datum} & 18.04.2021 \\
         \hline
         \textbf{Durchführung} &
         \begin{minipage}[t]{0.6\textwidth}
             \begin{enumerate}
-                \item Die Testperson gibt die URL ein.
-                \item Die Testperson drückt auf den Reiter Übungen.
-                \item Auf dem Bildschirm erscheint die Frage mit den möglichen Antworten.\\
+                \item Die Testperson gibt die angegebenen Daten ein. Die restlichen Daten werden zufällig gewählt
+                \item Die Testperson klickt auf den Button "Registrieren"
+                \item Es wird in einem Dialog die Erstellung des Nutzers dargestellt. 
+                \item Es wird automatisch zur Login Page gewechselt
             \end{enumerate}
         \end{minipage} \\
         \hline
         \textbf{erhaltenes Resultat} &
         \begin{minipage}[t]{0.6\textwidth}
             \begin{enumerate}
-                \item Die Testperson hat eine Frage angezeigt bekommen.
-                \item Die Testperson hatte eine Übersicht über alle möglichen Antworten.\\
+                \item Das Erstellen des Nutzers wurde vom System via Popup bestätigt. 
             \end{enumerate}
         \end{minipage} \\
         \hline
@@ -54,4 +54,448 @@
     \caption{ \label{tbl: testprotokoll1}Testprotokoll Test 1, Quelle: Autoren}
 \end{table}
 
+\begin{table}[H]
+	\setlength\extrarowheight{2pt} % for a bit of visual "breathing space"
+	\begin{tabularx}{\textwidth}{|l|X|}
+		\hline
+		\textbf{Test Nr.} & 2\\
+		\hline
+		\textbf{Beschreibung} & Durch diesen Test wird die Registrierung eines neuen Kunden getestet, wobei die Email Adresse und der Nutzername bereits genutzt werden. \\
+		\hline
+		\textbf{Randbedingungen} &
+		\begin{minipage}[t]{0.6\textwidth}
+			\begin{itemize}
+				\item Der Test \ref{tbl: testprotokoll1} ist erfolgreich durchgeführt worden.
+				\item Die Testperson nutzt den Nutzernamen test , die Email-Adresse test@gmail.com und das Passwort ABC*1234 ein\\
+			\end{itemize}
+		\end{minipage} \\
+		\hline
+		\textbf{erwartete Resultate}  &
+		\begin{minipage}[t]{0.6\textwidth}
+			\begin{itemize}
+				\item Das System gibt dem Nutzer die Antwort, dass ein Benutzer mit dieser Email oder Benutzernamen bereits existiert. 
+			\end{itemize}
+		\end{minipage} \\
+		\hline
+		\textbf{Testperson} & Oliver Werlen \\
+		\hline
+		\textbf{Datum} & 18.04.2021 \\
+		\hline
+		\textbf{Durchführung} &
+		\begin{minipage}[t]{0.6\textwidth}
+			\begin{enumerate}
+				\item Die Testperson gibt die angegebenen Daten ein. Die restlichen Daten werden zufällig gewählt
+				\item Die Testperson klickt auf den Button "Registrieren"
+				\item Es wird in einem Dialog mit der Meldung "Benutzer mit dieser Email oder Benutzernamen existiert bereits" \\
+			\end{enumerate}
+		\end{minipage} \\
+		\hline
+		\textbf{erhaltenes Resultat} &
+		\begin{minipage}[t]{0.6\textwidth}
+			\begin{enumerate}
+				\item Das Popup wird wie geplant angezeigt. \\
+			\end{enumerate}
+		\end{minipage} \\
+		\hline
+		\textbf{Test bestanden} & Ja \\
+		\hline
+	\end{tabularx}
+	\caption{ \label{tbl: testprotokoll2}Testprotokoll Test 2, Quelle: Autoren}
+\end{table}
+
+\begin{table}[H]
+	\setlength\extrarowheight{2pt} % for a bit of visual "breathing space"
+	\begin{tabularx}{\textwidth}{|l|X|}
+		\hline
+		\textbf{Test Nr.} & 3\\
+		\hline
+		\textbf{Beschreibung} & Die diesen Test wird die Login-Funktion getestet.  \\
+		\hline
+		\textbf{Randbedingungen} &
+		\begin{minipage}[t]{0.6\textwidth}
+			\begin{itemize}
+				\item Der Test \ref{tbl: testprotokoll1} ist erfolgreich durchgeführt worden.
+				\item Die Testperson nutzt den Benutzernamen test und das Passwort ABC*1234\\
+			\end{itemize}
+		\end{minipage} \\
+		\hline
+		\textbf{erwartete Resultate}  &
+		\begin{minipage}[t]{0.6\textwidth}
+			\begin{itemize}
+				\item Eine Meldung wird angezeigt, mit welcher das erfolgreiche Erstellen des Nutzers bestätigt wird
+				\item Im Sidenav wird der Logout Button angezeigt. \\
+			\end{itemize}
+		\end{minipage} \\
+		\hline
+		\textbf{Testperson} & Oliver Werlen \\
+		\hline
+		\textbf{Datum} & 18.04.2021 \\
+		\hline
+		\textbf{Durchführung} &
+		\begin{minipage}[t]{0.6\textwidth}
+			\begin{enumerate}
+				\item Die Testperson gibt die angegebenen Daten ein.
+				\item Der Benutzer klickt auf den Login Button\\
+			\end{enumerate}
+		\end{minipage} \\
+		\hline
+		\textbf{erhaltenes Resultat} &
+		\begin{minipage}[t]{0.6\textwidth}
+			\begin{enumerate}
+				\item Das Popup wird wie geplant angezeigt.
+				\item Das Sidenav wird entsprechend angepasst.\\  
+			\end{enumerate}
+		\end{minipage} \\
+		\hline
+		\textbf{Test bestanden} & Ja \\
+		\hline
+	\end{tabularx}
+	\caption{ \label{tbl: testprotokoll3}Testprotokoll Test 3, Quelle: Autoren}
+\end{table}
+\begin{table}[H]
+	\setlength\extrarowheight{2pt} % for a bit of visual "breathing space"
+	\begin{tabularx}{\textwidth}{|l|X|}
+		\hline
+		\textbf{Test Nr.} & 4\\
+		\hline
+		\textbf{Beschreibung} & Die diesen Test wird die Login-Funktion getestet. Es wird eine falsche Kombination eingetragen.  \\
+		\hline
+		\textbf{Randbedingungen} &
+		\begin{minipage}[t]{0.6\textwidth}
+			\begin{itemize}
+				\item Die Testperson nutzt den Benutzernamen testNoAccess und das Passwort ABC*1234*noAccess \\
+			\end{itemize}
+		\end{minipage} \\
+		\hline
+		\textbf{erwartete Resultate}  &
+		\begin{minipage}[t]{0.6\textwidth}
+			\begin{itemize}
+				\item Eine Meldung Falscher Benutzername oder Passwort wird angezeigt\\
+			\end{itemize}
+		\end{minipage} \\
+		\hline
+		\textbf{Testperson} & Oliver Werlen \\
+		\hline
+		\textbf{Datum} & 18.04.2021 \\
+		\hline
+		\textbf{Durchführung} &
+		\begin{minipage}[t]{0.6\textwidth}
+			\begin{enumerate}
+				\item Die Testperson gibt die angegebenen Daten ein.\\
+				\item Der Benutzer klickt auf den Login Button\\
+			\end{enumerate}
+		\end{minipage} \\
+		\hline
+		\textbf{erhaltenes Resultat} &
+		\begin{minipage}[t]{0.6\textwidth}
+			\begin{enumerate}
+				\item Das Popup wird wie geplant angezeigt. \\
+			\end{enumerate}
+		\end{minipage} \\
+		\hline
+		\textbf{Test bestanden} & Ja \\
+		\hline
+	\end{tabularx}
+	\caption{ \label{tbl: testprotokoll4}Testprotokoll Test 4, Quelle: Autoren}
+\end{table}
+\begin{table}[H]
+	\setlength\extrarowheight{2pt} % for a bit of visual "breathing space"
+	\begin{tabularx}{\textwidth}{|l|X|}
+		\hline
+		\textbf{Test Nr.} & 5\\
+		\hline
+		\textbf{Beschreibung} & Bei diesem Test wird die Logout Funktion getestet.  \\
+		\hline
+		\textbf{Randbedingungen} &
+		\begin{minipage}[t]{0.6\textwidth}
+			\begin{itemize}
+				\item Die Testperson ist erfolgreich eingeloggt. \\
+			\end{itemize}
+		\end{minipage} \\
+		\hline
+		\textbf{erwartete Resultate}  &
+		\begin{minipage}[t]{0.6\textwidth}
+			\begin{itemize}
+				\item Popup mit der Meldung erfolgreich ausgeloggt\\
+			\end{itemize}
+		\end{minipage} \\
+		\hline
+		\textbf{Testperson} & Oliver Werlen \\
+		\hline
+		\textbf{Datum} & 18.04.2021 \\
+		\hline
+		\textbf{Durchführung} &
+		\begin{minipage}[t]{0.6\textwidth}
+			\begin{enumerate}
+				\item Die Testperson klickt auf den Logout Button.\\
+			\end{enumerate}
+		\end{minipage} \\
+		\hline
+		\textbf{erhaltenes Resultat} &
+		\begin{minipage}[t]{0.6\textwidth}
+			\begin{enumerate}
+				\item Das Popup wird wie geplant angezeigt. \\
+			\end{enumerate}
+		\end{minipage} \\
+		\hline
+		\textbf{Test bestanden} & Ja \\
+		\hline
+	\end{tabularx}
+	\caption{ \label{tbl: testprotokoll5}Testprotokoll Test 5, Quelle: Autoren}
+\end{table}
+\begin{table}[H]
+	\setlength\extrarowheight{2pt} % for a bit of visual "breathing space"
+	\begin{tabularx}{\textwidth}{|l|X|}
+		\hline
+		\textbf{Test Nr.} & 6\\
+		\hline
+		\textbf{Beschreibung} & Bei diesem Test wird das hinzufügen von Produkten in den Warenkorb getestet.  \\
+		\hline
+		\textbf{Randbedingungen} &
+		\begin{minipage}[t]{0.6\textwidth}
+			\begin{itemize}
+				\item Es sind Artikel im Shop vorhanden \\
+			\end{itemize}
+		\end{minipage} \\
+		\hline
+		\textbf{erwartete Resultate}  &
+		\begin{minipage}[t]{0.6\textwidth}
+			\begin{itemize}
+				\item Der Artikel ist im Warenkorb vorhanden\\
+			\end{itemize}
+		\end{minipage} \\
+		\hline
+		\textbf{Testperson} & Oliver Werlen \\
+		\hline
+		\textbf{Datum} & 18.04.2021 \\
+		\hline
+		\textbf{Durchführung} &
+		\begin{minipage}[t]{0.6\textwidth}
+			\begin{enumerate}
+				\item Die Testperson befindet sich auf der Produktübersicht\\
+				\item Die Testperson klickt bei einem zufälligen Produkt auf das Warenkorbsymbol unten rechts\\
+				\item Die Person klickt ein anderes Produkt an\\
+				\item Die Testperson klickt auf den Button "in den Warenkorb"\\
+				\item Die Testperson wechselt zum Warenkorb (Item oben rechts)\\
+			\end{enumerate}
+		\end{minipage} \\
+		\hline
+		\textbf{erhaltenes Resultat} &
+		\begin{minipage}[t]{0.6\textwidth}
+			\begin{enumerate}
+				\item Die beiden Produkte sind im Warenkorb zu finden\\
+				\item Die beiden Produkte befinden sich in einfacher Ausführung im Warenkorb\\
+				\item Das Total ist korrekt summiert worden. \\
+			\end{enumerate}
+		\end{minipage} \\
+		\hline
+		\textbf{Test bestanden} & Ja \\
+		\hline
+	\end{tabularx}
+	\caption{ \label{tbl: testprotokoll6}Testprotokoll Test 6, Quelle: Autoren}
+\end{table}
+\begin{table}[H]
+	\setlength\extrarowheight{2pt} % for a bit of visual "breathing space"
+	\begin{tabularx}{\textwidth}{|l|X|}
+		\hline
+		\textbf{Test Nr.} & 7\\
+		\hline
+		\textbf{Beschreibung} & Bei diesem Test wird die Persistierung des Warenkorbs getestet.  \\
+		\hline
+		\textbf{Randbedingungen} &
+		\begin{minipage}[t]{0.6\textwidth}
+			\begin{itemize}
+				\item Der Test \ref{tbl: testprotokoll6} ist erfolgreich abgeschlossen worden. \\
+			\end{itemize}
+		\end{minipage} \\
+		\hline
+		\textbf{erwartete Resultate}  &
+		\begin{minipage}[t]{0.6\textwidth}
+			\begin{itemize}
+				\item Die Artikel sind auch nach dem Verlassen der Website und einem erneuten Aufruf immer noch vorhanden. \\
+			\end{itemize}
+		\end{minipage} \\
+		\hline
+		\textbf{Testperson} & Oliver Werlen \\
+		\hline
+		\textbf{Datum} & 18.04.2021 \\
+		\hline
+		\textbf{Durchführung} &
+		\begin{minipage}[t]{0.6\textwidth}
+			\begin{enumerate}
+				\item Die Testperson befindet sich im Warenkorb\\
+				\item Die Testperson schliesst das Browserfenster\\
+				\item Die Testperson öffnet das Browserfenster wieder und navigiert zum Warenkorb\\
+				\item Der Warenkorbinhalt bleibt bestehen\\
+			\end{enumerate}
+		\end{minipage} \\
+		\hline
+		\textbf{erhaltenes Resultat} &
+		\begin{minipage}[t]{0.6\textwidth}
+			\begin{enumerate}
+				\item Die Produkte sind immer noch im Warenkorb\\
+			\end{enumerate}
+		\end{minipage} \\
+		\hline
+		\textbf{Test bestanden} & Ja \\
+		\hline
+	\end{tabularx}
+	\caption{ \label{tbl: testprotokoll7}Testprotokoll Test 7, Quelle: Autoren}
+\end{table}
+\begin{table}[H]
+	\setlength\extrarowheight{2pt} % for a bit of visual "breathing space"
+	\begin{tabularx}{\textwidth}{|l|X|}
+		\hline
+		\textbf{Test Nr.} & 8\\
+		\hline
+		\textbf{Beschreibung} & Bei diesem Test werden die Funktionen des Warenkorbs getestet.  \\
+		\hline
+		\textbf{Randbedingungen} &
+		\begin{minipage}[t]{0.6\textwidth}
+			\begin{itemize}
+				\item Der Test \ref{tbl: testprotokoll6} ist erfolgreich abgeschlossen worden. \\
+			\end{itemize}
+		\end{minipage} \\
+		\hline
+		\textbf{erwartete Resultate}  &
+		\begin{minipage}[t]{0.6\textwidth}
+			\begin{itemize}
+				\item Die Artikelanzahl wird erhöht. \\
+				\item Das Gesamttotal wird erhöht.\\
+				\item Die Artikelanzahl wird reduziert.\\
+				\item Beim Erreichen von 0 wird der Artikel entfernt. \\
+			\end{itemize}
+		\end{minipage} \\
+		\hline
+		\textbf{Testperson} & Oliver Werlen \\
+		\hline
+		\textbf{Datum} & 18.04.2021 \\
+		\hline
+		\textbf{Durchführung} &
+		\begin{minipage}[t]{0.6\textwidth}
+			\begin{enumerate}
+				\item Die Testperson befindet sich im Warenkorb\\
+				\item Die Testperson erhöht die Artikelanzahl auf 4\\
+				\item Die Testperson reduziert die Artikelanzahl auf 0\\
+				\end{enumerate}
+		\end{minipage} \\
+		\hline
+		\textbf{erhaltenes Resultat} &
+		\begin{minipage}[t]{0.6\textwidth}
+			\begin{enumerate}
+				\item Es befinden sich keine Artikel mehr im Warenkorb
+				\item Es wurde ein Popup mit einer entsprechenden Meldung angezeigt.  
+			\end{enumerate}
+		\end{minipage} \\
+		\hline
+		\textbf{Test bestanden} & Ja \\
+		\hline
+	\end{tabularx}
+	\caption{ \label{tbl: testprotokoll8}Testprotokoll Test 8, Quelle: Autoren}
+\end{table}
+
+\begin{table}[H]
+	\setlength\extrarowheight{2pt} % for a bit of visual "breathing space"
+	\begin{tabularx}{\textwidth}{|l|X|}
+		\hline
+		\textbf{Test Nr.} & 9\\
+		\hline
+		\textbf{Beschreibung} & Bei diesem Test wird die Bezahlfunktion getestet.  \\
+		\hline
+		\textbf{Randbedingungen} &
+		\begin{minipage}[t]{0.6\textwidth}
+			\begin{itemize}
+				\item Der Benutzer ist erfolgreich eingeloggt. \\
+				\item Der Benutzer hat Produkte im Warenkorb. \\
+			\end{itemize}
+		\end{minipage} \\
+		\hline
+		\textbf{erwartete Resultate}  &
+		\begin{minipage}[t]{0.6\textwidth}
+			\begin{itemize}
+				\item Der Benutzer wird auf die Bezahlseite weitergeleitet. \\
+				\item Das Gesamttotal wird bei der Bezahlung korrekt ausgegeben. \\
+				\item Der Benutzer wird nach dem Bezahlabschluss auf eine entsprechende Seite weitergeleitet. \\
+			\end{itemize}
+		\end{minipage} \\
+		\hline
+		\textbf{Testperson} & Oliver Werlen \\
+		\hline
+		\textbf{Datum} & 18.04.2021 \\
+		\hline
+		\textbf{Durchführung} &
+		\begin{minipage}[t]{0.6\textwidth}
+			\begin{enumerate}
+				\item Die Testperson befindet sich im Warenkorb\\
+				\item Die Testperson klickt auf checkout\\
+				\item Die Testperson wird auf die Bezahlseite umgeleitet. \\
+				\item Die Testperson klickt durch den Bezahlprozess.\\
+			\end{enumerate}
+			\end{minipage} \\
+			\hline
+			\textbf{erhaltenes Resultat} &
+			\begin{minipage}[t]{0.6\textwidth}
+				\begin{enumerate}
+					\item Der Testperson wird eine Meldung zur Bezahlbestätigung ausgegeben. 
+				\end{enumerate}
+			\end{minipage} \\
+			\hline
+			\textbf{Test bestanden} & Ja \\
+			\hline
+		\end{tabularx}
+		\caption{ \label{tbl: testprotokoll9}Testprotokoll Test 9, Quelle: Autoren}
+	\end{table}
+
+\begin{table}[H]
+	\setlength\extrarowheight{2pt} % for a bit of visual "breathing space"
+	\begin{tabularx}{\textwidth}{|l|X|}
+		\hline
+		\textbf{Test Nr.} & 10\\
+		\hline
+		\textbf{Beschreibung} & Bei diesem Test wird die Bezahlfunktion bei einem Abbruch getestet.  \\
+		\hline
+		\textbf{Randbedingungen} &
+		\begin{minipage}[t]{0.6\textwidth}
+			\begin{itemize}
+				\item Der Benutzer ist erfolgreich eingeloggt. \\
+				\item Der Benutzer hat Produkte im Warenkorb. \\
+			\end{itemize}
+		\end{minipage} \\
+		\hline
+		\textbf{erwartete Resultate}  &
+		\begin{minipage}[t]{0.6\textwidth}
+			\begin{itemize}
+				\item Der Benutzer wird auf die Bezahlseite weitergeleitet. \\
+				\item Das Gesamttotal wird bei der Bezahlung korrekt ausgegeben. \\
+				\item Der Benutzer bricht den Bezahlvorgang mittels Cancel Button ab. 
+				\item Der Benutzer wird auf eine entsprechende Seite weitergeleitet. \\
+			\end{itemize}
+		\end{minipage} \\
+		\hline
+		\textbf{Testperson} & Oliver Werlen \\
+		\hline
+		\textbf{Datum} & 18.04.2021 \\
+		\hline
+		\textbf{Durchführung} &
+		\begin{minipage}[t]{0.6\textwidth}
+			\begin{enumerate}
+				\item Die Testperson befindet sich im Warenkorb\\
+				\item Die Testperson klickt auf checkout\\
+				\item Die Testperson wird auf die Bezahlseite umgeleitet. \\
+				\item Die Testperson klickt beim Bezahlvorgang auf den cancel Button. \\
+			\end{enumerate}
+		\end{minipage} \\
+			\hline
+			\textbf{erhaltenes Resultat} &
+			\begin{minipage}[t]{0.6\textwidth}
+				\begin{enumerate}
+					\item Der Testperson wird auf eine Page not found Seite umgeleitet. 
+				\end{enumerate}
+			\end{minipage} \\
+			\hline
+			\textbf{Test bestanden} & Ja \\
+			\hline
+		\end{tabularx}
+		\caption{ \label{tbl: testprotokoll10}Testprotokoll Test 10, Quelle: Autoren}
+	\end{table}
 \newpage

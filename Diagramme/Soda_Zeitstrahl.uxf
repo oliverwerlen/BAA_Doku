@@ -4,7 +4,7 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>30</x>
+      <x>20</x>
       <y>490</y>
       <w>1490</w>
       <h>40</h>
@@ -16,7 +16,7 @@
   <element>
     <id>UMLSpecialState</id>
     <coordinates>
-      <x>50</x>
+      <x>40</x>
       <y>470</y>
       <w>40</w>
       <h>80</h>
@@ -30,7 +30,7 @@ bg=yellow
   <element>
     <id>UMLSpecialState</id>
     <coordinates>
-      <x>240</x>
+      <x>230</x>
       <y>470</y>
       <w>40</w>
       <h>80</h>
@@ -42,7 +42,7 @@ bg=yellow</panel_attributes>
   <element>
     <id>UMLSpecialState</id>
     <coordinates>
-      <x>950</x>
+      <x>940</x>
       <y>470</y>
       <w>40</w>
       <h>80</h>
@@ -55,7 +55,7 @@ bg=yellow
   <element>
     <id>UMLSpecialState</id>
     <coordinates>
-      <x>1160</x>
+      <x>1150</x>
       <y>470</y>
       <w>40</w>
       <h>80</h>
@@ -68,7 +68,7 @@ bg=yellow
   <element>
     <id>Text</id>
     <coordinates>
-      <x>900</x>
+      <x>890</x>
       <y>440</y>
       <w>150</w>
       <h>30</h>
@@ -80,7 +80,7 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Text</id>
     <coordinates>
-      <x>290</x>
+      <x>280</x>
       <y>470</y>
       <w>160</w>
       <h>30</h>
@@ -92,7 +92,7 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Text</id>
     <coordinates>
-      <x>90</x>
+      <x>80</x>
       <y>470</y>
       <w>160</w>
       <h>30</h>
@@ -104,7 +104,7 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Text</id>
     <coordinates>
-      <x>490</x>
+      <x>480</x>
       <y>470</y>
       <w>170</w>
       <h>50</h>
@@ -117,7 +117,7 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Text</id>
     <coordinates>
-      <x>1250</x>
+      <x>1240</x>
       <y>440</y>
       <w>150</w>
       <h>30</h>
@@ -129,7 +129,7 @@ style=wordwrap</panel_attributes>
   <element>
     <id>UMLSpecialState</id>
     <coordinates>
-      <x>1290</x>
+      <x>1280</x>
       <y>470</y>
       <w>40</w>
       <h>80</h>
@@ -141,7 +141,7 @@ bg=yellow</panel_attributes>
   <element>
     <id>Text</id>
     <coordinates>
-      <x>190</x>
+      <x>180</x>
       <y>550</y>
       <w>160</w>
       <h>50</h>
@@ -155,7 +155,7 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Text</id>
     <coordinates>
-      <x>30</x>
+      <x>20</x>
       <y>550</y>
       <w>100</w>
       <h>70</h>
@@ -168,7 +168,7 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>340</x>
+      <x>330</x>
       <y>510</y>
       <w>60</w>
       <h>60</h>
@@ -179,7 +179,7 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Text</id>
     <coordinates>
-      <x>1280</x>
+      <x>1270</x>
       <y>560</y>
       <w>100</w>
       <h>70</h>
@@ -192,7 +192,7 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>430</x>
+      <x>420</x>
       <y>510</y>
       <w>60</w>
       <h>60</h>
@@ -203,7 +203,7 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>520</x>
+      <x>510</x>
       <y>510</y>
       <w>60</w>
       <h>60</h>
@@ -214,7 +214,7 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>600</x>
+      <x>590</x>
       <y>510</y>
       <w>60</w>
       <h>60</h>
@@ -225,7 +225,7 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Text</id>
     <coordinates>
-      <x>1070</x>
+      <x>1060</x>
       <y>560</y>
       <w>230</w>
       <h>50</h>
@@ -238,7 +238,7 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>670</x>
+      <x>660</x>
       <y>510</y>
       <w>60</w>
       <h>60</h>
@@ -249,7 +249,7 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>840</x>
+      <x>720</x>
       <y>510</y>
       <w>60</w>
       <h>60</h>
@@ -260,7 +260,7 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>890</x>
+      <x>870</x>
       <y>510</y>
       <w>60</w>
       <h>60</h>
@@ -271,7 +271,7 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1000</x>
+      <x>990</x>
       <y>510</y>
       <w>60</w>
       <h>60</h>
@@ -282,7 +282,7 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1050</x>
+      <x>1040</x>
       <y>510</y>
       <w>60</w>
       <h>60</h>
@@ -293,7 +293,7 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1100</x>
+      <x>1090</x>
       <y>510</y>
       <w>60</w>
       <h>60</h>
@@ -304,7 +304,7 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1210</x>
+      <x>1200</x>
       <y>510</y>
       <w>60</w>
       <h>60</h>
@@ -315,20 +315,20 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Text</id>
     <coordinates>
-      <x>890</x>
-      <y>560</y>
+      <x>730</x>
+      <y>570</y>
       <w>190</w>
       <h>50</h>
     </coordinates>
     <panel_attributes>Abschluss Bestellprozess
-         11.04.2021
+         19.04.2021
 style=wordwrap</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLSpecialState</id>
     <coordinates>
-      <x>790</x>
+      <x>810</x>
       <y>470</y>
       <w>40</w>
       <h>80</h>
@@ -341,7 +341,7 @@ bg=yellow
   <element>
     <id>Text</id>
     <coordinates>
-      <x>1370</x>
+      <x>1360</x>
       <y>550</y>
       <w>150</w>
       <h>90</h>
@@ -355,7 +355,7 @@ style=wordwrap</panel_attributes>
   <element>
     <id>UMLSpecialState</id>
     <coordinates>
-      <x>1390</x>
+      <x>1380</x>
       <y>470</y>
       <w>40</w>
       <h>80</h>
@@ -367,14 +367,14 @@ bg=yellow</panel_attributes>
   <element>
     <id>Text</id>
     <coordinates>
-      <x>760</x>
+      <x>920</x>
       <y>560</y>
       <w>150</w>
       <h>90</h>
     </coordinates>
     <panel_attributes> Zwischen-
 präsentation
-18.04.2021
+21.04.2021
 style=wordwrap</panel_attributes>
     <additional_attributes/>
   </element>

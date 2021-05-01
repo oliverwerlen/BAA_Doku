@@ -101,7 +101,7 @@ Der Meilenstein wurde erfolgreich erreicht.
 \subparagraph{Fazit}
 Es wurden alle Artefakte erarbeitet. Der Meilenstein wurde somit erreicht und es kann weiter nach Plan gearbeitet werden.
 
-\subsubsection{Sprint 2}
+\subsubsection{Sprint 2}\label{sprint2}
 \begin{table}[H]
 	\begin{tabularx}{\textwidth}{|l|X|}
 		\hline
@@ -310,7 +310,7 @@ Der Warenkorb wird als Angular Material List dargestellt. Die Artikelanzahl kann
 	\end{subfigure}
 \end{figure} 
 
-\subparagraph{Https bei Backend}
+\subparagraph{Https bei Backend}\label{httpsBackend}
 Moderne Browser erlauben das Laden von sogenanntem Mixed-Content per Default nicht mehr. Mixed Content steht dabei für das Laden von Daten via http von einer https Seite. Um dieses Problem zu beheben, muss das Spring Boot Backend auch via https zugreifbar sein.  [\cite{mixedContent}]. Mit dem Tool Certbot kann ein gültiges Zertifikat erstellt werden. Dieses muss nun im application.propertie des Spring Projekts angegeben werden. Das Tutorial verwendete dabei eine deprecated Version von Certbot. Dank einem Hinweis von Ubuntu wurde auf die neue Version gewechselt [\cite{springSSL}]. 
 
 \begin{verbatim}
@@ -414,6 +414,321 @@ Beim erfolgreichen Anmelden wird der Token im Session Storage gespeichert. Zudem
  Im Sprint 5 konnte die geplante User Story erfolgreich abgeschlossen werden.
  
  
+\subsubsection{Sprint 6}
+\begin{table}[H]
+	\begin{tabularx}{\textwidth}{|l|X|}
+		\hline
+		\textbf{User Story} & \textbf{Number} \\
+		\hline
+		Das System ermöglicht die Anbindung an einen bereits bekannten Bezahldienst, \\
+		um eine sichere Bezahlung zu garantieren.& F.7\\
+		\hline
+	\end{tabularx} 
+	\caption[Userstories Sprint 6]{Userstories Sprint 6,\\ Quelle: Autor}
+\end{table}\label{userStoriesSprint6}
+\paragraph{Bezahlungsanbieter}
+In der Sitzung \ref{04.03.2021} wurde vom Auftraggeber bekannt gegeben, dass sie bei bereits bestehenden Lösungen den Bezahlvorgang mit dem Anbieter Six Payment Services durchführen. 
+
+\paragraph{Einführung}
+Six Payment bietet einen Integration Guide an, um die Integration in den eigenen Online Store zu erleichert. [\cite{sixECommerce}] Dabei wird eine JSON API zur Verfügung gestellt, um die Bezahlung durchzuführen. 
+\subparagraph{Anforderungen}
+Das Vorgehen wurde identisch zum empfohlenen Vorgehen auf der Developer Seite durchgeführt. Dabei wurde zur Consultation die API-Dokumentation durchgelesen. Nachfolgend werden die wichtigsten Requirements aufgeführt. 
+\begin{itemize}
+	\item JSON API Basic Authentication
+	\item TLS 
+	\item mindestens ein aktiver Terminal
+	\item Terminal Nummer und Customer Nummer
+	\item gütliges "acceptance agreement" für Kreditkarten
+\end{itemize} 
+[\cite{jsonAPISix}]
+\subparagraph{Data Security}
+Um falsche Anwendungen und missbrauch von Kreditkarten zu verhindern, wurde von den Kreditkartenorganisationen das Sicherheitsprogramm \ac{PCI DSS} ins Leben gerufen. \\
+Dieser Standard kann dabei erfüllt werden, wenn die Bezahlung auf dem Saferpay Formular durchgeführt wird. Dieses Formular wird direkt beim Anbieter gehostet. Es werden keine Bezahlungsdaten auf dem eigenen Web Server verarbeitet, gesendet oder gespeichert. Somit ist es auch weniger Aufwendig, die PCI DSS merchant certification zu erhalten. [\cite{jsonAPISix}]
+
+\subparagraph{Certification Levels}
+Die \ac{PCI DSS} Zertifikation ist in verschiedene compliance Level aufgeteilt. Die beiden Wichtigsten sind dabei \ac{SAQ}-A und \ac{SAQ}-A EP. Nachfolgend wird nur \ac{SAQ}-A näher angeschaut. \\\\
+Bei \ac{SAQ}-A wird die Verantwortung vollständig an den Bezahlanbieter abgegeben. Saferpay stellt dabei die Möglichkeit zur Verfügung, die erforderlichen Bedingungen zu erfüllen. Die Bedingungen lauten dabei: 
+\begin{itemize}
+	\item Nutzen von eigenem HTML Formular Verboten
+	\item Jedes Feld auf der Payment Page muss von einem PCI Zertifizierten Anbieter gehosted werden
+	\item Änderungen an der Bezahlseite via CSS oder JavaScript sind Verboten
+\end{itemize}
+
+\subparagraph{Testsystem vs. Live System}
+Saferpay stellt zum Testing einen Testaccount zur Verfügung. Die wesentlichen Unterschiede sind dabei:
+\begin{itemize}
+	\item Testsystem und Livesystem sind nicht miteinander verbunden
+	\item Beim Testsystem werden richtige Kreditkarten nicht akzeptiert
+	\item Kein Geld wird beim Testsystem transferiert
+	\item Systemverhalten bleibt identisch
+	\item URLs sehr ähnlich 
+\end{itemize}
+
+\paragraph{Auf Livesystem wechseln}
+Um von einem Testsystem auf ein Livesystem zu wechseln, sind einige kleine Änderungen vorzunehmen. 
+\begin{itemize}
+	\item Authorization Token anpassen
+	\item Anpassen von IDs
+	\item Anpassen der Request URL
+\end{itemize} 
+
+\subparagraph{Allgemeine Informationen}
+In diesem Projekt wird nur mit dem Testsystem gearbeitet. Ein Wechsel auf ein Livesystem ist nicht geplant. 
  
+ \paragraph{Integration in Web Applikation}
+ In einem ersten Schritt wurde ein Testsystem beim Anbieter angefragt.
+ Um mit der JSON API kommunizieren zu können, sind im Header des Requests einige Parameter mitgegeben werden. Der korrekte Header sieht folgendermassen aus: 
+ \begin{verbatim}
+	"Content-Type": "application/json", 
+	"Authorization": "Basic QVBJXzI1Nzc1M183NTU3MTMyMjpKc29uQXBpUHdkMV9SalVEQzJzaw==",
+ \end{verbatim}
+Der Token wird dabei im Testsystem generiert. 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{images/basicAuth.PNG}
+	\caption[Erstellen des Basic Authentication Token im Back Office]{Erstellen des Basic Authentication Token im Back Office,\\ Quelle: Autor}
+	\label{img: basicAuth}
+\end{figure} 
+ \subparagraph{Payment Initialization Page}
+ An die API muss der entsprechende Request gesendet werden, um den Bezahlvorgang zu starten. Dazu muss der passende Request an die folgende URL gesendet werden: 
+ \begin{verbatim}
+ 	https://test.saferpay.com/api/Payment/v1/PaymentPage/Initialize
+ \end{verbatim}
+In der API-Dokumentation ist dabei ein Demo Request zu finden. Die Parameter lassen sich aus dem Backend herauslesen. 
+Der Body der Anfrage sieht dabei folgendermassen aus: 
+\begin{verbatim}
+	    let paymentInitialize = {
+		"RequestHeader": {
+			"SpecVersion": 1.21,
+			"CustomerId": this.customerId,
+			"RequestId": this.requestId,
+			"RetryIndicator": 0
+		},
+		"TerminalId": this.terminalId,
+		"Payment": {
+			"Amount": {
+				"Value": amount*100,
+				"CurrencyCode": "CHF"
+			},
+			"OrderId": this.orderId,
+			"Description": "Description of payment"
+		},
+		"ReturnUrls": {
+			"Success": environment.paymentSucessfullRedirect,
+			"Fail": environment.paymentNotSucessfullRedirect
+		}
+	}
+\end{verbatim}
+Dabei wurde bewusst auf das Erstellen eines entsprechenden TypeScript Interfaces verzichtet. 
+Dies musste jedoch bei der Antwort vorgenommen werden. 
+Es wurde dazu ein Interface passend zur Antwort erstellt. Anschliessend wird die Antwort zum Typen umgewandelt. 
+
+Die Anfrage an den Server geschieht dabei asynchron. Somit ist nicht voraussehbar, wann der Request ausgeführt wird, bzw. wann die Antwort gesetzt wird. Jedoch muss in diesem Anwendungsfall auf die URL im Body weitergeleitet werden. Um  dies effizient durchzuführen, wird alle 500 Millisekunden geprüft, ob die Antwort bereits gesetzt wurde. Um nicht unendlich lange auf eine Antwort zu warten, wird nach maximal zehn Fehlversuchen abgebrochen und eine entsprechende Fehlermeldung ausgegeben. \\
+Diese Zeit sollte auch bei schlechter Internetverbindung ausreichen. \\\\
+Wie bereits beschrieben, wird der User auf die Zahlungsseite von Saferpay weitergeleitet. Nach dem Abschluss der Bezahlung wird entweder auf die Success-URL oder die "Fail-URL" von obigem Request umgeleitet. 
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{images/paymentSaferpay.PNG}
+	\caption[Saferpay Bezahlseite]{Saferpay Bezahlseite,\\ Quelle: Autor}
+	\label{img: paymentSaferpay}
+\end{figure} 
+
+\subparagraph{Payment Assert}
+Das Vorgehen zur Bezahlverifikation ist dabei idenitisch zur Zahlungsauslösung. 
+\begin{verbatim}
+	https://test.saferpay.com/api/Payment/v1/PaymentPage/Assert
+\end{verbatim}
+Um die Bezahlung identifizieren zu können, muss der Token aus vorheriger Antwort mitgegeben werden. Dieser wird im Session Storage gespeichert. 
+Der genaue Request sieht folgendermassen aus: 
+\begin{verbatim}
+	  let request = {
+		"RequestHeader": {
+			"SpecVersion": 1.21,
+			"CustomerId": this.customerId,
+			"RequestId": this.requestId,
+			"RetryIndicator": 0
+		},
+		"Token": this.getToken()
+	}
+\end{verbatim}
+Um das Interface für die Antwort zu definieren, wurde quicktype genutzt. Damit konnte aus dem Demorequest in der Dokumentation das passende Interface generiert werden. 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{images/quickType.PNG}
+	\caption[PagePaymentAssertResponse]{PagePaymentAssertResponse,\\ Quelle: Autor}
+	\label{img: PagePaymentAssertResponse}
+\end{figure} 
+
+Es wird von diesem Request das Status Property gecheckt. Bei AUTHORIZED wird die Bezahlung als Erfolgreich markiert. Die Transaction-ID wird bei der Bestellung hinterlegt. Damit ist ein Mapping zwischen Bestellung und Bezahlung möglich. Die Bezahlung ist auch im Backend aufgelistet. 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{images/paymentsBackoffice.PNG}
+	\caption[Bezahlhistorie Backoffice]{Bezahlhistorie Backoffice,\\ Quelle: Autor}
+	\label{img: paymentsBackoffice}
+\end{figure} 
+
+Der Bezahlprozess ist somit abgeschlossen. 
+
+\paragraph{Ablauf}
+Der Bezahlvorgang wird nachfolgend als Sequenzdiagramm dargestellt. Aus Einfachheitsgründen wurde auf die Darstellung des Proxies verzichtet. 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{images/paymentSequence.PNG}
+	\caption[Sequenzdiagramm vom Bezahlvorgang]{Sequenzdiagramm vom Bezahlvorgang,\\ Quelle: Autor}
+	\label{img: paymentSequence}
+\end{figure} 
+
+\paragraph{CORS}\label{CORS}
+"Cross-Origin Resource Sharing (CORS) ist ein Mechanismus, der zusätzliche HTTP Header verwendet um einem Browser mitzuteilen, dass er einer Webanwendung, die auf einer anderen Domain(Origin) läuft, die Berechtigung erteilt auf ausgewählte Ressourcen von einem Server eines anderen Ursprungs(Origin) zuzugreifen. Eine Webanwendung stellt eine cross-origin HTTP-Anfage, wenn sie eine Ressource anfordert, die einen anderen Ursprung(Domain, Protokoll und Port) hat, als ihren eigenen."[\cite{cors}]
+
+Dies wurde auch bei diesem Projekt bemerkt. Die Requests an die API von Six wurden immer von \ac{CORS} geblockt. 
+
+\subparagraph{Setzten von Access Header}
+Wenn man Zugriff auf den betroffenen Server hat, so kann hier mittels entsprechenden CORS Headern gearbeitet werden. Dies wurde beispielsweise bei dem eigenen Backend umgesetzt. Da es sich um eine externe API handelt und dementsprechend kein Zugriff auf die Maschine besteht, ist dies keine mögliche Lösung. 
+
+\subparagraph{Angular Proxy}
+Angular bietet einen eigenen, integrierten Proxy um \ac{CORS} zu umgehen. Dabei werden Request mit einer bestimmten Addresse abgefangen und an den passenden Server umgeleitet.\\
+In diesem Anwendungsfall funktionierte der Angular Proxy nicht wunschgemäss. Zudem eignet sich dieser nur im Entwicklungseinsatz. 
+
+\subparagraph{Zusätzlicher Proxy auf localhost}
+Es wurde daher ein zusätzlicher Proxy umgesetzt. Dabei wurde ein NodeJS-Server mit express genutzt. Dieser besitzt keine Logik. Er nimmt lediglich Requests an und leitet diese an die Adresse im Header weiter. [\cite{corsProxy}] Die Requests werden nun via Proxy an die API gesendet. Zudem wird nun auch mit der eigenen API über diesen Proxy kommuniziert. Dies löst einerseits die \ac{CORS}-Problematik mit externen APIs und macht den Einsatz von HTTPS im Backend \ref{httpsBackend} überflüssig. Die \ac{TLS} wurde hier nur aufgrund der Browser Policies gebraucht. Der Proxy ist nun via localhost erreichbar. Hierbei ist die "Mixed Content" Policy nicht aktiv. Bei der Entwicklung bleibt das Backend direkt auch erreichbar. Im produktiven Betrieb würden nur noch Anfragen vom Proxy akzeptiert. \\
+Zudem ist die Verschlüsselung der Kommunikation zwischen Backend und Frontend überflüssig, da sie nur auf der eigenen Maschine abläuft. Es werden keine Daten über eine unsichere Leitung gesendet. \\
+Die Verbindung zur externen API läuft dabei via HTTPS. Dies wird von Six umgesetzt.\\\\
+Um eine konstante \ac{CI/CD} zu ermöglichen, wurde dies für den Proxy umgesetzt. 
+Angedacht war dabei, dass der Proxy auch im produktiven Umfeld via loopback-Adresse erreichbar ist. Dies bietet den Vorteil, dass die Browser diesem trauen und nicht via https zugreifbar gemacht werden muss. Der Traffic bleibt nur lokal auf der Maschine, daher bestehen keine Sicherheitsrisiken. Auf Google Chrome sowie auch Firefox funktionierte dies auch. Auf Safari ist die Loopback Adresse nicht vertrauenswürdig, der Proxy müsste via https erreichbar sein. Das Problem ist, dass Letsencrypt keine Zertifikate für localhost ausstellt [\cite{letsencryptLocalhost}].\\
+Es besteht keine Möglichkeit, dieses Problem unter Safari zu beheben. Daher musste dieser Lösungsansatz verworfen werden. Das Problem wird auf den nächsten Sprint verschoben. 
+
+
+\paragraph{Problem mit Enterpriselab Host}
+Am Mittwoch, 14.04. am Nachmittag war der GitLab Host nicht mehr erreichbar. Die Nachfrage beim Enterpriselab Team ergab, dass die Maschine ihre IP-Adresse verloren hatte. Ein Neustart brachte auch keinen Erfolg, da verschiedene wichtige Dienste nicht mehr starteten. Es wurde eine neue Maschine bereitsgestellt. Der Grund konnte nicht herausgefunden werden. \\\\
+Die Umgebung konnte sehr schnell wieder hergestellt werden. Es musste nur Docker und Gitlab-Runner installiert und registriert werden. Zudem mussten die Daten neu migriert werden. Der Umfang der gesamten Neuumsetzung lag bei ca. 3h. 
+
+\paragraph{Backend Models}
+Die Bestellungen sollen im Backend persistiert werden. Bei der Erstellung der Order-Entity fiel dabei auf, dass diese diverse Beziehungen zu anderen Klassen hat. Dadurch wurde entschieden, dass diese auch implementiert werden. 
+Dabei wurde strikt darauf geachtet, dass die gesamte API dem REST-Level 3 entspricht. Durch den Einsatz von Model Mapper wurde das Mapping von DTO und Datenbankobjekt vereinfacht. 
+
+
+\subsubsection{Meilenstein Abschluss Bestellprozess und Zwischenpräsentation}
+Nachfolgend werden die Meilensteinberichte zu den Meilensteinen 3 und 4 zusammen aufgeführt. 
+ \paragraph{Meilensteinbericht}
+ \subparagraph{Termin Meilenstein 3}
+ Der Meilenstein 3 ist am 19.04.2021 abgeschlossen und somit pünktlich fertiggestellt worden.
+ Der Meilenstein 4 ist am 21.04.2021 abgeschlossen und somit pünktlich fertiggestellt worden. 
+ \subparagraph{Beschreibung Meilenstein 3}
+ Die Beschreibung des Meilensteins ist im Abschnitt \ref{Meilensteine} ersichtlich. 
+ \subparagraph{Meilensteinziele/Vorgaben}
+Das übergeordnete Ziel dieses Meilensteins ist die der Abschluss des Bestellprozesses. 
+ \begin{itemize}
+ 	\item Testprotokolle
+ 	\item Demo
+ 	\item Release 
+ 	\item Zwischenpräsentation
+ \end{itemize}
+Die Zwischenpräsentation ist im Anhang \ref{zwischenpraesentation} zu finden. 
+Die Testprotokolle sind im Anhang \ref{testprotokolleBestellung} zu finden. 
+ \subparagraph{Meilensteinzielerreichung}
+Die Meilensteine konnten grösstenteils erfüllt werden. Einzig die Altersverifikation mittels Jumio wurde nach hinten verschoben. Die hing jedoch mit Abhängigkeiten zum Auftraggeber zusammen. Jedoch ist das Backend bereits sehr weit fortgeschritten.  
+Die Zwischenpräsentation wurde erfolgreich durchgeführt. 
+ \subparagraph{Fazit}
+Es konnten viele der geplanten Artefakte abgeliefert werden. Die fehlende Integration von Jumio wurde durch den Fortschritt im Backend kompensiert. 
+
+\subsection{Realisierungsphase}
+\subsubsection{Sprint 7}
+\begin{table}[H]
+	\begin{tabularx}{\textwidth}{|l|X|}
+		\hline
+		\textbf{User Story} & \textbf{Number} \\
+		\hline
+		Das System bietet dem Kunden die Möglichkeit, alle vorhandenen Pick-Up \\Stations anzuzeigen. & F.8\\
+		\hline
+		Das System bietet dem Kunden die Möglichkeit, die für Ihn nächstgelegene\\ Station auswählen zu können. & F.7\\
+		\hline
+	\end{tabularx} 
+	\caption[Userstories Sprint 7]{Userstories Sprint 7,\\ Quelle: Autor}
+\end{table}\label{userStoriesSprint7}
+\paragraph{Anzeigen von Pick-Up Stations}
+\subparagraph{Google Maps}
+Google Maps gilt als der Standard bei digitalen Karten. Seit einigen Jahren verfolgt Google jedoch ein sehr undurchsichtiges Bezahlmodell. Dem Kunden werden 200 Dollar Kredit pro Monat kostenlos zur Verfügung gestellt. Eine weitere Nutzung würde in diesem Anwendungsfall mit 2 Dollar je 1000 Anfragen belastet. \\
+Für den Entscheid gegen Google Maps ausschlaggebend war der Zwang, eine Kreditkarte zu hinterlegen. 
+\subparagraph{Geoapify}
+Als Alternative zu Google Maps wird Geoapify angeboten. Es bietet sehr ähnliche Funktionen, jedoch ohne Zwang, eine Kreditkarte zu hinterlegen. Bei Geoapify sind 3000 Requests pro Tag kostenlos. 
+\subparagraph{Leaflet}
+Leaflet ist eine Open Source native Java Script Library für benutzerfreundliche, interaktive mobile Maps. [\cite{leaflet}]
+\subparagraph{OpenLayers}
+Open Layers dient als Alternative zu Leaflet. Dabei ist OpenLayers für komplexere Applikationen ausgelegt. [\cite{leafletVsOpenlayers}]
+Für dieses Projekt wird jedoch nur ein begrenzter Umfang gebraucht, daher wird mit Leaflet gearbeitet. 
+
+\subparagraph{Open Street Map}
+Als Karte wird dabei Open Street Map genutzt. Open Street Map untersteht dabei einer freien Lizenz. Die Daten werden dabei hauptsächlich von der Community gepflegt. Die Nutzung bleibt dabei kostenlos. Die Open Street Map Contributors müssen auf der Applikation ersichtlich sein.  [\cite{openStreetMap}]
+\subparagraph{Anzeigen einer Map mit Leaflet}
+Geoapify stellt hierzu einige Tutorials zur Verfügung, um den Einstieg zu vereinfachen. Dabei wird eine einfache Karte erstellt. [\cite{geoapifyLeaflet}]
+
+
+\subparagraph{Marker und Popup Funktionalität}
+Die einzelnen Marker werden aus den Daten vom Backend erstellt. Diese werden via Request vom Backend geladen und angezeigt. Zudem werden die entsprechenden Inventories zu jeder Station geladen. Da hier mit HATEOAS gearbeitet wurde, mussten die Produkte separat geladen werden. \\
+Die Produktverfügbarkeit an einer Station sollte dabei als Popup dargestellt werden. Um dies für den Nutzer übersichtlich zu gestalten, wird die Verfügbarkeit gefärbte Kreise dargestellt. 
+Beim Anzeigen der Popups ergab sich jedoch die Problematik, dass dies auf Geräten aus dem Hause Apple nicht funktionierte. Dabei wurde der Event von Leaflet nicht korrekt erkannt. Nach einigen Recherchen konnte keine Lösung gefunden werden. Ähnliche Fälle sind dabei nicht bekannt. \\
+In der Dokumentation von Leaflet ist jedoch eine Alternative zu den Popups zu finden. Diese Tooltips werden dabei zum Anzeigen von kleinen Texten auf der Karte genutzt. Für die geplante Funktion sind diese somit geeignet. 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{images/tooltipImp.PNG}
+	\caption[Erstellung von Marker und Tooltip]{Erstellung von Marker und Tooltip,\\ Quelle: Autor}
+	\label{img: tooltip}
+\end{figure} 
+
+ \begin{figure}[H]
+ 	\centering
+ 	\includegraphics[scale=0.5]{images/tooltipCard.PNG}
+ 	\caption[Darstellung von Marker und Tooltip]{Darstellung von Marker und Tooltip,\\ Quelle: Autor}
+ 	\label{img: tooltipCard}
+ \end{figure} 
  
-\newpage
+ Ein Problem war dabei, dass die Get-Requests von RxJS asynchron ausgeführt werden. Dies bietet einerseits den Vorteil, dass die Applikation während dem Laden von Daten nutzbar bleibt, andererseits ist in diesem Fall essentiell, dass einige Prozesse aufeinander warten. Das Vorgehen wird dabei nachfolgend kurz chronologisch dargestellt: 
+ \begin{enumerate}
+ 	\item Laden von aktueller Location des Benutzers
+ 	\item Erstellen der Map inkl. Kontrollelemente
+ 	\item Laden der PickUp-Stations vom Server
+ 	\item Laden des Inventars vom Server pro PickUp
+ 	\item Laden von einzelnen Produkten von Inventar
+ 	\item Hinzufügen von Marker auf Map 
+\end{enumerate}
+Wie hier zu sehen, sind die Daten von einander Abhängig. So kann das Inventar nicht geladen werden, ohne dass die PickUp Station vorhanden ist und so weiter. Es muss immer auf das Resultat gewartet werden. Um genau dies zu ermöglichen, triggered RxJS den State des Observables. Dabei gibt es drei wesentliche Zustände: next, completed und error. 
+
+ \begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{images/observable.PNG}
+	\caption[Observable States]{Observable State,\\ Quelle: Autor}
+	\label{img: observableState}
+\end{figure} 
+
+Next liefert dabei einen Wert, Error einen JavaScript Error oder eine Exception und completed nichts zurück. 
+Error wird bei den hier genutzten Abfragen immer direkt mittels pipe abgefangen. \\
+Mit diesem Vorgehen kann auf das vorhergehende Resultat gewartet werden. Dies wird sehr viel genutzt. 
+
+\subsubsection{Auswahl der PickUp Station}
+In Abbildung \ref{img: observableState} ist zu sehen, dass beim Öffnen des Tooltips ein click-Event abgefangen wird. Dabei wird ein Leaflet Event mitgegeben, welcher unter anderem auch die Koordinaten der geklickten Station enthält. Basierend auf diesen Daten wird die ausgewählte PickUp Station gesetzt. Diese wird im Local Storage des Browsers gespeichert. 
+ \begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{images/mouseEvent.PNG}
+	\caption[Mouse Event]{Mouse Event,\\ Quelle: Autor}
+	\label{img: MouseEvent}
+\end{figure} 
+\subsubsection{Sprintreview Sprint 7}
+Die User Story konnte erfolgreich durchgeführt werden. 
+
+\subsubsection{Sprint 8}
+\begin{table}[H]
+	\begin{tabularx}{\textwidth}{|l|X|}
+		\hline
+		\textbf{User Story} & \textbf{Number} \\
+		\hline
+		Das System ermöglicht die Anbindung an einen bereits bekannten Bezahldienst,\\ um eine sichere Bezahlung zu garantieren.  & F.6\\
+		\hline
+		Das System bietet dem Kunden die Möglichkeit, verschiedene Produkte zu bestellen& F.7\\
+		\hline
+	\end{tabularx} 
+	\caption[Userstories Sprint 8]{Userstories Sprint 8,\\ Quelle: Autor}
+\end{table}\label{userStoriesSprint8}
+Bemerkungen: In Sprint 2  \ref{sprint2} und Sprint 3 wurde bereits die gleiche Userstory bearbeitet. In diesem Sprint wird dabei die Persistierung der Bestellung auf dem Backend durchgeführt. Zudem wird das CORS-Problem \ref{CORS} bei der Bezahlung neu angegangen. 
+
+ \newpage
