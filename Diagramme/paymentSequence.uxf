@@ -4,7 +4,7 @@
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>280</x>
+      <x>270</x>
       <y>180</y>
       <w>100</w>
       <h>30</h>
@@ -15,7 +15,7 @@
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>490</x>
+      <x>480</x>
       <y>180</y>
       <w>230</w>
       <h>30</h>
@@ -26,8 +26,8 @@
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>940</x>
-      <y>180</y>
+      <x>980</x>
+      <y>170</y>
       <w>170</w>
       <h>30</h>
     </coordinates>
@@ -37,7 +37,7 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>320</x>
+      <x>310</x>
       <y>200</y>
       <w>30</w>
       <h>80</h>
@@ -48,7 +48,7 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>600</x>
+      <x>590</x>
       <y>200</y>
       <w>30</w>
       <h>110</h>
@@ -59,18 +59,18 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1020</x>
-      <y>200</y>
-      <w>30</w>
-      <h>390</h>
+      <x>1060</x>
+      <y>190</y>
+      <w>40</w>
+      <h>400</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;370.0</additional_attributes>
+    <additional_attributes>10.0;10.0;20.0;380.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>60</x>
+      <x>50</x>
       <y>180</y>
       <w>100</w>
       <h>30</h>
@@ -81,8 +81,8 @@
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>780</x>
-      <y>180</y>
+      <x>820</x>
+      <y>170</y>
       <w>110</w>
       <h>30</h>
     </coordinates>
@@ -92,18 +92,18 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>830</x>
-      <y>200</y>
+      <x>870</x>
+      <y>190</y>
       <w>30</w>
-      <h>220</h>
+      <h>230</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;200.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;210.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>90</x>
+      <x>80</x>
       <y>200</y>
       <w>30</w>
       <h>60</h>
@@ -114,7 +114,7 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>100</x>
+      <x>90</x>
       <y>250</y>
       <w>240</w>
       <h>40</h>
@@ -126,7 +126,7 @@ checkout()</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>90</x>
+      <x>80</x>
       <y>240</y>
       <w>20</w>
       <h>60</h>
@@ -137,7 +137,7 @@ checkout()</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>320</x>
+      <x>310</x>
       <y>260</y>
       <w>20</w>
       <h>60</h>
@@ -148,7 +148,7 @@ checkout()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>330</x>
+      <x>320</x>
       <y>290</y>
       <w>290</w>
       <h>60</h>
@@ -162,7 +162,7 @@ Payment/v1/PaymentPage/Initialize
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>600</x>
+      <x>590</x>
       <y>290</y>
       <w>20</w>
       <h>110</h>
@@ -173,7 +173,7 @@ Payment/v1/PaymentPage/Initialize
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>330</x>
+      <x>320</x>
       <y>360</y>
       <w>290</w>
       <h>40</h>
@@ -185,7 +185,7 @@ PaymentInitializationResponse</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>320</x>
+      <x>310</x>
       <y>350</y>
       <w>20</w>
       <h>100</h>
@@ -196,19 +196,19 @@ PaymentInitializationResponse</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>330</x>
+      <x>320</x>
       <y>410</y>
-      <w>520</w>
+      <w>570</w>
       <h>40</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 redirect to Payment page</panel_attributes>
-    <additional_attributes>500.0;20.0;10.0;20.0</additional_attributes>
+    <additional_attributes>550.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>830</x>
+      <x>870</x>
       <y>400</y>
       <w>20</w>
       <h>150</h>
@@ -219,7 +219,7 @@ redirect to Payment page</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>90</x>
+      <x>80</x>
       <y>460</y>
       <w>20</w>
       <h>60</h>
@@ -230,19 +230,19 @@ redirect to Payment page</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>100</x>
+      <x>90</x>
       <y>470</y>
-      <w>750</w>
+      <w>800</w>
       <h>40</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 card details</panel_attributes>
-    <additional_attributes>730.0;20.0;10.0;20.0</additional_attributes>
+    <additional_attributes>780.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>320</x>
+      <x>310</x>
       <y>510</y>
       <w>20</w>
       <h>260</h>
@@ -253,19 +253,19 @@ card details</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>330</x>
+      <x>320</x>
       <y>520</y>
-      <w>520</w>
+      <w>570</w>
       <h>40</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 goBackToPage</panel_attributes>
-    <additional_attributes>10.0;20.0;500.0;20.0</additional_attributes>
+    <additional_attributes>10.0;20.0;550.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>1020</x>
+      <x>1070</x>
       <y>570</y>
       <w>20</w>
       <h>110</h>
@@ -276,32 +276,32 @@ goBackToPage</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>330</x>
+      <x>320</x>
       <y>590</y>
-      <w>710</w>
+      <w>770</w>
       <h>50</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 POST https://test.saferpay.com/api/Payment/v1/PaymentPage/Assert
 {PaymentPageAssert}</panel_attributes>
-    <additional_attributes>690.0;20.0;10.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>330</x>
-      <y>640</y>
-      <w>710</w>
-      <h>40</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-
-PaymentPageAssertResponse</panel_attributes>
-    <additional_attributes>10.0;20.0;690.0;20.0</additional_attributes>
+    <additional_attributes>750.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>320</x>
+      <y>640</y>
+      <w>770</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+PaymentPageAssertResponse</panel_attributes>
+    <additional_attributes>10.0;20.0;750.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>310</x>
       <y>310</y>
       <w>30</w>
       <h>60</h>
@@ -312,7 +312,7 @@ PaymentPageAssertResponse</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>320</x>
+      <x>310</x>
       <y>440</y>
       <w>30</w>
       <h>90</h>
@@ -323,7 +323,7 @@ PaymentPageAssertResponse</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>220</x>
+      <x>210</x>
       <y>660</y>
       <w>120</w>
       <h>90</h>
@@ -337,7 +337,7 @@ Status</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>90</x>
+      <x>80</x>
       <y>290</y>
       <w>30</w>
       <h>190</h>
@@ -348,7 +348,7 @@ Status</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>90</x>
+      <x>80</x>
       <y>510</y>
       <w>30</w>
       <h>230</h>
@@ -359,7 +359,7 @@ Status</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>90</x>
+      <x>80</x>
       <y>720</y>
       <w>20</w>
       <h>60</h>
@@ -370,7 +370,7 @@ Status</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>100</x>
+      <x>90</x>
       <y>740</y>
       <w>240</w>
       <h>40</h>

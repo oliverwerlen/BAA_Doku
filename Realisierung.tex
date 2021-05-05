@@ -174,7 +174,7 @@ Anschliessend können die entsprechenden Befehle für das Deployen in das gitlab
 \subparagraph{Build und Deployment des Frontends}
 Um mit dem nächsten Schritt weiterzufahren, musste zuerst das Deployment des Angular Projekts konfiguriert werden. Hierbei liegt der Hauptunterschied in dem Build-Prozess. Dabei ist es wichtig, die beim Build entstehenden Artifakte in GitLab zu speichern. Nur so kann auf ein erneutes Builden beim Erstellen des Docker Containers verzichtet werden. Zudem werden die Node Module in den Cache gespeichert. Die nachfolgenden Befehle sind identisch zum Vorgehen bei Spring.  
 
-\subparagraph{nginx als Reverse Proxy}
+\subparagraph{nginx als Reverse Proxy}\label{reverseProxy}
 Um den nginx-Server gegen Zugriffe von Aussen zu schützen, wurde auf einen Reverse Proxy gesetzt. Der Reverse Proxy stellt dabei die einzige Verbindung ins öffentliche Netz dar. Zudem übernimmt er die Zertifikatsverwaltung des Frontends. Alternativ wäre auch ein Caching möglich, auf die Umsetzung wurde für diesen Anwendungsfall jedoch verzichtet. [\cite{reverseProxy}] \\\\
 
 Die Umsetzung wurde dabei analog zum Tutorial von Alexander Bohndorf durchgeführt. [\cite{confReverseProxy}] Dabei wurde der nginx-proxy von jwilder sowie die damit kompatible letsencrypt companion verwendet. Die Umsetzung wurde dabei mittels docker-compose Files durchgeführt. 
@@ -495,36 +495,12 @@ Der Token wird dabei im Testsystem generiert.
  	https://test.saferpay.com/api/Payment/v1/PaymentPage/Initialize
  \end{verbatim}
 In der API-Dokumentation ist dabei ein Demo Request zu finden. Die Parameter lassen sich aus dem Backend herauslesen. 
-Der Body der Anfrage sieht dabei folgendermassen aus: 
-\begin{verbatim}
-	    let paymentInitialize = {
-		"RequestHeader": {
-			"SpecVersion": 1.21,
-			"CustomerId": this.customerId,
-			"RequestId": this.requestId,
-			"RetryIndicator": 0
-		},
-		"TerminalId": this.terminalId,
-		"Payment": {
-			"Amount": {
-				"Value": amount*100,
-				"CurrencyCode": "CHF"
-			},
-			"OrderId": this.orderId,
-			"Description": "Description of payment"
-		},
-		"ReturnUrls": {
-			"Success": environment.paymentSucessfullRedirect,
-			"Fail": environment.paymentNotSucessfullRedirect
-		}
-	}
-\end{verbatim}
+Der Body der Anfrage ist in \ref{img: requestNew} zu finden. 
 Dabei wurde bewusst auf das Erstellen eines entsprechenden TypeScript Interfaces verzichtet. 
 Dies musste jedoch bei der Antwort vorgenommen werden. 
 Es wurde dazu ein Interface passend zur Antwort erstellt. Anschliessend wird die Antwort zum Typen umgewandelt. 
 
-Die Anfrage an den Server geschieht dabei asynchron. Somit ist nicht voraussehbar, wann der Request ausgeführt wird, bzw. wann die Antwort gesetzt wird. Jedoch muss in diesem Anwendungsfall auf die URL im Body weitergeleitet werden. Um  dies effizient durchzuführen, wird alle 500 Millisekunden geprüft, ob die Antwort bereits gesetzt wurde. Um nicht unendlich lange auf eine Antwort zu warten, wird nach maximal zehn Fehlversuchen abgebrochen und eine entsprechende Fehlermeldung ausgegeben. \\
-Diese Zeit sollte auch bei schlechter Internetverbindung ausreichen. \\\\
+Die Anfrage an den Server geschieht dabei asynchron. Somit ist nicht voraussehbar, wann der Request ausgeführt wird, bzw. wann die Antwort gesetzt wird. Jedoch muss in diesem Anwendungsfall auf die URL im Body weitergeleitet werden. Um auf die Antwort zu warten, wurde das selbe Vorgehen wie in \ref{img: observableState} verwendet. 
 Wie bereits beschrieben, wird der User auf die Zahlungsseite von Saferpay weitergeleitet. Nach dem Abschluss der Bezahlung wird entweder auf die Success-URL oder die "Fail-URL" von obigem Request umgeleitet. 
 \begin{figure}[H]
 	\centering
@@ -583,14 +559,14 @@ Der Bezahlvorgang wird nachfolgend als Sequenzdiagramm dargestellt. Aus Einfachh
 
 Dies wurde auch bei diesem Projekt bemerkt. Die Requests an die API von Six wurden immer von \ac{CORS} geblockt. 
 
-\subparagraph{Setzten von Access Header}
+\subparagraph{Setzen von Access Header}
 Wenn man Zugriff auf den betroffenen Server hat, so kann hier mittels entsprechenden CORS Headern gearbeitet werden. Dies wurde beispielsweise bei dem eigenen Backend umgesetzt. Da es sich um eine externe API handelt und dementsprechend kein Zugriff auf die Maschine besteht, ist dies keine mögliche Lösung. 
 
 \subparagraph{Angular Proxy}
 Angular bietet einen eigenen, integrierten Proxy um \ac{CORS} zu umgehen. Dabei werden Request mit einer bestimmten Addresse abgefangen und an den passenden Server umgeleitet.\\
 In diesem Anwendungsfall funktionierte der Angular Proxy nicht wunschgemäss. Zudem eignet sich dieser nur im Entwicklungseinsatz. 
 
-\subparagraph{Zusätzlicher Proxy auf localhost}
+\subparagraph{Zusätzlicher Proxy auf localhost}\label{corsLocalhost}
 Es wurde daher ein zusätzlicher Proxy umgesetzt. Dabei wurde ein NodeJS-Server mit express genutzt. Dieser besitzt keine Logik. Er nimmt lediglich Requests an und leitet diese an die Adresse im Header weiter. [\cite{corsProxy}] Die Requests werden nun via Proxy an die API gesendet. Zudem wird nun auch mit der eigenen API über diesen Proxy kommuniziert. Dies löst einerseits die \ac{CORS}-Problematik mit externen APIs und macht den Einsatz von HTTPS im Backend \ref{httpsBackend} überflüssig. Die \ac{TLS} wurde hier nur aufgrund der Browser Policies gebraucht. Der Proxy ist nun via localhost erreichbar. Hierbei ist die "Mixed Content" Policy nicht aktiv. Bei der Entwicklung bleibt das Backend direkt auch erreichbar. Im produktiven Betrieb würden nur noch Anfragen vom Proxy akzeptiert. \\
 Zudem ist die Verschlüsselung der Kommunikation zwischen Backend und Frontend überflüssig, da sie nur auf der eigenen Maschine abläuft. Es werden keine Daten über eine unsichere Leitung gesendet. \\
 Die Verbindung zur externen API läuft dabei via HTTPS. Dies wird von Six umgesetzt.\\\\
@@ -598,7 +574,8 @@ Um eine konstante \ac{CI/CD} zu ermöglichen, wurde dies für den Proxy umgesetz
 Angedacht war dabei, dass der Proxy auch im produktiven Umfeld via loopback-Adresse erreichbar ist. Dies bietet den Vorteil, dass die Browser diesem trauen und nicht via https zugreifbar gemacht werden muss. Der Traffic bleibt nur lokal auf der Maschine, daher bestehen keine Sicherheitsrisiken. Auf Google Chrome sowie auch Firefox funktionierte dies auch. Auf Safari ist die Loopback Adresse nicht vertrauenswürdig, der Proxy müsste via https erreichbar sein. Das Problem ist, dass Letsencrypt keine Zertifikate für localhost ausstellt [\cite{letsencryptLocalhost}].\\
 Es besteht keine Möglichkeit, dieses Problem unter Safari zu beheben. Daher musste dieser Lösungsansatz verworfen werden. Das Problem wird auf den nächsten Sprint verschoben. 
 
-
+\subparagraph{Backend als Proxy}
+Dieses Vorgehen wird in Sprint 8 \ref{sprint8} genauer beschrieben. 
 \paragraph{Problem mit Enterpriselab Host}
 Am Mittwoch, 14.04. am Nachmittag war der GitLab Host nicht mehr erreichbar. Die Nachfrage beim Enterpriselab Team ergab, dass die Maschine ihre IP-Adresse verloren hatte. Ein Neustart brachte auch keinen Erfolg, da verschiedene wichtige Dienste nicht mehr starteten. Es wurde eine neue Maschine bereitsgestellt. Der Grund konnte nicht herausgefunden werden. \\\\
 Die Umgebung konnte sehr schnell wieder hergestellt werden. Es musste nur Docker und Gitlab-Runner installiert und registriert werden. Zudem mussten die Daten neu migriert werden. Der Umfang der gesamten Neuumsetzung lag bei ca. 3h. 
@@ -630,7 +607,7 @@ Die Testprotokolle sind im Anhang \ref{testprotokolleBestellung} zu finden.
 Die Meilensteine konnten grösstenteils erfüllt werden. Einzig die Altersverifikation mittels Jumio wurde nach hinten verschoben. Die hing jedoch mit Abhängigkeiten zum Auftraggeber zusammen. Jedoch ist das Backend bereits sehr weit fortgeschritten.  
 Die Zwischenpräsentation wurde erfolgreich durchgeführt. 
  \subparagraph{Fazit}
-Es konnten viele der geplanten Artefakte abgeliefert werden. Die fehlende Integration von Jumio wurde durch den Fortschritt im Backend kompensiert. 
+Es konnten viele der geplanten Artefakte abgeliefert werden. Die fehlende Integration von Jumio wurde durch den Fortschritt im Backend kompensiert. Zudem funktioniert die Bezahlung aufgrund von CORS-Problemen nicht auf allen modernen Browsern. Hier muss in den kommenden Sprints nachgebessert werden. 
 
 \subsection{Realisierungsphase}
 \subsubsection{Sprint 7}
@@ -709,14 +686,14 @@ Mit diesem Vorgehen kann auf das vorhergehende Resultat gewartet werden. Dies wi
 In Abbildung \ref{img: observableState} ist zu sehen, dass beim Öffnen des Tooltips ein click-Event abgefangen wird. Dabei wird ein Leaflet Event mitgegeben, welcher unter anderem auch die Koordinaten der geklickten Station enthält. Basierend auf diesen Daten wird die ausgewählte PickUp Station gesetzt. Diese wird im Local Storage des Browsers gespeichert. 
  \begin{figure}[H]
 	\centering
-	\includegraphics[width=1\textwidth]{images/mouseEvent.PNG}
+	\includegraphics[scale=0.5]{images/mouseEvent.PNG}
 	\caption[Mouse Event]{Mouse Event,\\ Quelle: Autor}
 	\label{img: MouseEvent}
 \end{figure} 
 \subsubsection{Sprintreview Sprint 7}
 Die User Story konnte erfolgreich durchgeführt werden. 
 
-\subsubsection{Sprint 8}
+\subsubsection{Sprint 8}\label{sprint8}
 \begin{table}[H]
 	\begin{tabularx}{\textwidth}{|l|X|}
 		\hline
@@ -731,4 +708,96 @@ Die User Story konnte erfolgreich durchgeführt werden.
 \end{table}\label{userStoriesSprint8}
 Bemerkungen: In Sprint 2  \ref{sprint2} und Sprint 3 wurde bereits die gleiche Userstory bearbeitet. In diesem Sprint wird dabei die Persistierung der Bestellung auf dem Backend durchgeführt. Zudem wird das CORS-Problem \ref{CORS} bei der Bezahlung neu angegangen. 
 
- \newpage
+\paragraph{Persistierung der Bestellung}
+In einem vorhergehenden Sprint wurden die entsprechenden Methoden und Entitäten für die Erstellung von Orders bereits erstellt. Nachfolgendes Entity Relationship Diagramm liefert einen Überblick. 
+ \begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{images/erdOrder.PNG}
+	\caption[Entity Relationship Diagram von Order]{Entity Relationship Diagram von Order,\\ Quelle: Autor}
+	\label{img: erdOrder}
+\end{figure} 
+Hierbei ist zu sehen, dass die Erstellung einer Order drei Eigenschaften benötigt: 
+\begin{itemize}
+	\item User
+	\item PickUpStation
+	\item OrderItem
+\end{itemize}
+Dabei wird auch hier mit DTOs gearbeitet. Das Vorgehen ist in \ref{DTO} beschrieben. \\
+Die Order wird Erstellt, sobald der Benutzer auf den Checkout-Button im Warenkorb klickt. Es wird dabei überprüft, ob eine PickUp-Station ausgewählt wurde und der Warenkorb nicht leer ist. Nach dem erfolgreichen Hinzufügen der Order \ref{img: createOrder} werden die Order-Items erstellt. Hierzu wird pro Item im Warenkorb ein POST-Request durchgeführt \ref{img: createOrderItems}. 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{images/createOrder.PNG}
+	\caption[Erstellen der Order]{Erstellen der Order,\\ Quelle: Autor}
+	\label{img: createOrder}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{images/createOrderItems.PNG}
+	\caption[Erstellen der OrderItems]{Erstellen der OrderItems,\\ Quelle: Autor}
+	\label{img: createOrderItems}
+\end{figure}
+
+Der Benutzer wird dabei aus dem Authentifizierungstoken im Backend ausgelesen. 
+Nach dem diese Abfragen completed sind, wird der Bezahlvorgang ausgelöst. 
+
+\paragraph{Behebung des CORS-Problems}
+Um CORS zu umgehen, wurde ein eigener NodeJS-Proxy implementiert und auf die virtuelle Maschine im GitLab deployed. Wie bereits in \ref{corsLocalhost} beschrieben, funktioniert dies unter Safari nicht. Der Ansatz mit einem eigenden Proxy wurde verworfen. Dies hing damit zusammen, dass der Reverse-Proxy \ref{reverseProxy} die Anfragen an den Proxy nicht korrekt weiterleitete. Das Problem konnte nicht identifiziert werden. \\ Es wurde nach einem neuen Ansatz gesucht, wobei die Wahl auf die Nutzung des eigenen Backends als Proxy fiel. Dabei übernimmt das Backend noch weitere Aufgaben bei der Bezahlung. So wird der finale Request erst im Backend erstellt. Vom Frontend kommt ein leeres Payment Initialize Objekt. In diesem sind nur die Order-Id sowie die redirect-URLs gesetzt. Es wird im Backend aus dem gesendeten leeren JSON ein entsprechendens Objekt erstellt und die fehlenden Daten gesetzt. Das Erstellen der Klasse wurde dabei analog zu \ref{img: PagePaymentAssertResponse} mittels quicktype durchgeführt. Allerdings sind die einzelnen JSON-Properties bei der Saferpay API grossgeschrieben, was nicht mit der Java-Namenskonvention übereinstimmt. Es handelt sich hierbei jedoch nur um DTOs, daher wurde dies hier vernachlässigt. 
+\begin{figure}[H]
+	\begin{subfigure}[b]{0.5\textwidth}
+		\includegraphics[scale=0.5]{images/paymentOld.PNG}
+		\caption[Payment Initialization alt]{Payment Initialization alt,\\ Quelle: Autor}
+		\label{img: requestOld}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[b]{0.5\textwidth}
+		\includegraphics[scale=0.5]{images/paymentNew.PNG}
+		\caption[Payment Initialization neu]{Payment Initialization neu,\\ Quelle: Autor}
+		\label{img: requestNew}
+	\end{subfigure}
+\end{figure} 
+Ausschlaggebend bei diesem Request ist die Order-Id. Diese wird bei der Persistierung der Order gespeichert und anschliessend im Frontend im Local Storage gespeichert. Sie wird auch als Request-Id genutzt. Diese ist im gesamten System einzigartig. Die Bezahlung kann im Backoffice über diese Id eindeutig identifiziert werden. \\
+\subparagraph{Setzen der fehlenden Properties}
+Wie in der Abbildung \ref{img: requestNew} zu sehen ist, beinhaltet der Request nur die Order-Id. Die restlichen Daten werden im Backend gesetzt. Dabei werden die Werte aus dem Properties-File gelesen und zur Laufzeit den Variablen zugewiesen. 
+
+ \begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{images/valuesFromProperties.PNG}
+	\caption[Auslesen der Werte aus .properties-File]{Auslesen der Werte aus .properties-File,\\ Quelle: Autor}
+	\label{img: valuesFromProperties}
+\end{figure} 
+Der Bestellwert wird ebenfalls im Backend gesetzt. Dies macht es unmöglich, dem Bestellwert im Frontend anzupassen und so eine Vergünstigung zu erhalten. Um den Wert zu bestimmen, werden alle OrderItems die zur Order gehören in der Datenbank gesucht und der Produktpreis mit der Anzahl Produkte summiert. Dank streams in Java kann dies sehr elegant durchgeführt werden. Java empfiehlt den Gebrauch von Atomic Datentypen, wenn diese mit Streams bearbeitet werden. 
+ \begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{images/calculateTotal.PNG}
+	\caption[Berechnung des Order-Totals]{Berechnung des Order-Totals,\\ Quelle: Autor}
+	\label{img: orderTotal}
+\end{figure} 
+Zudem schreibt die API von Sixpayment vor, dass der Wert ohne Kommastellen angegeben wird. Dies wird hier durch die Multiplikation mit dem Faktor 100 erreicht.
+Durch das DecimalFormat werden die Nachkommastellen entfernt. 
+
+\subparagraph{Senden eines POST-Requests von Spring}
+Um einen POST-Request von Spring an eine andere API zu senden, wurde RestTemplate genutzt. [\cite{restTemplate}] Dazu wurde eine HttpEntity mit dem gewünschten Body und dem passenden Header erstellt. Das Erstellen dieser wurde in einen Service \ref{img: httpEntity} ausgelagert. 
+\begin{figure}[H]
+	\includegraphics[width=1\textwidth]{images/restTemplate.PNG}
+	\caption[Senden eines Request mit Rest Template]{Senden eines Request mit Rest Template,\\ Quelle: Autor}
+	\label{img: restTemplate}
+\end{figure}
+\begin{figure}[H]
+	\includegraphics[width=1\textwidth]{images/httpEntity.PNG}
+	\caption[Erstellen der HttpEntity]{Erstellen der HttpEntity,\\ Quelle: Autor}
+	\label{img: httpEntity}
+\end{figure}
+
+Die Antwort von diesem Request wird vom Backend direkt weitergeleitet. \\Im Frontend wird der Token im Local Storage gespeichert. Dieser wird beim Payement Assert gebraucht.
+\\
+Im nächsten Schritt wird das PaymentAssert durchgeführt. Wie auch bereits in obigen Beispiel gesehen, werden auch hier die meisten Daten im Backend gesetzt. Hier wird der Token sowie die Request-Id aus dem Local Storage mitgegeben. \\
+Als Antwort auf diesen Request wird der Statuscode zurückgegeben. Zudem wird die Order in der Datenbank als Bezahlt markiert. 
+ \begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{images/pageAssertReturn.PNG}
+	\caption[Überprüfung des Zahlungsstatus]{Überprüfung des Zahlungsstatus,\\ Quelle: Autor}
+	\label{img: pageAssertReturn}
+\end{figure} 
+Dieser wird im Frontend überprüft, eine entsprechende Meldung ausgegeben und ein Redirect auf das Nutzerprofil durchgeführt. Der Bezahlvorgang ist abgeschlossen. 
+\newpage
