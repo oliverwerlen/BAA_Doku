@@ -6,7 +6,7 @@ Aus diesem Grund wurde auf eine Schichtenarchitektur gesetzt. Die klassische log
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=1\textwidth]{images/architecture.png}
+	\includegraphics[scale=0.3]{images/architecture.png}
 	\caption[Architektur]{Architektur,\\ Quelle: Autor}
 	\label{img: Architektur}
 \end{figure}
@@ -15,18 +15,19 @@ Die Architektur ermöglicht dabei eine sehr gute Erweiterbarkeit. Zudem kann die
 
 \subsection{Frameworks}
 \subsubsection{Spring Boot}
-Spring Boot baut auf dem Spring Framework auf. Dieses bietet sich an, um performante Enterprise-Applikationen mit Java zu erstellen. Spring Boot kann dabei sehr einfach erweitert werden, sodass Spring Security, Spring Web oder Spring Data eingesetzt werden kann.\\
+Spring Boot baut auf dem Spring Framework auf. Dieses bietet sich an, um performante Enterprise-Applikationen mit Java zu erstellen. Spring Boot kann dabei sehr einfach erweitert werden, sodass Spring Security, Spring MVC oder Spring Data eingesetzt werden kann.\\
 Spring Boot kommt dabei mit einem Tomcat Server. Dies verringert den Konfigurationsaufwand. Es ist kein Einpacken in ein .war nötig und kein zusätzliches Deployen. Zudem wird das Debugging erheblich erleichtert.  \\
 Es übernimmt dabei einen grossen Teil der Beans-Konfiguration von Spring [\cite{springBoot}].\\\\
 Spring Boot bietet dabei den grossen Vorteil, dass bereits Erfahrung in der Anwendung vorhanden ist. Es ist somit keine Einarbeitungszeit nötig, gängige Fehler können vermieden werden. Aus diesem Grund fiel die Entscheidung gegen Frameworks wie NodeJS. 
+
 
 \subsubsection{Angular}
 Angular ist ein Application Design Framework, um effiziente Single Page Applikationen zu erstellen. Es basiert auf TypeScript [\cite{angular}]. Zudem bietet Angular die Möglichkeit, als \ac{PWA} genutzt zu werden [\cite{angularPWA}]. 
 Angular wurde dabei von Google entwickelt und bietet mit dem Material UI bereits viele Elemente, welche von nativen Android-Apps bekannt sind [\cite{angularMaterialUI}]. \\\\
 Wie auch bei Spring ist auch bei Angular bereits Projekterfahrung vorhanden. Ein Einarbeiten ist nicht mehr nötig, die gängigsten Funktionen sind bereits bekannt. \\\\
-In vorhergehenden Projekten wurde das Frontend mit unterschiedlichen Technologien umgesetzt. Einerseits kam hier Plain JavaScript zum Einsatz, andererseits wurden auch Technologien wie \gls{React} genutzt. Allerdings überzeugte Angular von all diesen am Meisten. Besonders durch die Verwendung von TypeScript wird dieses Framework hier genutzt. 
+In vorhergehenden Projekten wurde das Frontend mit unterschiedlichen Technologien umgesetzt. Einerseits kam hier Plain JavaScript zum Einsatz, andererseits wurden auch Technologien wie \gls{React} genutzt. Allerdings überzeugte Angular von all diesen am Meisten. Besonders durch die Verwendung von TypeScript fiel die Wahl auf dieses Framework. 
 
-\subsection{weitere Technologien}
+\subsection{Weitere Technologien}
 \subsubsection{Docker}
 Docker ist eine Containertechnologie. Sie erlaubt die Erstellung und den Betrieb von Linux-Containern. Die Container sind dabei sehr leichtgewichtig und modular.\\
 Die einzelnen Teile der Applikation werden in verschiedenen Containern betrieben [\cite{docker}].\\
@@ -36,4 +37,57 @@ Die Anwendung und Funktion von Docker wird in diversen Modulen an der Hochschule
 MariaDB ist ein OpenSource Datenbankmanagementsystem. Es ist durch die Abspaltung von MySQL entstanden. Es handelt sich dabei um ein Relationale Datenbanksystem. 
 Aus Lizenzgründen wird in diesem Projekt MariaDB und nicht MySQL genutzt. Alternativ wäre auch ein Einsatz von PostgreSQL möglich. Der Unterschied zwischen PostgreSQL und MariaDB ist dabei nur marginal. Bei dieser Applikation wurde lediglich aus Erfahrung auf MariaDB gesetzt [\cite{mariadbVsPostgresql}]. \\
 Durch die Verwendung von Spring Data wäre es möglich, die Datenbank im Verlauf des Projektes zu wechseln. 
+
+\subsubsection{Hibernate ORM}
+Hibernate ORM ist ein Object Relational Mapper. 
+Er ermöglicht dem Entwickler, einfacher mit der Datenpersistierung umzugehen. Hibernate ist zudem ein Teil der \ac{JPA} und der Spring Data JPA. 
+Ein wichtiger Punkt ist zudem die Performance, welche durch den Einsatz des Lazy Loading Patterns erreicht wird. Die Initialisierung des Objektes wird dabei solange als Möglich hinausgezögert. [\cite{hibernateORM}]
+
+\subsubsection{GitLab}
+Zur Versionsverwaltung kam GitLab zum Einsatz. Es wird dabei von der Hochschule Luzern zur Verfügung gestellt. Zudem sind zur Integration in die DevOps Umgebung bereits GitLab Runner vorhanden, um Docker Images zu Builden. 
+
+\subsubsection{Bezahldienst}
+Als Bezahldienst wurde Saferpay von Six Payment Services genutzt. Dabei wurde mit der Testversion gearbeitet, diese unterscheidet sich nicht von der Produktiven. Ein Wechsel wäre zudem innert kurzer Zeit durchführbar. 
+
+\subsubsection{Alterverifikation}
+Bei der Altersüberprüfung wurde auf Jumio gesetzt. Das Produkt wurde vom Auftraggeber vorgegeben und eine Lizenz bereitgestellt. 
+
+\subsubsection{Karte}
+Für die Implementierung der Kartenfunktionalität wurde Leaflet genutzt. Die Kartendaten stammen von OpenStreetMap. Zudem wurde Geoapify als MapsAPI eingesetzt. 
+
+\subsection{Konzepte}
+\subsection{Data Transfer Object}\label{DTO}
+Es handelt sich hier um ein Enterprise Application Architecture Pattern von Martin Fowler. Genauer handelt es sich um ein Distribution Pattern. \\
+Durch den Einsatz dieses Patterns können mehr Daten mit einem Aufruf übertragen werden. Ein weiterer Vorteil ist die klare Trennung zwischen zu serialisierendem Objekt und dem Domain Model. In der Regel wird ein Assembler genutzt, um das DTO auf das Domain Model zu mappen. [\cite{dtoFowler}]
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{images/dtoSketch.png}
+	\caption[DTO Klassendiagramm von Martin Fowler]{DTO Klassendiagramm von Martin Fowler,\\ Quelle: \cite{dtoFowler}}
+	\label{img: dtoFowler}
+\end{figure}
+
+\subsubsection{\ac{HATEOAS}}
+In diesem Projekt stand der Einsatz des DTO-Pattern jedoch im Konflikt mit der REST-Abstufung von Leonard Richardson und dem von ihm entworfenen Richardson Maturity Model. Gemäss diesem sollen Daten von einem anderen Domain Model als Hyperlink zurückgegeben werden, um das höchste Level zu erreichen. Somit liefert jeder Aufruf nur das angeforderte Modell zurück. Das Data Transfer Object Pattern dient somit nur zur Abgrenzung zwischen dem zu sendenden Objekt und dem Domain Model. 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.3]{images/richardsonMaturity.png}
+	\caption[Richardson Maturity Model]{Richardson Maturity Model,\\ Quelle: \cite{richardsonMaturity}}
+	\label{img: richardsonMaturity}
+\end{figure}
+
+Dabei wurde auf REST-Level 3 hingearbeitet und entsprechend mit HATEOAS gearbeitet. Dadurch kann das Backend weiter vom Frontend getrennt werden, da bei eine Anpassung der URL auf dem Server keinen Einfluss auf die Funktionalität des Clients hat. Zudem kann die Verständlichkeit der API verbessert und ein Erweitern vereinfacht werden. [\cite{richardsonMaturity}]
+
+\subsubsection{Spring Doc}
+Die Spring Doc ermöglicht eine sehr einfache und schnelle Dokumentation von REST-API basierend auf der OpenAPI Spezifikation. Um die Dokumentation anzuzeigen, wird das Open Source Tool Swagger UI genutzt. Hiermit lässt sich eine dynamische API-Dokumentation als HTML-Page erstellen. 
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.3]{images/swaggerui.png}
+	\caption[Ausschnitt aus der Swagger Dokumentation]{Ausschnitt aus der Swagger Dokumentation,\\ Quelle: Autoren}
+	\label{img: swaggerUI}
+\end{figure}
+
+
+
 \newpage

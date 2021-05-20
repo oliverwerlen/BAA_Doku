@@ -1,6 +1,7 @@
 % !TEX root = PREN2_Dokumentation.tex
 \section{Software Requirements Specification}\label{RSR}
 
+
 \subsection{Zweck}
 Der Auftraggeber will durch die JTI Pickup Station einen neuen Absatzkanal zum Vertrieb seiner Produkte an Endkunden erstellen. Durch das Erstellen einer Softwarelösung soll es möglich sein, Kunden inklusive einer Altersverifikation zu erfassen. Auch ist die Umsetzung einer Kaufabwicklung sowie die Auswahl einer Pick-Up Station Teil dieses Projekts. Die Applikation wird dabei als \ac{PWA} umgesetzt. Die Software soll dabei mit der physischen Pick-Up Station kompatibel sein. Die Umsetzung von diesen ist Teil von zwei weiteren Bachelorarbeiten an der Hochschule Luzern.  
 "Verweis auf Aufgabenstellung"
@@ -18,7 +19,7 @@ Die Systemübersicht ist in der Systemspezifikation im Kapitel \ref{SystemSpezif
 Die Erfüllung der Requirements hängt von diversen Faktoren ab. Wesentlich dabei ist die Abhängigkeit von den Bachelorarbeiten der Studierenden an der Hochschule Luzern Technik und Architektur. Die hier vorhandenen Abhängigkeiten werden während der Realisierung möglichst minimiert. 
 \subsection{Spezifische Anforderungen}
 
-\subsubsection{Funktionale Anforderungen}
+\subsubsection{Funktionale Anforderungen}\label{funktionaleAnforderungen}
 \begin{table}[H]
 	\setlength\extrarowheight{2pt} % for a bit of visual "breathing space"
 	\begin{tabularx}{\textwidth}{|l|X|l|}
@@ -27,25 +28,33 @@ Die Erfüllung der Requirements hängt von diversen Faktoren ab. Wesentlich dabe
 		\hline
 		F.2 & Das System ist auf eine physische Pick-Up Station abgestimmt. & Muss \\
 		\hline
-		F.4 & Das System bietet dem Anwender die Möglichkeit, sich zu registrieren. & Muss \\
+		F.3 & Das System bietet dem Anwender die Möglichkeit, sich zu registrieren und sich anschliessend einzuloggen. & Muss \\
 		\hline
-		F.5 & Das System bietet die Möglichkeit, durch die Anbindung an eine 3rd Party, eine Altersverifikation durchzuführen.  & Muss \\
+		F.4 & Das System bietet die Möglichkeit, durch die Anbindung an eine 3rd Party, eine Altersverifikation durchzuführen.  & Muss \\
 		\hline
-		F.6 & Das System bietet dem Kunden die Möglichkeit, verschiedene Produkte zu bestellen. & Kann \\
+		F.5 & Das System bietet die Möglichkeit, verschiedene Produkte anzuzeigen. & Muss \\
 		\hline
-		F.7 & Das System ermöglicht die Anbindung an einen bereits bekannten Bezahldienst, um eine sichere Bezahlung zu garantieren. & Muss \\
+		F.6 & Das System bietet die Möglichkeit, verschiedene Produkte dem Warenkorb hinzuzufügen. & Muss \\
 		\hline
-		F.9 & Das System bietet dem Kunden die Möglichkeit, die für Ihn nächstgelegene Station auswählen zu können.  & Muss \\
+		F.7& Das System bietet die Möglichkeit, eine Bestellung dauerhaft zu speichern. & Muss \\
 		\hline
-		F.10 & Das System bietet dem Kunden die Möglichkeit, alle vorhandenen Pick-Up Stations anzuzeigen.  & Muss \\
+		F.8 & Das System bietet dem Kunden die Möglichkeit, verschiedene Produkte zu bestellen. & Kann \\
 		\hline
-		F.11 & Das System bietet dem Kunden die Möglichkeit, seine beliebtesten Produkte direkt zu bestellen. & Kann \\
+		F.9 & Das System ermöglicht die Anbindung an einen bereits bekannten Bezahldienst, um eine sichere Bezahlung zu garantieren. & Muss \\
 		\hline
-		F.12 & Das System bietet dem Dienstleister die Möglichkeit, einen aktuellen Warenbestand zu erhalten. & Kann \\
+		F.10 & Das System bietet dem Kunden die Möglichkeit, die für Ihn nächstgelegene Station auswählen zu können.  & Muss \\
 		\hline
-		F.13 & Das System bietet dem Dienstleister die Möglichkeit, bei zu geringem Warenbestand eine Benachrichtigung zu senden. & Muss \\
+		F.11 & Das System bietet dem Kunden die Möglichkeit, alle vorhandenen Pick-Up Stations anzuzeigen.  & Muss \\
 		\hline
-		F.14 & Das System bietet dem Betreiber die Möglichkeit, Artikel hinzuzufügen und Artikel zu bearbeiten & Kann \\
+		F.12 & Das System bietet dem Kunden die Möglichkeit, seine beliebtesten Produkte direkt zu bestellen. & Kann \\
+		\hline
+		F.13 & Das System bietet dem Dienstleister die Möglichkeit, einen aktuellen Warenbestand zu erhalten. & Kann \\
+		\hline
+		F.14 & Das System bietet dem Dienstleister die Möglichkeit, bei zu geringem Warenbestand eine Benachrichtigung zu senden. & Muss \\
+		\hline
+		F.15 & Das System bietet dem Betreiber die Möglichkeit, Artikel hinzuzufügen und Artikel zu bearbeiten. & Kann \\
+		\hline
+		F.16 & Das System bietet dem Kunden die Möglichkeit, eine Bestellung durch das Einlesen eines Codes an der Pick-Up Station abzuholen. & Muss \\
 		\hline
 		
 		
@@ -70,10 +79,25 @@ Die Erfüllung der Requirements hängt von diversen Faktoren ab. Wesentlich dabe
 		L.5 & Das System bietet die Möglichkeit, durch die Verwendung von bewährten Programmiervorgehen von einem externen Fachmann verstanden zu werden & Muss \\
 		\hline
 		L.6 & Das System muss über eine CI/CD-Pipeline verfügen & Muss \\
+		\hline
 	\end{tabularx}
 	\caption{ \label{tbl: NichtFunktionaleAnforderungent}Nicht Funktionale Anforderungen, Quelle: Autoren}
 \end{table}
 \newpage
+\subsection{Änderungshistorie}
+\begin{table}[H]
+	\setlength\extrarowheight{2pt} % for a bit of visual "breathing space"
+	\begin{tabularx}{\textwidth}{|l|X|l|X|}
+		\hline
+		\textbf{Datum} &  \textbf{Änderung} & \textbf{Geändert von} & \textbf{Alte Version}  \\
+		\hline
+		21.03.2021 & Aufteilung von Requirements F.6 in F.5, F.6, F.7  & Oliver Werlen & Anhang \ref{srv_v1}\\
+		\hline
+		11.05.2021 & Hinzufügen des Requirements F.16  & Oliver Werlen & \\
+		\hline
+	\end{tabularx}
+	\caption{ \label{tbl: historieAnforderungen}Änderungshistorie der Anforderungen, Quelle: Autoren}
+\end{table}
 \subsection{Bemerkungen}
 Als Grundstruktur für die SRS wurde eine Vorlage von Perforce genutzt. [\cite{srsdocument}]
 Als Basis dazu diente die IEEE Spezifikation 29148-2018. [\cite{ieeeSrs}]

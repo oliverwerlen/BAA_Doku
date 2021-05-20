@@ -103,7 +103,8 @@ Es wurden alle Artefakte erarbeitet. Der Meilenstein wurde somit erreicht und es
 
 \subsubsection{Sprint 2}\label{sprint2}
 \begin{table}[H]
-	\begin{tabularx}{\textwidth}{|l|X|}
+	\setlength\extrarowheight{2pt} % for a bit of visual "breathing space"
+	\begin{tabularx}{\textwidth}{|X|l|}
 		\hline
 		\textbf{User Story} & \textbf{Number} \\
 		\hline
@@ -112,6 +113,8 @@ Es wurden alle Artefakte erarbeitet. Der Meilenstein wurde somit erreicht und es
 		Das System bietet dem Kunden die Möglichkeit, verschiedene Produkte zu bestellen. & F.6\\
 		\hline
 		Das System muss über eine CI/CD-Pipeline verfügen. & L.6 \\
+		\hline
+		Das System muss via HTTPS kommunizieren. & L.3 \\
 		\hline
 	\end{tabularx} 
 	\caption[Userstories Sprint 2]{Userstories Sprint 2,\\ Quelle: Autor}
@@ -218,15 +221,8 @@ Sobald die entsprechende User Story bearbeitet wird, wird der entsprechende WebH
 In diesem Sprint wurde zudem an der Produktbestellung gearbeitet. Als Erstes wurde das Darstellen von Produkten ins Auge gefasst. Zudem wurde die Grundstruktur der Angular Applikation erstellt. 
 Dabei wurde strikt nach dem Mobile First Ansatz gearbeitet. Durch Schemantic konnte das responsive Menu sowie die Anzeige für die Produkte sehr schnell erstellt werden. Im Anschluss wurde das Menü mit den gewünschten Inhalten gefüllt. 
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[scale=0.7]{images/nav.png}
-	\caption[Navigation]{Navigation,\\ Quelle: Autor }
-	\label{img: navigation}
-\end{figure}
-
 Bei den Produkten wurde das Card Element von Angular Material gesetzt. Dieses wurde in ein Grid Layout verpackt. Damit die Seite auf allen Geräten optimal aussieht, wird das Layout basierend auf der Displaygrösse angepasst. Um dies mit TypeScript umzusetzen, wurde ein Breakpoint Observer eingesetzt. Mithilfe von diesem wird die Anzahl Spalten und die Spaltenhöhe abhängig von der Geräteauflösung festgelegt. Sie wird dabei beim Laden der Seite festgelegt. Es ist hier kein Listener Mechanismus nötig, da sich die Auflösung nicht während der Laufzeit ändert.\\ Um die Anzahl Spalten bei einem Wechsel in den Landscape Modus anzupassen, wurde ein neuer Observer eingesetzt. Dieser legt die entsprechende Anzahl fest. 
-\begin{figure}[h]
+\begin{figure}[H]
 	\begin{subfigure}[b]{0.4\textwidth}
 		\includegraphics[scale=0.4]{images/rowsLand.PNG}
 		\caption[Observer, Wechsel Landscape/Portrait Tablet]{Observer, Wechsel Landscape/Portrait Tablet,\\ Quelle: Autor}
@@ -245,41 +241,36 @@ Die Abfrage der Produkte war bereits in einem vorderen Sprint \ref{order} im Bac
 
 Anschliessend wurde mittels Angular-http Client ein Get-Request an die entsprechende URL gesendet. Das resultierende Observable wurde abonniert und anschliessend mittels Angular Direktive als Card Element dargestellt. 
 
-\begin{figure}[h]
-		\centering
-		\includegraphics[scale=0.3]{images/productsPhone.PNG}
+\begin{figure}[H]
+	\begin{subfigure}[b]{0.5\textwidth}
+		\includegraphics[scale=0.5]{images/productsPhone.PNG}
 		\caption[Produktanzeige auf Pixel Phone]{Produktanzeige auf Pixel Phone,\\ Quelle: Autor}
 		\label{img: Prodcuts pixel}
-\end{figure}
-
-\begin{figure}[h]
-		\centering
-		\includegraphics[scale=0.3]{images/productsTablet.PNG}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[b]{0.5\textwidth}
+		\includegraphics[scale=0.5]{images/productsTablet.PNG}
 		\caption[Produktanzeige auf iPad]{Produktanzeige auf iPad,\\ Quelle: Autor}
 		\label{img: Products iPad}
+	\end{subfigure}
 \end{figure} 
+
 
 Anschliessend wurde mittels CSS das Design wie gewünscht angepasst. 
 
 \paragraph{Sprintreview Sprint 3}
-Die Userstory von dieser Woche konnten erneut nicht abgeschlossen werden. Aus diesem Grund wird sie für den nächsten Sprint weiter verfeinert. Die resultierenden Stories sind dabei: 
-\begin{itemize}
-	\item Das System bietet die Möglichkeit, Produkte anzuzeigen
-	\item Das System bietet die Möglichkeit, ein Produkt dem Warenkorb hinzuzufügen
-\end{itemize}
-
-Diese Userstories ersetzen die bestehende.
-
+Die Userstory von dieser Woche konnten erneut nicht abgeschlossen werden. Aus diesem Grund wurden die Requirements aufgeteilt. Die neuen Requirements sind im Kapitel \ref{RSR} zu finden. 
 
 \subsubsection{Sprint 4}
 \begin{table}[H]
-	\begin{tabularx}{\textwidth}{|l|X|}
+	\setlength\extrarowheight{2pt} % for a bit of visual "breathing space"
+	\begin{tabularx}{\textwidth}{|X|l|}
 		\hline
 		\textbf{User Story} & \textbf{Number} \\
 		\hline
-		Das System bietet die Möglichkeit, ein Produkt anzuzeigen& F.2\\
+		Das System bietet die Möglichkeit, verschiedene Produkte anzuzeigen& F.5\\
 		\hline
-		Das System bietet die Möglichkeit, ein Produkt dem Warenkorb hinzuzufügen& F.2\\
+		Das System bietet die Möglichkeit, verschiedene Produkte dem Warenkorb hinzuzufügen& F.6\\
 		\hline
 	\end{tabularx} 
 	\caption[Userstories Sprint 4]{Userstories Sprint 4,\\ Quelle: Autor}
@@ -296,7 +287,7 @@ Für die Realisierung des Warenkorbes gestaltete sich als simpel. Angular liefer
 
 Der Warenkorb wird als Angular Material List dargestellt. Die Artikelanzahl kann mittels Buttons angepasst werden. Ein Löschen wird durch einen zusätzlichen Button ermöglicht. Zusätzlich wird das Gesamttotal der im Warenkorb befindlichen Artikel bei jeder Änderung neu berechnet. 
 
-\begin{figure}[h]
+\begin{figure}[H]
 	\begin{subfigure}[b]{0.4\textwidth}
 		\includegraphics[scale=0.4]{images/cartEmpty.PNG}
 		\caption[Leerer Warenkorb]{Leerer Warenkorb,\\ Quelle: Autor}
@@ -332,11 +323,14 @@ Um die Bestellung abschliessen zu können, muss im nächsten Schritt die Authent
 
 \subsubsection{Sprint 5}
 \begin{table}[H]
-	\begin{tabularx}{\textwidth}{|l|X|}
+	\setlength\extrarowheight{2pt} % for a bit of visual "breathing space"
+	\begin{tabularx}{\textwidth}{|X|l|}
 		\hline
 		\textbf{User Story} & \textbf{Number} \\
 		\hline
-		Das System bietet dem Anwender die Möglichkeit, sich zu registrieren& F.2\\
+		Das System bietet dem Anwender die Möglichkeit, sich zu registrieren und anschliessend einzuloggen. & F.3\\
+		\hline
+		Das System muss durch einen modernen und sicheren Authentifizierungsmechanismus geschützt sein. & L. 4\\
 		\hline
 	\end{tabularx} 
 	\caption[Userstories Sprint 5]{Userstories Sprint 5,\\ Quelle: Autor}
@@ -349,17 +343,17 @@ Um die Bestellung abschliessen zu können, muss im nächsten Schritt die Authent
   
 \begin{figure}[H]
   	\centering
-  	\includegraphics[width=1\textwidth]{images/Authentication.PNG}
+  	\includegraphics[scale=0.6]{images/Authentication.PNG}
   	\caption[Authentication im Backend]{Authentication im Backend,\\ Quelle: Autor}
   	\label{img: AuthenticationBackend}
 \end{figure} 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=1\textwidth]{images/jwtIO.PNG}
+	\includegraphics[scale=0.4]{images/jwtIO.PNG}
 	\caption[Token Auflösung mit jwt.io]{Token Auflösung mit jwt.io,\\ Quelle: Autor}
 	\label{img: jwtio}
 \end{figure} 
-
+\newpage
 Es wurden zudem Rollen definiert, um die API feingranular sichern zu können. Die Rollen lauten dabei: 
 
 \begin{itemize}
@@ -374,9 +368,9 @@ Ein entsprechendes Rollenkonzept wird bei Bedarf erstellt und der Dokumentation 
 
 Um einen ensprechenden Nutzer zu erstellen bzw. die Eingabe von Logininformationen zu ermöglichen, mussten die entsprechenden Formulare erstellt werden. Dies wurde dabei mittels Reactive Forms umgesetzt. Durch die damit verbundenen Validators wird Clientseitig auf die Komplexität des Passworts, das Übereinstimmen der beiden sowie die Korrektheit der Email Adresse getestet. 
 
-\begin{figure}[H]]
+\begin{figure}[H]
  	\begin{subfigure}[b]{0.4\textwidth}
- 		\includegraphics[scale=0.3]{images/loginForm.PNG}
+ 		\includegraphics[scale=0.4]{images/loginForm.PNG}
  		\caption[Login Formular]{Login Formular,\\ Quelle: Autor}
  		\label{img: loginForm}
  	\end{subfigure}
@@ -403,12 +397,24 @@ Beim erfolgreichen Anmelden wird der Token im Session Storage gespeichert. Zudem
 
 \begin{figure}[H]
  	\centering
- 	\includegraphics[width=1\textwidth]{images/sessionStorage.PNG}
+ 	\includegraphics[scale=0.5]{images/sessionStorage.PNG}
  	\caption[Token im Session Storage]{Token im Session Storage,\\ Quelle: Autor}
  	\label{img: sessionStorage}
 \end{figure} 
  
  Mittels Angular Direktiven wird das Menu für eingeloggte User angepasst. Es wird der Logout Button eingeblendet. Bei einem Klick auf diesen wird der Session Storage gelöscht. 
+ 
+ \paragraph{Automatischer Logout}
+ Um die Sicherheit zu erhöhen, wird der Nutzer nach 30 Minuten Inaktivität automatisch ausgeloggt. Für die Umsetzung kam ein das angular-user-idle package zum Einsatz. 
+ 
+ \begin{figure}[H]
+ 	\centering
+ 	\includegraphics[scale=0.5]{images/idle.PNG}
+ 	\caption[Ablauf von Timer und anschliessender Logout]{Ablauf von Timer und anschliessender Logout,\\ Quelle: Autor}
+ 	\label{img: autoLogout}
+ \end{figure} 
+Zur besseren Illustrierung wurden die Werte für das Erstellen des Bildes angepasst. 
+Es wurden die Default-Werte beibehalten. Der Timer startet, wenn der Nutzer 10 Minuten inaktiv ist. Anschliessend läuft er 5 Minuten, ehe der Nutzer ausgeloggt wird. [\cite{idle}]
  
 \subsubsection{Sprintreview Sprint 5}
  Im Sprint 5 konnte die geplante User Story erfolgreich abgeschlossen werden.
@@ -416,11 +422,12 @@ Beim erfolgreichen Anmelden wird der Token im Session Storage gespeichert. Zudem
  
 \subsubsection{Sprint 6}
 \begin{table}[H]
-	\begin{tabularx}{\textwidth}{|l|X|}
+	\setlength\extrarowheight{2pt} % for a bit of visual "breathing space"
+	\begin{tabularx}{\textwidth}{|X|l|}
 		\hline
 		\textbf{User Story} & \textbf{Number} \\
 		\hline
-		Das System ermöglicht die Anbindung an einen bereits bekannten Bezahldienst, \\
+		Das System ermöglicht die Anbindung an einen bereits bekannten Bezahldienst, 
 		um eine sichere Bezahlung zu garantieren.& F.7\\
 		\hline
 	\end{tabularx} 
@@ -431,6 +438,7 @@ In der Sitzung \ref{04.03.2021} wurde vom Auftraggeber bekannt gegeben, dass sie
 
 \paragraph{Einführung}
 Six Payment bietet einen Integration Guide an, um die Integration in den eigenen Online Store zu erleichert. [\cite{sixECommerce}] Dabei wird eine JSON API zur Verfügung gestellt, um die Bezahlung durchzuführen. 
+Die Implementierung wurde im Sprint 8 \ref{sprint8} angepasst. 
 \subparagraph{Anforderungen}
 Das Vorgehen wurde identisch zum empfohlenen Vorgehen auf der Developer Seite durchgeführt. Dabei wurde zur Consultation die API-Dokumentation durchgelesen. Nachfolgend werden die wichtigsten Requirements aufgeführt. 
 \begin{itemize}
@@ -438,7 +446,7 @@ Das Vorgehen wurde identisch zum empfohlenen Vorgehen auf der Developer Seite du
 	\item TLS 
 	\item mindestens ein aktiver Terminal
 	\item Terminal Nummer und Customer Nummer
-	\item gütliges "acceptance agreement" für Kreditkarten
+	\item gütliges acceptance agreement für Kreditkarten
 \end{itemize} 
 [\cite{jsonAPISix}]
 \subparagraph{Data Security}
@@ -535,7 +543,8 @@ Um das Interface für die Antwort zu definieren, wurde quicktype genutzt. Damit 
 	\label{img: PagePaymentAssertResponse}
 \end{figure} 
 
-Es wird von diesem Request das Status Property gecheckt. Bei AUTHORIZED wird die Bezahlung als Erfolgreich markiert. Die Transaction-ID wird bei der Bestellung hinterlegt. Damit ist ein Mapping zwischen Bestellung und Bezahlung möglich. Die Bezahlung ist auch im Backend aufgelistet. 
+Es wird von diesem Request das Status Property gecheckt. Bei AUTHORIZED oder CAPTURED wird die Bezahlung als Erfolgreich markiert. 
+Zur Identifikation wird die Request-Id genutzt. Durch diese kann die Bezahlung im Backend eindeutig identifiziert werden. 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1\textwidth]{images/paymentsBackoffice.PNG}
@@ -563,7 +572,7 @@ Dies wurde auch bei diesem Projekt bemerkt. Die Requests an die API von Six wurd
 Wenn man Zugriff auf den betroffenen Server hat, so kann hier mittels entsprechenden CORS Headern gearbeitet werden. Dies wurde beispielsweise bei dem eigenen Backend umgesetzt. Da es sich um eine externe API handelt und dementsprechend kein Zugriff auf die Maschine besteht, ist dies keine mögliche Lösung. 
 
 \subparagraph{Angular Proxy}
-Angular bietet einen eigenen, integrierten Proxy um \ac{CORS} zu umgehen. Dabei werden Request mit einer bestimmten Addresse abgefangen und an den passenden Server umgeleitet.\\
+Angular bietet einen eigenen, integrierten Proxy um \ac{CORS} zu umgehen. Dabei werden Request mit einer bestimmten Adresse abgefangen und an den passenden Server umgeleitet.\\
 In diesem Anwendungsfall funktionierte der Angular Proxy nicht wunschgemäss. Zudem eignet sich dieser nur im Entwicklungseinsatz. 
 
 \subparagraph{Zusätzlicher Proxy auf localhost}\label{corsLocalhost}
@@ -571,18 +580,33 @@ Es wurde daher ein zusätzlicher Proxy umgesetzt. Dabei wurde ein NodeJS-Server 
 Zudem ist die Verschlüsselung der Kommunikation zwischen Backend und Frontend überflüssig, da sie nur auf der eigenen Maschine abläuft. Es werden keine Daten über eine unsichere Leitung gesendet. \\
 Die Verbindung zur externen API läuft dabei via HTTPS. Dies wird von Six umgesetzt.\\\\
 Um eine konstante \ac{CI/CD} zu ermöglichen, wurde dies für den Proxy umgesetzt. 
-Angedacht war dabei, dass der Proxy auch im produktiven Umfeld via loopback-Adresse erreichbar ist. Dies bietet den Vorteil, dass die Browser diesem trauen und nicht via https zugreifbar gemacht werden muss. Der Traffic bleibt nur lokal auf der Maschine, daher bestehen keine Sicherheitsrisiken. Auf Google Chrome sowie auch Firefox funktionierte dies auch. Auf Safari ist die Loopback Adresse nicht vertrauenswürdig, der Proxy müsste via https erreichbar sein. Das Problem ist, dass Letsencrypt keine Zertifikate für localhost ausstellt [\cite{letsencryptLocalhost}].\\
+Angedacht war dabei, dass der Proxy auch im produktiven Umfeld via loopback-Adresse erreichbar ist. Dies bietet den Vorteil, dass die Browser diesem trauen und nicht via HTTPS zugreifbar gemacht werden muss. Der Traffic bleibt nur lokal auf der Maschine, daher bestehen keine Sicherheitsrisiken. Auf Google Chrome sowie auch Firefox funktionierte dies auch. Auf Safari ist die Loopback Adresse nicht vertrauenswürdig, der Proxy müsste via HTTPS erreichbar sein. Das Problem ist, dass Letsencrypt keine Zertifikate für localhost ausstellt [\cite{letsencryptLocalhost}].\\
 Es besteht keine Möglichkeit, dieses Problem unter Safari zu beheben. Daher musste dieser Lösungsansatz verworfen werden. Das Problem wird auf den nächsten Sprint verschoben. 
 
 \subparagraph{Backend als Proxy}
 Dieses Vorgehen wird in Sprint 8 \ref{sprint8} genauer beschrieben. 
 \paragraph{Problem mit Enterpriselab Host}
-Am Mittwoch, 14.04. am Nachmittag war der GitLab Host nicht mehr erreichbar. Die Nachfrage beim Enterpriselab Team ergab, dass die Maschine ihre IP-Adresse verloren hatte. Ein Neustart brachte auch keinen Erfolg, da verschiedene wichtige Dienste nicht mehr starteten. Es wurde eine neue Maschine bereitsgestellt. Der Grund konnte nicht herausgefunden werden. \\\\
-Die Umgebung konnte sehr schnell wieder hergestellt werden. Es musste nur Docker und Gitlab-Runner installiert und registriert werden. Zudem mussten die Daten neu migriert werden. Der Umfang der gesamten Neuumsetzung lag bei ca. 3h. 
+Am Mittwoch, 14.04. am Nachmittag war der GitLab Host nicht mehr erreichbar. Die Nachfrage beim Enterpriselab Team ergab, dass die Maschine ihre IP-Adresse verloren hatte. Ein Neustart brachte auch keinen Erfolg, da verschiedene wichtige Dienste nicht mehr starteten. Es wurde eine neue Maschine bereitgestellt. Der Grund konnte nicht herausgefunden werden. \\\\
+Die Umgebung konnte sehr schnell wieder hergestellt werden. Es musste nur Docker und GitLab-Runner installiert und registriert werden. Zudem mussten die Daten neu migriert werden. Der Umfang der gesamten Neuumsetzung lag bei ca. 3h. 
 
 \paragraph{Backend Models}
-Die Bestellungen sollen im Backend persistiert werden. Bei der Erstellung der Order-Entity fiel dabei auf, dass diese diverse Beziehungen zu anderen Klassen hat. Dadurch wurde entschieden, dass diese auch implementiert werden. 
-Dabei wurde strikt darauf geachtet, dass die gesamte API dem REST-Level 3 entspricht. Durch den Einsatz von Model Mapper wurde das Mapping von DTO und Datenbankobjekt vereinfacht. 
+Die Bestellungen sollen im Backend persistiert werden. Bei der Erstellung der Order-Entität fiel dabei auf, dass diese diverse Beziehungen zu anderen Klassen hat. Dadurch wurde entschieden, dass diese auch implementiert werden. 
+ \begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{images/erdOrder.PNG}
+	\caption[Entity Relationship Diagram von Order]{Entity Relationship Diagram von Order,\\ Quelle: Autor}
+	\label{img: erdOrder}
+\end{figure} 
+Bei der Implementierung wurde strikt darauf geachtet, dass die gesamte API dem REST-Level 3 nach  Richardson Maturity entspricht. Entscheidend dafür ist der Einsatz von \ac{HATEAOS}. 
+ \begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{images/pickUpJSON.PNG}
+	\caption[Response bei Abfrage einer PickUp-Station]{Response bei Abfrage einer PickUp-Station,\\ Quelle: Autor}
+	\label{img: responseRequest}
+\end{figure} 
+
+Durch den Einsatz von Model Mapper wurde das Mapping von DTO und Datenbankobjekt vereinfacht \ref{DTO}. 
+
 
 
 \subsubsection{Meilenstein Abschluss Bestellprozess und Zwischenpräsentation}
@@ -612,13 +636,14 @@ Es konnten viele der geplanten Artefakte abgeliefert werden. Die fehlende Integr
 \subsection{Realisierungsphase}
 \subsubsection{Sprint 7}
 \begin{table}[H]
-	\begin{tabularx}{\textwidth}{|l|X|}
+	\setlength\extrarowheight{2pt} % for a bit of visual "breathing space"
+	\begin{tabularx}{\textwidth}{|X|l|}
 		\hline
 		\textbf{User Story} & \textbf{Number} \\
 		\hline
-		Das System bietet dem Kunden die Möglichkeit, alle vorhandenen Pick-Up \\Stations anzuzeigen. & F.8\\
+		Das System bietet dem Kunden die Möglichkeit, alle vorhandenen Pick-Up Stations anzuzeigen. & F.8\\
 		\hline
-		Das System bietet dem Kunden die Möglichkeit, die für Ihn nächstgelegene\\ Station auswählen zu können. & F.7\\
+		Das System bietet dem Kunden die Möglichkeit, die für Ihn nächstgelegene Station auswählen zu können. & F.7\\
 		\hline
 	\end{tabularx} 
 	\caption[Userstories Sprint 7]{Userstories Sprint 7,\\ Quelle: Autor}
@@ -667,7 +692,7 @@ In der Dokumentation von Leaflet ist jedoch eine Alternative zu den Popups zu fi
  	\item Laden der PickUp-Stations vom Server
  	\item Laden des Inventars vom Server pro PickUp
  	\item Laden von einzelnen Produkten von Inventar
- 	\item Hinzufügen von Marker auf Map 
+ 	\item Hinzufügen von Marker auf die Map 
 \end{enumerate}
 Wie hier zu sehen, sind die Daten von einander Abhängig. So kann das Inventar nicht geladen werden, ohne dass die PickUp Station vorhanden ist und so weiter. Es muss immer auf das Resultat gewartet werden. Um genau dies zu ermöglichen, triggered RxJS den State des Observables. Dabei gibt es drei wesentliche Zustände: next, completed und error. 
 
@@ -695,28 +720,25 @@ Die User Story konnte erfolgreich durchgeführt werden.
 
 \subsubsection{Sprint 8}\label{sprint8}
 \begin{table}[H]
-	\begin{tabularx}{\textwidth}{|l|X|}
+	\setlength\extrarowheight{2pt} % for a bit of visual "breathing space"
+	\begin{tabularx}{\textwidth}{|X|l|}
 		\hline
 		\textbf{User Story} & \textbf{Number} \\
 		\hline
-		Das System ermöglicht die Anbindung an einen bereits bekannten Bezahldienst,\\ um eine sichere Bezahlung zu garantieren.  & F.6\\
+		Das System ermöglicht die Anbindung an einen bereits bekannten Bezahldienst, um eine sichere Bezahlung zu garantieren.  & F.9\\
 		\hline
-		Das System bietet dem Kunden die Möglichkeit, verschiedene Produkte zu bestellen& F.7\\
+		Das System bietet die Möglichkeit, eine Bestellung dauerhaft zu speichern& F.7\\
+		\hline
+		Das System bietet dem Kunden die Möglichkeit, eine Bestellung durch das Einlesen eines Codes an der Pick-Up Station abzuholen.  & F.16\\
 		\hline
 	\end{tabularx} 
 	\caption[Userstories Sprint 8]{Userstories Sprint 8,\\ Quelle: Autor}
 \end{table}\label{userStoriesSprint8}
-Bemerkungen: In Sprint 2  \ref{sprint2} und Sprint 3 wurde bereits die gleiche Userstory bearbeitet. In diesem Sprint wird dabei die Persistierung der Bestellung auf dem Backend durchgeführt. Zudem wird das CORS-Problem \ref{CORS} bei der Bezahlung neu angegangen. 
+In diesem Sprint wird das CORS-Problem von Kapitel \ref{CORS} neu angegangen. 
 
 \paragraph{Persistierung der Bestellung}
-In einem vorhergehenden Sprint wurden die entsprechenden Methoden und Entitäten für die Erstellung von Orders bereits erstellt. Nachfolgendes Entity Relationship Diagramm liefert einen Überblick. 
- \begin{figure}[H]
-	\centering
-	\includegraphics[scale=0.5]{images/erdOrder.PNG}
-	\caption[Entity Relationship Diagram von Order]{Entity Relationship Diagram von Order,\\ Quelle: Autor}
-	\label{img: erdOrder}
-\end{figure} 
-Hierbei ist zu sehen, dass die Erstellung einer Order drei Eigenschaften benötigt: 
+In einem vorhergehenden Sprint wurden die entsprechenden Methoden und Entitäten für die Erstellung von Orders bereits erstellt. Das Entity Relationship Diagramm \ref{img: erdOrder} liefert dabei einen Überblick. \\
+Die Order hat dabei Beziehungen zu den folgenden Entities: 
 \begin{itemize}
 	\item User
 	\item PickUpStation
@@ -727,7 +749,7 @@ Die Order wird Erstellt, sobald der Benutzer auf den Checkout-Button im Warenkor
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=1\textwidth]{images/createOrder.PNG}
+	\includegraphics[scale=0.5]{images/createOrder.PNG}
 	\caption[Erstellen der Order]{Erstellen der Order,\\ Quelle: Autor}
 	\label{img: createOrder}
 \end{figure}
@@ -741,7 +763,7 @@ Die Order wird Erstellt, sobald der Benutzer auf den Checkout-Button im Warenkor
 Der Benutzer wird dabei aus dem Authentifizierungstoken im Backend ausgelesen. 
 Nach dem diese Abfragen completed sind, wird der Bezahlvorgang ausgelöst. 
 
-\paragraph{Behebung des CORS-Problems}
+\paragraph{Behebung des CORS-Problems}\label{behebungCors}
 Um CORS zu umgehen, wurde ein eigener NodeJS-Proxy implementiert und auf die virtuelle Maschine im GitLab deployed. Wie bereits in \ref{corsLocalhost} beschrieben, funktioniert dies unter Safari nicht. Der Ansatz mit einem eigenden Proxy wurde verworfen. Dies hing damit zusammen, dass der Reverse-Proxy \ref{reverseProxy} die Anfragen an den Proxy nicht korrekt weiterleitete. Das Problem konnte nicht identifiziert werden. \\ Es wurde nach einem neuen Ansatz gesucht, wobei die Wahl auf die Nutzung des eigenen Backends als Proxy fiel. Dabei übernimmt das Backend noch weitere Aufgaben bei der Bezahlung. So wird der finale Request erst im Backend erstellt. Vom Frontend kommt ein leeres Payment Initialize Objekt. In diesem sind nur die Order-Id sowie die redirect-URLs gesetzt. Es wird im Backend aus dem gesendeten leeren JSON ein entsprechendens Objekt erstellt und die fehlenden Daten gesetzt. Das Erstellen der Klasse wurde dabei analog zu \ref{img: PagePaymentAssertResponse} mittels quicktype durchgeführt. Allerdings sind die einzelnen JSON-Properties bei der Saferpay API grossgeschrieben, was nicht mit der Java-Namenskonvention übereinstimmt. Es handelt sich hierbei jedoch nur um DTOs, daher wurde dies hier vernachlässigt. 
 \begin{figure}[H]
 	\begin{subfigure}[b]{0.5\textwidth}
@@ -776,7 +798,7 @@ Der Bestellwert wird ebenfalls im Backend gesetzt. Dies macht es unmöglich, dem
 Zudem schreibt die API von Sixpayment vor, dass der Wert ohne Kommastellen angegeben wird. Dies wird hier durch die Multiplikation mit dem Faktor 100 erreicht.
 Durch das DecimalFormat werden die Nachkommastellen entfernt. 
 
-\subparagraph{Senden eines POST-Requests von Spring}
+\subparagraph{Senden eines POST-Requests von Spring}\label{postSpring}
 Um einen POST-Request von Spring an eine andere API zu senden, wurde RestTemplate genutzt. [\cite{restTemplate}] Dazu wurde eine HttpEntity mit dem gewünschten Body und dem passenden Header erstellt. Das Erstellen dieser wurde in einen Service \ref{img: httpEntity} ausgelagert. 
 \begin{figure}[H]
 	\includegraphics[width=1\textwidth]{images/restTemplate.PNG}
@@ -799,5 +821,198 @@ Als Antwort auf diesen Request wird der Statuscode zurückgegeben. Zudem wird di
 	\caption[Überprüfung des Zahlungsstatus]{Überprüfung des Zahlungsstatus,\\ Quelle: Autor}
 	\label{img: pageAssertReturn}
 \end{figure} 
-Dieser wird im Frontend überprüft, eine entsprechende Meldung ausgegeben und ein Redirect auf das Nutzerprofil durchgeführt. Der Bezahlvorgang ist abgeschlossen. 
+Dieser wird im Frontend überprüft, eine entsprechende Meldung ausgegeben und ein Redirect auf das Nutzerprofil durchgeführt. Der Bezahlvorgang ist abgeschlossen.  
+
+\paragraph{Abholung einer Bestellung}
+\subparagraph{Erstellen eines QR-Codes}
+Bereits in Sprint 1 \ref{SpezifikationSchnittstelleAbholung} wurde spezifiziert, dass zur Abholung ein QR-Code eingelesen werden muss. Um dies umzusetzen, wurde in einem ersten Schritt ein PickUp-Identifier der PickUp-Station-Entity hinzugefügt. Hierbei handelt es sich um einen 40-Stelligen String, welcher bei der Erstellung generiert wird. \\
+Dieser String wird mit der Java Library ZXing in einen QR-Code verpackt. Bei ZXing handelt es sich um die Hauptlibrary, welche bei QR-Codes in Java zum Einsatz kommt. Anschliessend wird der Code als Buffered Image zurückgegeben. 
+[\cite{qrCodeCreation}]
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{images/qrCodeCreation.PNG}
+	\caption[Erstellen eines QR-Code mit ZXing]{Erstellen eines QR-Code mit ZXing,\\ Quelle: Autor}
+	\label{img: qrCodeCreation}
+\end{figure} 
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{images/qrCodeExample.PNG}
+	\caption[QR-Code Beispiel]{QR-Code Beispiel,\\ Quelle: Autor}
+	\label{img: qrCodeExample}
+\end{figure} 
+Dieser Code wird beim finalen Produkt auf der Station positioniert, sodass er gut einlesbar ist. 
+
+\subparagraph{Lesen des QR-Codes mit Frontend}
+Für das Lesen des QR-Codes wurde die reine JavaScript Library jsQR eingesetzt. [\cite{jsQr}]
+Dabei wurde auf eine Implementierung auf Stackblitz zurückgegriffen und diese entsprechend angepasst. [\cite{jsQrStackblitz}]\\
+
+\subparagraph{Abholmeldung an Backend}
+Wenn ein QR-Code gelesen wird, sendet rxjs einen Call mit dem PickUp Identifier und dem Order-PickUp Token an die API. 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{images/pickUpBody.PNG}
+	\caption[PickUp Station Identifier und PickUp Token]{PickUp Station Identifier und PickUp Token,\\ Quelle: Autor}
+	\label{img: pickUpBody}
+\end{figure} 
+
+Im Backend kann mittels diesen beiden Tokens einerseits die PickUp Station und auch die Bestellung eindeutig identifiziert werden. 
+Es wird nun analog zu \ref{postSpring} ein Request an die PickUp Station gesendet. Von dieser ist die entsprechende URL in der Datenbank vorhanden. Gesendet werden dabei die einzelnen Order Items. 
+
+\subparagraph{Node Server auf Station}
+Auf der PickUp Station läuft ein Node Server. Dieser hat dabei zwei Funktionen: 
+\begin{enumerate}
+	\item Senden von initialer Nachricht an Backend, wenn Station gestartet wurde
+	\item Empfangen von Bestellausgabeanforderungen vom Backend
+\end{enumerate}
+Um dies umzusetzen und den Aufwand im Rahmen zu halten, wurde ein Node Server aufgesetzt. Die Kommunikation mit der Elektrotechnik wurde dabei noch nicht umgesetzt. \\
+Bei jedem Neustart der Station wird dabei ein POST-Request durchgeführt und das momentane Inventar gesendet. Dabei handelt es sich um Updates, sofern die Daten bereits vorhanden waren oder sie werden erstellt. Dies kommt besonders beim Inventar sehr oft vor. \\
+Um die Ausgabeanforderungen empfangen zu können, wurden zudem ein POST-Endpoint erstellt. 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{images/backendStationCom.PNG}
+	\caption[Kommunikation zwischen Station und Backend]{Kommunikation zwischen Station und Backend,\\ Quelle: Autor}
+	\label{img: stationBackendCom}
+\end{figure} 
+
+
+\subparagraph{Abschliessende Bemerkungen}
+Es besteht keine durchgängige Verbindung zwischen Station und Backend. Die Node-Applikation hört dabei nur auf den entsprechenden Port. 
+Als Unterschied zu WebHooks wird auf die Rückgabe der Meldung gewartet. Gemäss Aussage von der Elektrotechnikseite hält sich diese Wartezeit mit <15 Sekunden sehr stark in Grenzen. Da die Applikation die Request asynchron ausführt, wird die Userexperience nicht beeinflusst.\\
+Zudem sind nur sehr wenige Informationen zur Implementation eines eigenen Webhook-Endpoints zu finden. Beinahe alle Dokumentation befassen sich mit der Nutzung von bereits bestehenden Endpunkten. 
+
+\subsubsection{Sprintreview Sprint 8}
+In diesem Sprint konnten die geplanten Userstories umgesetzt werden. 
+
+\subsubsection{Sprint 9}
+\begin{table}[H]
+	\setlength\extrarowheight{2pt} % for a bit of visual "breathing space"
+	\begin{tabularx}{\textwidth}{|X|l|}
+		\hline
+		\textbf{User Story} & \textbf{Number} \\
+		\hline
+		Das System bietet die Möglichkeit, durch die Anbindung an eine 3rd Party, eine Altersverifikation durchzuführen.& F.4\\
+		\hline
+		Das System muss die Punkte in der von Google aufgestellten Core Progressive Web App checklist erfüllen& F.1\\
+		\hline
+	\end{tabularx} 
+	\caption[Userstories Sprint 9]{Userstories Sprint 9,\\ Quelle: Autor}
+\end{table}\label{userStoriesSprint9}
+
+\paragraph{Altersverifikation}
+Jumio bietet keine Testversion an. Um die Integration in die Applikation durchführen zu können, wurden vom Auftraggeber der API-Key zur Verfügung gestellt. Zudem wäre die Möglichkeit bestanden, Initiale Konfigurationen im Backoffice durchführen zu können. Darauf wurde verzichtet, da die gewünschten Einstellungen direkt mit dem API-Call definiert werden können. \\
+Jumio bietet eine GitHub Integration Guide an. In diesem wird sehr gut erklärt, wie der initiale Request definiert werden muss. Um einem erneuten CORS-Problem vorzusorgen, wurde direkt das Vorgehen von \ref{behebungCors} übernommen. \\
+
+ \begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{images/initRequestJumio.PNG}
+	\caption[Initialer Request an Jumio API]{Initialer Request an Jumio API,\\ Quelle: Autor}
+	\label{img: jumioInitialRequest}
+\end{figure} 
+
+Dabei wird hier nur die customerInternalReference und userReference im Backend gesetzt. CustomerInternalReference entspricht dabei dem HashCode vom User, als userReference dient die userId. Zudem ist es vorgegeben, dass die URLs via https ausgeliefert werden sowie keine Sonderzeichen enthalten. Die Callback URL wird nicht aktiv genutzt. \\
+
+Als Antwort auf den Request werden die transactionReference, der Timestamp und die redirectUrl zurückgegeben. Wie auch bei der Zahlung wird auf die RedirectUrl weitergeleitet. Anschliessend beginnt der Prozess bei Jumio.
+ \begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.3]{images/jumioStartPage.PNG}
+	\caption[Start der Verifikation mit Jumio]{Start der Verifikation mit Jumio,\\ Quelle: Autor}
+	\label{img: jumioStartPage}
+\end{figure} 
+
+Nach dem Abschluss der Altersverifikation wird je nach Status auf die successUrl oder auf die errorUrl weitergeleitet. Im Success-Fall hängt Jumio der Url noch drei weitere Parameter an. Dabei handelt es sich um den Status, die customerInternalReference und die transactionReference. \\
+
+\subparagraph{Profil sperren}
+Aus rechtlicher Sicht ist es essentiell, dass nur Personen, die nachweislich älter als 18 Jahre sind, den Dienst nutzen können. Um dies zu gewährleisten, dass dies erfüllt ist, wurde auf eine Eigenschaft von Spring Security zurückgegriffen. Bei der Nutzererstellung wird ein Objekt vom Typ User Details Implementation erstellt. Dieses Implementiert das Interface User Details, in welchem unter anderem Methoden zum Sperren und Aktivieren von Profilen definiert sind. Bei der bisherigen Anwendung wurden diese Methoden überschrieben, ohne explizite Werte zu berücksichtigen. Allerdings bietet sich dieser Anwendungsfall an, um eine eigene Implementation der Methoden durchzuführen. \\
+Es wurde die isEnabled() Methode ausgewählt, da diese dem gewünschten Effekt entspricht. Anstatt das hier nur true zurückgegeben wird, greift die Methode auf ein Attribut der Klasse UserDetailsImpl zu. 
+ \begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.6]{images/methodIsEnabled.PNG}
+	\caption[Überschreiben der isEnabled() Methode]{Überschreiben der isEnabled() Methode,\\ Quelle: Autor}
+	\label{img: methodIsEnabled}
+\end{figure} 
+
+\subparagraph{Profil entsperren}
+Per Default ist der Account gesperrt. Erst bei erfolgreicher Altersverifikation wird der Account entsperrt und erlaubt somit ein Einloggen und nutzen der Applikation. \\
+Um den Account zu entsperren, wird die TransactionReference im Backend gespeichert. Da diese bei einer erfolgreichen Verifikation in der Url mitgegeben wird, kann über diese das Property auf dem User-Objekt gesetzt und der Account verfügbar gemacht werden. 
+
+\paragraph{Integration von \ac{PWA} Funktionalität}
+\subparagraph{Offlinefähigkeit}
+Um die Applikation auch ohne aktive Internetverbindung nutzbar zu machen, wurden Service Worker genutzt. Das Hinzufügen zum Projekt übernahm die Angular CLI. 
+wurde ein neuer Command im package.json hinzugefügt. 
+\begin{verbatim}
+	ng add @angular/pwa --project jtiPickUp
+\end{verbatim}
+Service Worker funktionieren mit dem klassischen ng-serve nicht. Um das Projekt trotzdem lokal testen zu können, gibt es die Möglichkeit, einen lokalen Http-Server laufen zu lassen. Um diesen Prozess zu vereinfachen, wurde ein neuer Command im package.json hinzugefügt. 
+\begin{verbatim}
+	"start-pwa": "ng build --prod && http-server -p 8090 -c-1 dist/jtiPickUpStation"
+\end{verbatim}
+Die Service Worker sind nun aktiv. Dies ist auch in der Developer Konsole von Google Chrome zu sehen. 
+ \begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.6]{images/serviceWorker.PNG}
+	\caption[Aktiver Service Worker in Google Chrome]{Aktiver Service Worker in Google Chrome,\\ Quelle: Autor}
+	\label{img: serviceWorker}
+\end{figure} 
+
+Per Default cached der Service Worker folgende Dateien: 
+\begin{itemize}
+	\item index.html
+	\item favicon.ico
+	\item build artifacts
+	\item assets 
+	\item images und fonts
+\end{itemize} \cite{serviceWorker}
+Der Service Worker speichert die Version im Hintergrund. Aus performance Gründen wird immer die gespeicherte Version ausgeliefert, auch wenn eine neuere Vorhanden ist. \\
+\paragraph{Caching von Request}
+Für die Applikation reichte das Speichern der obigen Dateien nur bedingt aus. Damit die App auch Offline benutzbar bleibt, war es nötig, die Request zu cachen. Angular bietet zwei Arten von Caching an: performance und freshness. Bei Performance werden die Daten immer aus dem cache geladen, sofern sie das maxAge noch nicht erreicht haben. Dies bringt, wie es der Name bereits sagt, einen enormen Performancegewinn. Bei Freshness werden die Daten immer von der API geladen, sofern das Timeout nicht erreicht wurde. Dies garantiert, dass die Daten aktuell sind. \\
+In der folgenden Tabelle wird aufgezeigt, welche Request von welcher Strategie gebrauch machen. 
+
+\begin{table}[H]
+	\setlength\extrarowheight{2pt} % for a bit of visual "breathing space"
+	\begin{tabularx}{\textwidth}{|X|l|}
+		\hline
+		\textbf{Performance} & \textbf{Freshness} \\
+		\hline
+		Laden von Produkten& Laden von Inventar\\
+		\hline
+		& Orders by User\\
+		\hline
+		& PickUpStations\\
+		\hline
+	\end{tabularx} 
+	\caption[Übersicht über die Verwendung von Freshness und Performance]{Übersicht über die Verwendung von Freshness und Performance,\\ Quelle: Autor}
+\end{table}\label{performanceFreshness}
+Mit der Performance-Strategie werden ausschliesslich Daten geladen, welche sich nur sehr selten ändern. Die Service Worker haben hauptsächlich zum Zweck, die Applikation Offlinefähig zu machen. Der Performancegewinn ist sekundär. \\\\
+Nachfolgend werden noch die Features aufgeführt, welche im Offline-Modus nicht verfügbar sind: 
+\begin{itemize}
+	\item Login und Registrierung
+	\item Platzieren einer Bestellung
+	\item Abholen einer Bestellung
+\end{itemize}
+
+\paragraph{Anzeigen von Online und Offlinestatus}
+Der User sollte auch informiert werden, wenn die Internetverbindung unterbrochen ist. Um dies umzusetzen, wird ein ng-connection-service bereitgestellt. Dieser kann überwacht werden und somit eine Netzwerkveränderung bemerkt werden. 
+ \begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.6]{images/connectionService.PNG}
+	\caption[Montoring der Connection-Status]{Montoring der Connection-Status,\\ Quelle: Autor}
+	\label{img: connectionState}
+\end{figure} 
+Entsprechend des Status wird eine Meldung in der Applikation angezeigt. Die Meldung in \ref{img: offlineOnline} verschwindet dabei nach zwei Sekunden. 
+\begin{figure}[H]
+	\begin{subfigure}[b]{0.5\textwidth}
+		\includegraphics[scale=0.5]{images/offline.PNG}
+		\caption[Offline-Meldung]{Offline-Meldung,\\ Quelle: Autor}
+		\label{img: offline}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[b]{0.5\textwidth}
+		\includegraphics[scale=0.5]{images/backOnline.PNG}
+		\caption[Übergang Offline zu Online]{Übergang Offline zu Online,\\ Quelle: Autor}
+		\label{img: offlineOnline}
+	\end{subfigure}
+\end{figure} 
+
+
 \newpage
