@@ -4,8 +4,8 @@
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>700</x>
-      <y>210</y>
+      <x>710</x>
+      <y>220</y>
       <w>100</w>
       <h>30</h>
     </coordinates>
@@ -15,8 +15,8 @@
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>930</x>
-      <y>210</y>
+      <x>940</x>
+      <y>220</y>
       <w>110</w>
       <h>30</h>
     </coordinates>
@@ -26,8 +26,8 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>740</x>
-      <y>230</y>
+      <x>750</x>
+      <y>240</y>
       <w>30</w>
       <h>70</h>
     </coordinates>
@@ -37,8 +37,8 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>970</x>
-      <y>230</y>
+      <x>980</x>
+      <y>240</y>
       <w>30</w>
       <h>70</h>
     </coordinates>
@@ -48,8 +48,8 @@
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>970</x>
-      <y>280</y>
+      <x>980</x>
+      <y>290</y>
       <w>20</w>
       <h>60</h>
     </coordinates>
@@ -59,8 +59,8 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>750</x>
-      <y>280</y>
+      <x>760</x>
+      <y>290</y>
       <w>240</w>
       <h>50</h>
     </coordinates>
@@ -72,63 +72,8 @@ POST /pickUps
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>740</x>
-      <y>280</y>
-      <w>20</w>
-      <h>60</h>
-    </coordinates>
-    <panel_attributes/>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>740</x>
-      <y>330</y>
-      <w>30</w>
-      <h>120</h>
-    </coordinates>
-    <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;100.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLFrame</id>
-    <coordinates>
-      <x>590</x>
-      <y>250</y>
-      <w>540</w>
-      <h>130</h>
-    </coordinates>
-    <panel_attributes>Start von Station</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>970</x>
-      <y>330</y>
-      <w>30</w>
-      <h>130</h>
-    </coordinates>
-    <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;110.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLGeneric</id>
-    <coordinates>
-      <x>970</x>
-      <y>440</y>
-      <w>20</w>
-      <h>60</h>
-    </coordinates>
-    <panel_attributes/>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLGeneric</id>
-    <coordinates>
-      <x>740</x>
-      <y>430</y>
+      <x>750</x>
+      <y>290</y>
       <w>20</w>
       <h>60</h>
     </coordinates>
@@ -139,7 +84,62 @@ POST /pickUps
     <id>Relation</id>
     <coordinates>
       <x>750</x>
-      <y>430</y>
+      <y>340</y>
+      <w>30</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>600</x>
+      <y>260</y>
+      <w>540</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>Start von Station</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>980</x>
+      <y>340</y>
+      <w>30</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;110.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>980</x>
+      <y>450</y>
+      <w>20</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>750</x>
+      <y>440</y>
+      <w>20</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>760</x>
+      <y>440</y>
       <w>240</w>
       <h>40</h>
     </coordinates>
@@ -150,8 +150,8 @@ POST /pickUpOrder</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>750</x>
-      <y>460</y>
+      <x>760</x>
+      <y>470</y>
       <w>240</w>
       <h>40</h>
     </coordinates>
@@ -162,8 +162,8 @@ return message</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>740</x>
-      <y>480</y>
+      <x>750</x>
+      <y>490</y>
       <w>30</w>
       <h>100</h>
     </coordinates>
@@ -173,8 +173,8 @@ return message</panel_attributes>
   <element>
     <id>UMLFrame</id>
     <coordinates>
-      <x>590</x>
-      <y>390</y>
+      <x>600</x>
+      <y>400</y>
       <w>540</w>
       <h>160</h>
     </coordinates>
@@ -184,8 +184,8 @@ return message</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>970</x>
-      <y>490</y>
+      <x>980</x>
+      <y>500</y>
       <w>30</w>
       <h>80</h>
     </coordinates>

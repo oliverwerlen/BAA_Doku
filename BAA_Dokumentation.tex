@@ -16,6 +16,7 @@
 \usepackage{pdfpages}
 \usepackage{titleref}
 \usepackage{hyperref}
+\usepackage{enumitem}
 \usepackage[style=apa]{biblatex}
 \usepackage{glossaries}
 % compile with pdflatex deckball_bachelorarbeit.tex
@@ -59,12 +60,46 @@
 	description={Progressives JavaScript Framework[\cite{vue}]}
 }
 
+\newglossaryentry{EnterpriseLab}
+{
+	name=Enterprise Lab,
+	description={Das Enterprise Lab stellt Studierenden modernste Computerressourcen zur Verfügung. Das Enterprise Lab ist als Rechenzentrum mittlerer grösse aufgebaut und implementiert neueste Technologien [\cite{enterpriselab}]. }
+}
+
+\newglossaryentry{LocalStorage}
+{
+	name=Local Storage,
+	description={Datenspeicher im Browser, Domänen- und Protokollabhängig, über die Sessiondauer hinaus verfügbar. }
+}
+
+\newglossaryentry{SessionStorage}
+{
+	name=Session Storage,
+	description={Datenspeicher im Browser, Domänen- und Protokollabhängig, nur während der Session verfügbar. }
+}
+
+\newglossaryentry{mixedContent}
+{
+	name=mixed Content,
+	description={Abfragen einer http-Ressource aus einem https-Context [\cite{mixedContent}]. }
+}
+
 \newglossaryentry{Spring}
 {
 	name=Spring,
 	description={Java Framework, um schnellere, eifachere und sicherere Java Applikationen zu erstellen. [\cite{springBoot}]}
 }
 
+\newglossaryentry{DevOps}
+{
+	name=DevOps,
+	description={"Der Begriff DevOps setzt sich aus „Dev“ (Development, Entwicklung) und „Ops“ (Operations, Vorgänge) zusammen und vereint Menschen, Prozesse und Technologien, damit Kunden kontinuierlich hochwertige Produkte erhalten."}
+}
+\newglossaryentry{zerotier}
+{
+	name=zerotier,
+	description={Kombination aus SD-WAN und VPN, Traffic ist end-to-end Verschlüsselt. }
+}
 
 \newglossaryentry{Micronaut}
 {
@@ -81,7 +116,13 @@
 \newglossaryentry{Tomcat}
 {
 	name=Tomcat, 
-	description={Open Source Implementation von Java Servlet, Java Server Pages, Java Expression Language und JavaWebSocket [\cite{tomcat}]}
+	description={Open Source Implementation von Java Servlet, Java Server Pages, Java Expression Language und JavaWebSocket [\cite{tomcat}].}
+}
+
+\newglossaryentry{MobileFirst}
+{
+	name=Mobile First , 
+	description={Es wird die Applikation zuerst für mobile Geräte entwickelt. Erst in einem zweiten Schritt werden Desktops berücksichtigt.}
 }
 
 \newglossaryentry{KISS}
@@ -89,15 +130,15 @@
 	name=Keep it simple stupid, 
 	description={Zu einem Problem eine möglichst einfache Lösung herstellen.}
 }
-\newglossaryentry{MariaDb}
-{
-	name=Maria DB, 
-	description={Relationales Open Source Datenbankmanagementsystem [\cite{mariadb}]}
-}
 \newglossaryentry{Hibernate}
 {
 	name=Hibernate ORM, 
-	description={Hibernate Object/Relational Mapping ist ein Framework, das es Entwicklern ermöglicht, einfach Applikationen mit persistenten Daten zu entwickeln. [\cite{hibernate}]}
+	description={Hibernate Object/Relational Mapping ist ein Framework, das es Entwicklern ermöglicht, einfach Applikationen mit persistenten Daten zu entwickeln [\cite{hibernate}].}
+}
+\newglossaryentry{PWA}
+{
+	name=Progressive Web App, 
+	description={Kombination von Webapplikation und nativer Applikation, untersteht den Kriterien von Google \href{https://web.dev/pwa-checklist/}{PWA-Checklist} [\cite{pwaWhat}].}
 }
 
 \newglossaryentry{SoDa}
@@ -106,10 +147,10 @@
 	description={Hybrides Projektmanagementvorgehen der Hochschule Luzern}
 }
 
-\newglossaryentry{JSX}
+\newglossaryentry{fairUsageAlgorithmus}
 {
-	name=JSX, 
-	description={Syntax extension für Java Script [\cite{jsx}]}
+	name=fair usage algorithmus, 
+	description={Die Anzahl der momentan auszuführenden Jobs pro Projekt entscheidet die Auswahl des Runners. Das Projekt mit den am wenigsten laufenden Jobs kommt zuerst [\cite{runnersGitlab}].}
 }
 
 \newglossaryentry{Integration Test}
@@ -127,6 +168,36 @@
 {
 	name=Postman, 
 	description={Collaberationsplattform für API Development, bietet auch Funktionen für automated Testing}
+}
+\newglossaryentry{TypeScript}
+{
+	name=TypeScript, 
+	description={Basiert auf JavaScript, fügt zusätzlich statische Typisierung hinzu [\cite{typescript}].}
+}
+\newglossaryentry{DockerHub}
+{
+	name=DockerHub, 
+	description={Plattform, um Container Applikationen zu verteilen und zur Verfügung zu stellen. }
+}
+
+\newglossaryentry{nginx}
+{
+	name=nginx, 
+	description={Open Source Web Server}
+}
+
+
+\newglossaryentry{WebHooks}
+{
+	name=WebHooks, 
+	description={WebHooks werden zur Kommunikation zwischen zwei Diensten genutzt. Das Vorgehen ist vergleichbar mit dem aus der Programmierung bekannten Observer Pattern. Es wird das Push-Verhalten genutzt. Der Event wird von der API durch einen POST-Request ausgelöst. Es handelt sich um eine asynchrone Kommunikation [\cite{webhooksExplained}].}
+}
+
+
+\newglossaryentry{war}
+{
+	name=Web Applikation Archive,
+	description={Enthält alle Inhalte einer Web Applikation, r eduziert die Übertragungszeit [\cite{war}]}
 }
 \newglossaryentry{Latex}
 {
@@ -150,6 +221,18 @@
 	name=Intellij, 
 	description={\ac{IDE} von JetBrains}
 }
+
+\newglossaryentry{RxJS}
+{
+	name=RxJS, 
+	description={Eine der meistgenutzten Libraries beim Webdevelopment. Ermöglicht den Einsatz von mächtigen funktionale Ansätzen wie Observables [\cite{rxjs}]. }
+}
+
+\newglossaryentry{RestTemplate}
+{
+	name=RestTemplate, 
+	description={Ermöglicht das Senden eines API-Request von einer Spring Applikation aus. }
+}
 \newglossaryentry{SpringBoot Initlializer}
 {
 	name=Spring Boot Initlializer, 
@@ -170,7 +253,7 @@
 \newglossaryentry{GitLab}
 {
 	name=GitLab, 
-	description={Versionskontrollsystem aufbauend auf git, Alternative zu \gls{Github}}
+	description={Versionskontrollsystem aufbauend auf git, alternative zu \gls{Github}}
 }
 
 \newglossaryentry{Docker}
@@ -211,7 +294,7 @@
 \include{ProblemFragestellungVision}
 \include{StandderPraxisoderTechnik}
 \include{IdeenundKonzepte}
- \include{Methoden}
+\include{Methoden}
 \include{Realisierung}
 \include{EvaluationundValidation}
 \include{Ausblick}

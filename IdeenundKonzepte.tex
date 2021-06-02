@@ -1,50 +1,105 @@
 % !TEX root = PREN2_Dokumentation.tex
 \section{Ideen und Konzepte}
-\subsection{Systemarchitektur}
-Als Systemarchitektur stand die Erweiterbarkeit im Vordergrund. Allerdings sollte die Applikation durch die verwendete Architektur nicht unnötig komplex werden. Aus diesem Grund wurde bewusst gegen eine Microservicearchitektur entschieden. Die Umsetzung der Applikation mit Microservices würde zwar zu einer besseren Verteilbarkeit und Skalierung führen, der Aufwand der Umsetzung würde jedoch erheblich steigen. \\
-Aus diesem Grund wurde auf eine Schichtenarchitektur gesetzt. Die klassische logische drei Schichten Architektur wurde dabei noch weiter verfeinert. Final wurde eine 6-Schichten-Architektur entworfen. Die Architektur wird zusätzlich in 3 physische Tier aufgeteilt. 
+\subsection{Vorwort}
+Durch die progressive Web App \ac{JTI} Pick-Up Station ist es dem Kunden möglich, seine Ware bequem im Onlineshop zu bestellen und direkt und ohne Wartezeit an der gewünschten Pick-Up Station abzuholen. Durch den Prototyp sollen die Funktionalität und Zweckmässigkeit dieses für die Firma neuen Absatzkanals aufgezeigt werden. Im besten Fall findet die Applikation nicht nur in der Schweiz Verwendung, sondern wird von \ac{JTI} auch in anderen Märkten weltweit eingesetzt. Das Hauptaugenmerk der Arbeit liegt auf der Implementierung eines Prototyps mit den folgenden Schwerpunkten: Bestellung, Kauf, Nutzererfassung, Suche nach Pick-Up Stations und der Abholung an der Station. Bei der Nutzererfassung muss das Alter des Nutzers verifiziert werden. Die Lösung soll so weit als möglich in die Projektpartner-Systeme integriert werden. Hinzu kommt die Recherche von artverwandten Technologien und das Requirements Engineering. Die BDA wird als interdisziplinäre Bachelorarbeit durchgeführt. 
 
+\subsection{Systemarchitektur}
+Als Systemarchitektur stand die Erweiterbarkeit im Vordergrund. Allerdings sollte durch die Architektur die Applikation nicht unnötig komplex werden. Aus diesem Grund wurde bewusst gegen eine Microservicearchitektur entschieden. Die Umsetzung der Applikation mit Microservices würde zwar zu einer besseren Verteilbarkeit und Skalierung führen, der Aufwand der Umsetzung würde jedoch erheblich steigen. \\
+Es wurde auf eine Schichtenarchitektur gesetzt. Die klassische logische drei Schichtenarchitektur wurde noch weiter verfeinert, final wurde eine sechs Schichtenarchitektur entworfen. Die Architektur wird zusätzlich in 3 physische Tier aufgeteilt. 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.3]{images/architecture.png}
-	\caption[Architektur]{Architektur,\\ Quelle: Autor}
+	\includegraphics[width=\linewidth]{images/architectureWithImages.png}
+	\caption[Architektur]{Architektur, Quelle: Autor}
 	\label{img: Architektur}
 \end{figure}
+Die Architektur ermöglicht eine sehr gute Erweiterbarkeit. Zudem kann die Software verteilt werden und unabhängig voneinander skalieren. Durch die Aufteilung in sechs Tiers wird zudem vermieden, dass die einzelnen Tiers zu breit werden. Durch das Verwenden von Frameworks kann die Komplexität gering gehalten werden. Die Schnittstellen innerhalb der einzelnen Layer sind klar vorgegeben. Durch die Kommunikation via REST, bzw. Repositories sind die Komponenten untereinander austauschbar. Die Kopplung ist sehr gering. 
 
-Die Architektur ermöglicht dabei eine sehr gute Erweiterbarkeit. Zudem kann die Software verteilt werden und unabhängig voneinander Skalieren. Durch die Aufteilung in 6 Tier wird zudem vermieden, dass die einzelnen Tiers zu breit werden. Durch das Verwenden von Frameworks kann zudem die Komplexität gering gehalten werden. Die Schnittstellen innerhalb der einzelnen Layer sind klar vorgegeben. Durch die Kommunikation via REST, bzw. die Spring Data JPA sind die Komponenten untereinander austauschbar. Die Kopplung ist sehr gering. 
+\paragraph{UI}
+Es wird eine Single-Page Applikation umgesetzt. Sie wird vorab im Browser geladen, später wird nur der entsprechende Inhalt neu aktualisiert. Das bringt eine verbesserte Nutzerexperience, da keine Abhängigkeiten zu den Serverladezeiten bestehen. Hingegen dauert das initiale Laden länger [\cite{spa}]. 
 
+\paragraph{UI Logic}
+Aufgrund der gewählten Architektur werden die Daten der Applikation via \ac{REST}-Schnittstelle geladen. Dies wird asynchron durchgeführt.
+
+\paragraph{REST-Controller}
+Die einzelnen \ac{REST}-Controller definieren die \ac{API}. Es wurden die folgenden Punkte bei der Erstellung berücksichtigt: 
+  \begin{itemize}
+	\item Konsistenz: Namensgebung und Regeln konsequent einhalten.
+	\item Namensgebung: Einfache, eingängige, treffende Namen wählen.
+	\item Verhalten: Klare Erwartungen erfüllen, ohne Nebeneffekte.
+	\item Erweiterbarkeit: Offen für Weiterentwicklung (der API).
+	\item Dokumentation: Einfache, hilfreiche, kompakte Dokumentation.
+	\item Perspektive: Vom Anbieter für den Nutzer - es soll für den Nutzer einfach werden!
+	\item KISS-Prinzip: Schnittstelle möglichst einfach halten.
+	\item Sicherheit: Die Nutzung ist sicher zu gestalten.
+\end{itemize}
+[\cite{appeAPIDesign}]
+
+Es wird gemäss Richardson Maturity Model \ref{img: richardsonMaturity} eine \ac{REST}-Schnittstelle von Level 3 angestrebt. 
+
+\paragraph{Business Services}
+Die Business Services kommunizieren mit den Domänenmodellen. Weitere Details werden im Abschnitt \ref{services} beschrieben. 
+
+\paragraph{Business Models}
+Es handelt sich um die Entities des Projekts. Sie werden aus dem Domänenmodell erarbeitet und sind einzigartig. Weitere Details werden im Abschnitt \ref{entity} beschrieben. 
+
+\paragraph{Data Logic}
+Zur Persistierung der Entities werden Repositories eingesetzt. Sie bilden die Schnittstelle zwischen Applikation und Datenbank. 
+
+\subsubsection{Zusammenspiel der einzelnen Layer}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\linewidth]{images/springFlow.png}
+	\caption[Zusammenspiel von zentralen Layern]{Zusammenspiel von zentralen Layern, Quelle: Autor}
+	\label{img: layer}
+\end{figure}
+
+\subsubsection{Infrastruktur}
+Die gesamten Infrastruktur läuft im \gls{EnterpriseLab} der Hochschule Luzern. Das Front- und das Backend laufen auf unterschiedlichen virtuellen Maschinen. Die einzelnen Teilapplikationen sind als Docker-Container umgesetzt. 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\linewidth]{images/system.png}
+	\caption[Container-Infrastruktur]{Container-Infrastruktur, Quelle: Autor}
+	\label{img: Containerinfrastruktur}
+\end{figure}
+
+Die beiden Diagramme \ref{img: Architektur} und \ref{img: Containerinfrastruktur} sind farblich identisch gehalten. 
+Gesamthaft umfasst das System sechs Container.\\
+Der Station Client in diesem Diagramm befindet sich auf der physischen Station. Er ist das Bindeglied zwischen Informatik und Elektrotechnik und übernimmt Aufgaben wie die Produktausgabe oder das Inventar. 
+
+\subsection{Mobile First}
+Es werden erheblich mehr Websiteaufrufe von mobilen, als von Desktop Geräten registriert. Der mobile First Ansatz nimmt sich dieser Thematik an und besagt, dass die Applikation in einem ersten Schritt für mobile Geräte entwickelt wird. Der Fokus liegt auf dem Design der Seite, wohingegen die Performance ebenfalls berücksichtigt wird.\\
+Die Bedeutung von mobile First hat durch Google dazugewonnen. Der mobile Index ist der primäre Index, die mobile Friendliness der ausschlaggebende Punkt beim Ranking von Suchergebnissen [\cite{mobileFirst}]. 
 \subsection{Frameworks}
-\subsubsection{Spring Boot}
-Spring Boot baut auf dem Spring Framework auf. Dieses bietet sich an, um performante Enterprise-Applikationen mit Java zu erstellen. Spring Boot kann dabei sehr einfach erweitert werden, sodass Spring Security, Spring MVC oder Spring Data eingesetzt werden kann.\\
-Spring Boot kommt dabei mit einem Tomcat Server. Dies verringert den Konfigurationsaufwand. Es ist kein Einpacken in ein .war nötig und kein zusätzliches Deployen. Zudem wird das Debugging erheblich erleichtert.  \\
+\subsubsection{\gls{Spring Boot}}
+Spring Boot baut auf dem \gls{Spring} Framework auf. Dieses bietet sich an, um performante Enterprise-Applikationen mit Java zu erstellen. Spring Boot kann sehr einfach erweitert werden, sodass Spring Security, Spring MVC oder Spring Data eingesetzt werden können.\\
+Spring Boot bringt einen integrierten Tomcat Server mit. Dies verringert den Konfigurationsaufwand. Es ist kein Einpacken in ein \gls{war} nötig und kein zusätzliches deployen. Zudem wird das Debugging erleichtert.  \\
 Es übernimmt dabei einen grossen Teil der Beans-Konfiguration von Spring [\cite{springBoot}].\\\\
 Spring Boot bietet dabei den grossen Vorteil, dass bereits Erfahrung in der Anwendung vorhanden ist. Es ist somit keine Einarbeitungszeit nötig, gängige Fehler können vermieden werden. Aus diesem Grund fiel die Entscheidung gegen Frameworks wie NodeJS. 
 
-
-\subsubsection{Angular}
-Angular ist ein Application Design Framework, um effiziente Single Page Applikationen zu erstellen. Es basiert auf TypeScript [\cite{angular}]. Zudem bietet Angular die Möglichkeit, als \ac{PWA} genutzt zu werden [\cite{angularPWA}]. 
+\subsubsection{\gls{Angular}}\label{angularLabel}
+Angular ist ein Application Design Framework, um effiziente Single Page Applikationen zu erstellen. Es basiert auf TypeScript [\cite{angular}]. Zudem bietet Angular die Möglichkeit, als \gls{PWA} genutzt zu werden [\cite{angularPWA}]. 
 Angular wurde dabei von Google entwickelt und bietet mit dem Material UI bereits viele Elemente, welche von nativen Android-Apps bekannt sind [\cite{angularMaterialUI}]. \\\\
 Wie auch bei Spring ist auch bei Angular bereits Projekterfahrung vorhanden. Ein Einarbeiten ist nicht mehr nötig, die gängigsten Funktionen sind bereits bekannt. \\\\
-In vorhergehenden Projekten wurde das Frontend mit unterschiedlichen Technologien umgesetzt. Einerseits kam hier Plain JavaScript zum Einsatz, andererseits wurden auch Technologien wie \gls{React} genutzt. Allerdings überzeugte Angular von all diesen am Meisten. Besonders durch die Verwendung von TypeScript fiel die Wahl auf dieses Framework. 
+In vorhergehenden Projekten wurde das Frontend mit verschiedensten Technologien umgesetzt. Einerseits kam jQuery zum Einsatz, andererseits wurden auch Technologien wie \gls{React} genutzt. \gls{Angular} überzeugte von diesen Framework am meisten. Besonders durch die Unterstützung von \gls{TypeScript} fiel die Wahl auf dieses Framework. 
 
 \subsection{Weitere Technologien}
 \subsubsection{Docker}
 Docker ist eine Containertechnologie. Sie erlaubt die Erstellung und den Betrieb von Linux-Containern. Die Container sind dabei sehr leichtgewichtig und modular.\\
 Die einzelnen Teile der Applikation werden in verschiedenen Containern betrieben [\cite{docker}].\\
-Die Anwendung und Funktion von Docker wird in diversen Modulen an der Hochschule Luzern gelehrt. In vorhergegangenen Projekten wurde Docker bereits im selben Kontext wie hier genutzt. 
+Die Anwendung und Funktion von Docker wird in diversen Modulen an der Hochschule Luzern gelehrt. In vorhergegangenen Projekten wurde Docker bereits im selben Kontext genutzt. 
 
-\subsubsection{MariaDB}
-MariaDB ist ein OpenSource Datenbankmanagementsystem. Es ist durch die Abspaltung von MySQL entstanden. Es handelt sich dabei um ein Relationale Datenbanksystem. 
+\subsubsection{MariaDB}\label{mariadb}
+MariaDB ist ein OpenSource Datenbankmanagementsystem. Es ist durch die Abspaltung von MySQL entstanden. Es handelt sich um ein Relationale Datenbanksystem. 
 Aus Lizenzgründen wird in diesem Projekt MariaDB und nicht MySQL genutzt. Alternativ wäre auch ein Einsatz von PostgreSQL möglich. Der Unterschied zwischen PostgreSQL und MariaDB ist dabei nur marginal. Bei dieser Applikation wurde lediglich aus Erfahrung auf MariaDB gesetzt [\cite{mariadbVsPostgresql}]. \\
-Durch die Verwendung von Spring Data wäre es möglich, die Datenbank im Verlauf des Projektes zu wechseln. 
+Durch die Verwendung von Spring Data wäre es möglich, die Datenbank im Verlauf des Projektes auszutauschen. 
 
 \subsubsection{Hibernate ORM}
 Hibernate ORM ist ein Object Relational Mapper. 
 Er ermöglicht dem Entwickler, einfacher mit der Datenpersistierung umzugehen. Hibernate ist zudem ein Teil der \ac{JPA} und der Spring Data JPA. 
-Ein wichtiger Punkt ist zudem die Performance, welche durch den Einsatz des Lazy Loading Patterns erreicht wird. Die Initialisierung des Objektes wird dabei solange als Möglich hinausgezögert. [\cite{hibernateORM}]
+Ein wichtiger Punkt ist zudem die Performance, welche durch den Einsatz des Lazy Loading Patterns erreicht wird. Die Initialisierung des Objektes wird dabei solange als möglich hinausgezögert. [\cite{hibernateORM}]
 
-\subsubsection{GitLab}
-Zur Versionsverwaltung kam GitLab zum Einsatz. Es wird dabei von der Hochschule Luzern zur Verfügung gestellt. Zudem sind zur Integration in die DevOps Umgebung bereits GitLab Runner vorhanden, um Docker Images zu Builden. 
+\subsubsection{\gls{GitLab}}
+Zur Versionsverwaltung kam \gls{GitLab} zum Einsatz. Es wird dabei von der Hochschule Luzern zur Verfügung gestellt. Zudem sind zur Integration in die \gls{DevOps}-Umgebung bereits GitLab Runner vorhanden, um Docker Images zu Builden. 
 
 \subsubsection{Bezahldienst}
 Als Bezahldienst wurde Saferpay von Six Payment Services genutzt. Dabei wurde mit der Testversion gearbeitet, diese unterscheidet sich nicht von der Produktiven. Ein Wechsel wäre zudem innert kurzer Zeit durchführbar. 
@@ -54,40 +109,5 @@ Bei der Altersüberprüfung wurde auf Jumio gesetzt. Das Produkt wurde vom Auftr
 
 \subsubsection{Karte}
 Für die Implementierung der Kartenfunktionalität wurde Leaflet genutzt. Die Kartendaten stammen von OpenStreetMap. Zudem wurde Geoapify als MapsAPI eingesetzt. 
-
-\subsection{Konzepte}
-\subsection{Data Transfer Object}\label{DTO}
-Es handelt sich hier um ein Enterprise Application Architecture Pattern von Martin Fowler. Genauer handelt es sich um ein Distribution Pattern. \\
-Durch den Einsatz dieses Patterns können mehr Daten mit einem Aufruf übertragen werden. Ein weiterer Vorteil ist die klare Trennung zwischen zu serialisierendem Objekt und dem Domain Model. In der Regel wird ein Assembler genutzt, um das DTO auf das Domain Model zu mappen. [\cite{dtoFowler}]
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=1\textwidth]{images/dtoSketch.png}
-	\caption[DTO Klassendiagramm von Martin Fowler]{DTO Klassendiagramm von Martin Fowler,\\ Quelle: \cite{dtoFowler}}
-	\label{img: dtoFowler}
-\end{figure}
-
-\subsubsection{\ac{HATEOAS}}
-In diesem Projekt stand der Einsatz des DTO-Pattern jedoch im Konflikt mit der REST-Abstufung von Leonard Richardson und dem von ihm entworfenen Richardson Maturity Model. Gemäss diesem sollen Daten von einem anderen Domain Model als Hyperlink zurückgegeben werden, um das höchste Level zu erreichen. Somit liefert jeder Aufruf nur das angeforderte Modell zurück. Das Data Transfer Object Pattern dient somit nur zur Abgrenzung zwischen dem zu sendenden Objekt und dem Domain Model. 
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[scale=0.3]{images/richardsonMaturity.png}
-	\caption[Richardson Maturity Model]{Richardson Maturity Model,\\ Quelle: \cite{richardsonMaturity}}
-	\label{img: richardsonMaturity}
-\end{figure}
-
-Dabei wurde auf REST-Level 3 hingearbeitet und entsprechend mit HATEOAS gearbeitet. Dadurch kann das Backend weiter vom Frontend getrennt werden, da bei eine Anpassung der URL auf dem Server keinen Einfluss auf die Funktionalität des Clients hat. Zudem kann die Verständlichkeit der API verbessert und ein Erweitern vereinfacht werden. [\cite{richardsonMaturity}]
-
-\subsubsection{Spring Doc}
-Die Spring Doc ermöglicht eine sehr einfache und schnelle Dokumentation von REST-API basierend auf der OpenAPI Spezifikation. Um die Dokumentation anzuzeigen, wird das Open Source Tool Swagger UI genutzt. Hiermit lässt sich eine dynamische API-Dokumentation als HTML-Page erstellen. 
-\begin{figure}[H]
-	\centering
-	\includegraphics[scale=0.3]{images/swaggerui.png}
-	\caption[Ausschnitt aus der Swagger Dokumentation]{Ausschnitt aus der Swagger Dokumentation,\\ Quelle: Autoren}
-	\label{img: swaggerUI}
-\end{figure}
-
-
 
 \newpage

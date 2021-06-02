@@ -4,9 +4,9 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>290</x>
-      <y>490</y>
-      <w>140</w>
+      <x>510</x>
+      <y>600</y>
+      <w>190</w>
       <h>40</h>
     </coordinates>
     <panel_attributes>pickup_backend</panel_attributes>
@@ -15,8 +15,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>450</x>
-      <y>410</y>
+      <x>460</x>
+      <y>370</y>
       <w>280</w>
       <h>30</h>
     </coordinates>
@@ -26,20 +26,19 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>450</x>
-      <y>310</y>
+      <x>460</x>
+      <y>270</y>
       <w>280</w>
       <h>30</h>
     </coordinates>
-    <panel_attributes>frontproxy_default
-bg=green</panel_attributes>
+    <panel_attributes>frontproxy_default</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>820</x>
-      <y>310</y>
+      <x>830</x>
+      <y>270</y>
       <w>210</w>
       <h>30</h>
     </coordinates>
@@ -49,21 +48,8 @@ bg=green</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>570</x>
-      <y>490</y>
-      <w>160</w>
-      <h>40</h>
-    </coordinates>
-    <panel_attributes>intern_proxy
-Target-URL
-</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>570</x>
-      <y>690</y>
+      <x>520</x>
+      <y>860</y>
       <w>180</w>
       <h>50</h>
     </coordinates>
@@ -74,13 +60,15 @@ Target-URL
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>210</x>
-      <y>170</y>
-      <w>850</w>
-      <h>450</h>
+      <x>190</x>
+      <y>210</y>
+      <w>880</w>
+      <h>210</h>
     </coordinates>
     <panel_attributes>halign=left
-Personal VM Enterpriselab
+Personal VM Enterpriselab 1
+https://bdaf21-owerlen.enterpriselab.ch/
+bg=orange
 
 </panel_attributes>
     <additional_attributes/>
@@ -88,8 +76,8 @@ Personal VM Enterpriselab
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>470</x>
-      <y>60</y>
+      <x>480</x>
+      <y>80</y>
       <w>160</w>
       <h>30</h>
     </coordinates>
@@ -99,21 +87,21 @@ Personal VM Enterpriselab
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>550</x>
-      <y>80</y>
-      <w>310</w>
-      <h>250</h>
+      <x>560</x>
+      <y>100</y>
+      <w>30</w>
+      <h>190</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-https://bdaf21-owerlen.enterpriselab.ch/
+
 bg=green</panel_attributes>
-    <additional_attributes>10.0;230.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;170.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>460</x>
-      <y>330</y>
+      <x>470</x>
+      <y>290</y>
       <w>140</w>
       <h>100</h>
     </coordinates>
@@ -126,8 +114,8 @@ bdaf21-owerlen
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>690</x>
-      <y>330</y>
+      <x>700</x>
+      <y>290</y>
       <w>110</w>
       <h>100</h>
     </coordinates>
@@ -138,82 +126,34 @@ return page</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>610</x>
-      <y>430</y>
+      <x>540</x>
+      <y>630</y>
       <w>80</w>
-      <h>80</h>
+      <h>250</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-http
-/api/v1</panel_attributes>
-    <additional_attributes>10.0;60.0;10.0;10.0</additional_attributes>
+https-
+request</panel_attributes>
+    <additional_attributes>10.0;230.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>420</x>
-      <y>480</y>
-      <w>170</w>
-      <h>40</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-
-Target-URL</panel_attributes>
-    <additional_attributes>10.0;20.0;150.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>420</x>
-      <y>500</y>
-      <w>170</w>
-      <h>40</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-
-http Response</panel_attributes>
-    <additional_attributes>150.0;20.0;10.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>690</x>
-      <y>430</y>
+      <x>630</x>
+      <y>630</y>
       <w>90</w>
-      <h>80</h>
+      <h>250</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-http 
+http-
 response</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;230.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>590</x>
-      <y>520</y>
-      <w>110</w>
-      <h>190</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-
-Target-URL</panel_attributes>
-    <additional_attributes>10.0;170.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>680</x>
-      <y>520</y>
-      <w>120</w>
-      <h>190</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-
-http response</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;170.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>720</x>
-      <y>300</y>
+      <x>730</x>
+      <y>260</y>
       <w>120</w>
       <h>40</h>
     </coordinates>
@@ -224,45 +164,115 @@ certs</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>520</x>
-      <y>80</y>
+      <x>530</x>
+      <y>100</y>
       <w>30</w>
-      <h>250</h>
+      <h>190</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;230.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;170.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>540</x>
+      <y>390</y>
+      <w>80</w>
+      <h>230</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+https-
+Request</panel_attributes>
+    <additional_attributes>10.0;210.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>620</x>
+      <y>390</y>
+      <w>90</w>
+      <h>230</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+https-
+Response</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;210.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>840</x>
-      <y>490</y>
+      <x>180</x>
+      <y>480</y>
+      <w>880</w>
+      <h>250</h>
+    </coordinates>
+    <panel_attributes>halign=left
+bg=yellow
+Personal VM Enterpriselab 2
+https://bdaf21-owerlen-02.enterpriselab.ch/
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>280</x>
+      <y>610</y>
       <w>100</w>
       <h>30</h>
     </coordinates>
-    <panel_attributes>/certs</panel_attributes>
+    <panel_attributes>MariaDB
+bg=blue
+layer=1</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>720</x>
-      <y>490</y>
-      <w>140</w>
+      <x>370</x>
+      <y>610</y>
+      <w>160</w>
       <h>30</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>120.0;10.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;10.0;140.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>800</x>
+      <y>870</y>
+      <w>120</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>Station Client</panel_attributes>
+    <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>720</x>
-      <y>500</y>
-      <w>140</w>
-      <h>30</h>
+      <x>690</x>
+      <y>620</y>
+      <w>220</w>
+      <h>270</h>
     </coordinates>
-    <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;120.0;10.0</additional_attributes>
+    <panel_attributes>lt=&lt;-
+http-
+request</panel_attributes>
+    <additional_attributes>150.0;250.0;150.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>690</x>
+      <y>600</y>
+      <w>280</w>
+      <h>290</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+http-
+request</panel_attributes>
+    <additional_attributes>210.0;270.0;210.0;10.0;10.0;10.0</additional_attributes>
   </element>
 </diagram>

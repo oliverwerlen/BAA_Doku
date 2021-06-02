@@ -3,15 +3,15 @@
 
 
 \subsection{Zweck}
-Der Auftraggeber will durch die JTI Pickup Station einen neuen Absatzkanal zum Vertrieb seiner Produkte an Endkunden erstellen. Durch das Erstellen einer Softwarelösung soll es möglich sein, Kunden inklusive einer Altersverifikation zu erfassen. Auch ist die Umsetzung einer Kaufabwicklung sowie die Auswahl einer Pick-Up Station Teil dieses Projekts. Die Applikation wird dabei als \ac{PWA} umgesetzt. Die Software soll dabei mit der physischen Pick-Up Station kompatibel sein. Die Umsetzung von diesen ist Teil von zwei weiteren Bachelorarbeiten an der Hochschule Luzern.  
-"Verweis auf Aufgabenstellung"
+Der Auftraggeber will durch die JTI Pickup Station einen neuen Absatzkanal zum Vertrieb seiner Produkte an Endkunden erstellen. Durch das Erstellen einer Softwarelösung soll es möglich sein, Kunden inklusive einer Altersverifikation zu erfassen. Auch ist die Umsetzung einer Kaufabwicklung sowie die Auswahl einer Pick-Up Station Teil dieses Projekts. Die Applikation wird dabei als \ac{PWA} umgesetzt. Die Software soll dabei mit der physischen Pick-Up Station kompatibel sein. Die Umsetzung von dieser ist Teil von zwei weiteren Bachelorarbeiten an der Hochschule Luzern.  
+"Verweis auf Aufgabenstellung".
 \subsubsection{Zielgruppe}
 Zur Zielgruppe dieser Software gehören Kunden und Kundinnen von \ac{JTI} auf der ganzen Welt. Die Software in Kombination mit den physischen Pick-Up Stations soll international eingesetzt werden. 
 \subsubsection{Produktumfang}
-Der Umfang der Software beginnt bei der Registrierung der Nutzer. Hierbei wird eine bereits vorhandene Alterverifikation eingesetzt, um dies gesetzeskonform Umsetzen zu können. Im Onlineshop werden die verfügbaren Produkte von \ac{JTI} gelistet. Der Nutzer kann diese Auswählen, anschliessend werden ihm alle Pick-Up Stations, in denen das Produkt verfügbar ist, angezeigt. Der Käufer kann die von ihm gewünschte Station auswählen. Anschliessend wird die Bezahlung per Kreditkarte durchgeführt. In anderen Projekten wurde dabei von \ac{JTI} bereits ein bekannter Anbieter genutzt. In dieser Software wird darauf zurückgegriffen. Nach erfolgreicher Bezahlung wird ein Code auf dem Gerät des Nutzers gespeichert. Mit diesem kann an der gewünschten Pick-Up Station das bestellte Produkt abgeholt werden. 
+Der Umfang der Software beginnt bei der Registrierung der Nutzer. Hierbei wird eine bereits vorhandene Alterverifikation eingesetzt, um dies gesetzeskonform umsetzen zu können. Im Onlineshop werden die verfügbaren Produkte von \ac{JTI} gelistet. Der Nutzer kann diese auswählen, es werden ihm alle Pick-Up Stations, in denen das Produkt verfügbar ist, angezeigt. Der Käufer kann die von ihm gewünschte Station auswählen. Die Bezahlung wir mittels Kreditkarte durchgeführt. Bei JTI liegt ein Vertrag zur Nutzung eines entsprechenden Anbieters vor. Die Software wurde noch in keinen Projekten eingesetzt. In dieser Software wird darauf zurückgegriffen. Nach erfolgreicher Bezahlung wird ein Code auf dem Gerät des Nutzers gespeichert. Mit diesem kann an der gewünschten Pick-Up Station das bestellte Produkt abgeholt werden. 
 
 \subsubsection{Definitionen}
-\paragraph{Risken}
+\paragraph{Risiken}
 Das Risikomanagement wird im Projektmanagementplan in Kapitel \ref{risikomanagement} detailliert aufgeführt. 
 \subsubsection{Systemübersicht}
 Die Systemübersicht ist in der Systemspezifikation im Kapitel \ref{SystemSpezifikation} zu finden. 
@@ -42,7 +42,7 @@ Die Erfüllung der Requirements hängt von diversen Faktoren ab. Wesentlich dabe
 		\hline
 		F.9 & Das System ermöglicht die Anbindung an einen bereits bekannten Bezahldienst, um eine sichere Bezahlung zu garantieren. & Muss \\
 		\hline
-		F.10 & Das System bietet dem Kunden die Möglichkeit, die für Ihn nächstgelegene Station auswählen zu können.  & Muss \\
+		F.10 & Das System bietet dem Kunden die Möglichkeit, die für ihn nächstgelegene Station auswählen zu können.  & Muss \\
 		\hline
 		F.11 & Das System bietet dem Kunden die Möglichkeit, alle vorhandenen Pick-Up Stations anzuzeigen.  & Muss \\
 		\hline
@@ -59,7 +59,7 @@ Die Erfüllung der Requirements hängt von diversen Faktoren ab. Wesentlich dabe
 		
 		
 	\end{tabularx}
-	\caption{ \label{tbl: FunktionaleAnforderungent}Funktionale Anforderungen, Quelle: Autoren}
+	\caption{ \label{tbl: FunktionaleAnforderungent}Funktionale Anforderungen, Quelle: Autor}
 \end{table}
 \subsubsection{Nicht funktionale Anforderungen}
 \begin{table}[H]
@@ -68,20 +68,20 @@ Die Erfüllung der Requirements hängt von diversen Faktoren ab. Wesentlich dabe
 		\hline
 		\textbf{ID} &  \textbf{Anforderung} & \textbf{Muss/Kann}  \\
         \hline
-		L.1 & Das System soll dem Kunden die Möglichkeit bieten, eine Bestellung mit 5 Klicks zu platzieren  & Kann \\
+		L.1 & Das System soll dem Kunden die Möglichkeit bieten, eine Bestellung mit 5 Klicks zu platzieren.  & Kann \\
 		\hline
-		L.2 & Das System bietet die Möglichkeit, International eingesetzt zu werden. & Kann \\
+		L.2 & Das System bietet die Möglichkeit international eingesetzt zu werden. & Kann \\
 		\hline
 		L.3 & Das System muss via HTTPS kommunizieren. & Muss \\
 		\hline
 		L.4 & Das System muss durch einen modernen und sicheren Authentifizierungsmechanismus geschützt sein. & Muss \\
 		\hline
-		L.5 & Das System bietet die Möglichkeit, durch die Verwendung von bewährten Programmiervorgehen von einem externen Fachmann verstanden zu werden & Muss \\
+		L.5 & Das System muss die Möglichkeit bieten, durch die Verwendung von bewährten Programmiervorgehen von einem externen Fachmann verstanden zu werden. & Muss \\
 		\hline
-		L.6 & Das System muss über eine CI/CD-Pipeline verfügen & Muss \\
+		L.6 & Das System muss über eine CI/CD-Pipeline verfügen. & Muss \\ 
 		\hline
 	\end{tabularx}
-	\caption{ \label{tbl: NichtFunktionaleAnforderungent}Nicht Funktionale Anforderungen, Quelle: Autoren}
+	\caption{ \label{tbl: NichtFunktionaleAnforderungent}Nicht Funktionale Anforderungen, Quelle: Autor}
 \end{table}
 \newpage
 \subsection{Änderungshistorie}
@@ -96,17 +96,9 @@ Die Erfüllung der Requirements hängt von diversen Faktoren ab. Wesentlich dabe
 		11.05.2021 & Hinzufügen des Requirements F.16  & Oliver Werlen & \\
 		\hline
 	\end{tabularx}
-	\caption{ \label{tbl: historieAnforderungen}Änderungshistorie der Anforderungen, Quelle: Autoren}
+	\caption{ \label{tbl: historieAnforderungen}Änderungshistorie der Anforderungen, Quelle: Autor}
 \end{table}
 \subsection{Bemerkungen}
 Als Grundstruktur für die SRS wurde eine Vorlage von Perforce genutzt. [\cite{srsdocument}]
 Als Basis dazu diente die IEEE Spezifikation 29148-2018. [\cite{ieeeSrs}]
-
-\subsection{Unterschriften}
-Mit der Unterschrift gilt die Software Requirement Specification als bestätigt.\\
-
-Ort, Datum:	\underline{\hspace*{6cm}}	\hspace*{1cm} Visum:	\underline{\hspace*{4cm}}
-%\includegraphics[width=1\textwidth]{bilder/unterschriften}
-
-
 \newpage

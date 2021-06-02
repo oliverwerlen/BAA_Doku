@@ -1,3 +1,89 @@
 % !TEX root = PREN2_Dokumentation.tex
 \section{Evaluation und Validation}\label{Evaluation}
+\subsection{Ziel der Arbeit}
+Durch die progressive Web App «JTI Pick-Up Station» ist es dem Kunden möglich, seine Ware bequem im Onlineshop zu bestellen und direkt und ohne Wartezeit an der gewünschten Pick-Up Station abzuholen. Durch den Prototyp sollen die Funktionalität und Zweckmässigkeit dieses für die Firma neuen Absatzkanals aufgezeigt werden. Im besten Fall findet die Applikation nicht nur in der Schweiz Verwendung, sondern wird von JTI auch in anderen Märkten weltweit eingesetzt. Das Hauptaugenmerk der Arbeit liegt auf der Implementierung eines Prototyps mit den folgenden Schwerpunkten: Bestellung, Kauf, Nutzererfassung, Suche nach Pick-Up Stations und der Abholung an der Station. Bei der Nutzererfassung muss das Alter des Nutzers verifiziert werden. Die Lösung soll so weit als möglich in die Projektpartner-Systeme integriert werden. Hinzu kommt die Recherche von artverwandten Technologien und das Requirements Engineering. \\\\
+
+\subsection{Validierung der Requirements}
+\subsubsection{Funktionale Requirements}
+\paragraph{PWA-Checklist}
+Es werden die Kriterien von Google genutzt. [\cite{pwaChecklist}]
+\subparagraph{Core Progressive Web App checklist}
+\begin{itemize}
+	\item [{$\times$}] Starts fast, stays fast
+	\item [{$\checkmark$}] Works in any browser
+	\item [{$\checkmark$}] Responsive to any screen size
+	\item [{$\checkmark$}] Provides Custom offline page
+	\item [{$\checkmark$}] Is Installable
+\end{itemize}
+\subparagraph{Optimal Progressive Web App checklist}
+Es wurde bei der Implementierung sogar noch weiter gegangen, als dass es dieses Requirement vorschreibt. So wurden die meisten Punkte von der Optimal checklist ebenfalls abgeschlossen. 
+\begin{itemize}
+	\item [{$\checkmark$}] Provides an offline experience
+	\item [{$\checkmark$}] Is fully accessible
+	\item [{$\times$}] Can be discovered through search
+	\item [{$\checkmark$}] Works with any input type
+	\item [{$\checkmark$}] Provides context permission requests
+	\item [{$\checkmark$}] Follows best practice for healthy code
+\end{itemize}
+
+\paragraph{Abstimmung auf physische Pick-Up Station}
+Während dem gesamten Projekt wurde der Kontakt mit der Elektrotechnik gesucht und von Beginn an die Schnittstelle definiert. Die Kommunikation von der Informatik zur Elektrotechnik bei der Abholung einer Bestellung funktioniert. Auch kann in der entgegengesetzten Richtung eine Verbindung hergestellt werden, es werden aber nicht alle Daten erhalten. Eine Lösung für dieses Problem konnte nicht gefunden werden. Daher muss dieses Requirement als nicht erfüllt angesehen werden. 
+
+\paragraph{Registrierung und Login}
+Es ist dem Nutzer möglich, sich zu registrieren und ein Login durchzuführen. Die Umsetzung dieses Mechanismus wurde durch \ac{JWT} umgesetzt. \\
+Damit der Nutzer sich nach der Registrierung anmelden kann, ist es zwingen nötig, die Altersverifikation erfolgreich abzuschliessen. Erst dann ist ein Login möglich. 
+
+\paragraph{Altersverifikation}
+Die Altersverifikation war einer der zentralen Punkte bei diesem Projekt. Die Implementierung dient als Referenz für andere Projekte des Auftraggebers, bei denen eine Altersverifikation zum Einsatz kommt. \\
+Die Implementierung der ID-Verifikation verlieft Problemlos und konnte sehr einfach umgesetzt werden. Um die Altersverifikation durchzuführen, war ein erneuter API-Call nötig. Hier wurde bemerkt, dass die Daten erst nach einer bestimmten Zeit zur Abfrage bereit stehen. Somit kann die Altersverifikation erst nach einer bestimmten Zeit ausgelöst werden, was den Prozess erheblich verlängert, auch weil die Implementierung auf der API-Seite sehr unvorteilhaft ist. Die Altersverifikation wurde mit verschiedenen Testcases getestet, um auch die Zuverlässigkeit gewährleisten zu können. Es wurden alle bestanden. 
+
+\paragraph{Bestellung}
+Bei der Umsetzung eines Webshops ist es unumgänglich, dass auch Produkte bestellt werden können. Dem Kunden stehen im Shop verschiedenste Produkte zur Auswahl, abhängig von der ausgewählten Pick-Up Station, mit der entsprechenden Verfügbarkeit. \\Vom Auftraggeber wurde der Bezahldienst saferpay von Six Payment vorgegeben. Die Kommunikation mit der API war dabei kein Problem, jedoch führte \ac{CORS} zu Problemen. Es wurde eine Lösung gefunden, die Bezahlung funktioniert einwandfrei. Da es sich um einen Prototypen handelt, wird ein Testsystem verwendet. Die genaueren Unterschiede werden in Kapitel \ref{testvslive} beschrieben. \\
+
+\paragraph{Pick-Up Station}
+Damit ein Nutzer eine Bestellung platzieren kann, muss er zwingend eine Station ausgewählt haben. Dem Nutzer werden auf der Karte alle Station angezeigt. Die Koordinaten, der Name und die Beschreibung werden initial vom Administrator gesetzt. Auf der Station besteht keine Möglichkeit, diese Daten einzugeben. \\Zu einer Station gehört ein Inventar von Produkten. Bei jeder Bestellung wird es angepasst. Dieses vorgehen ist im finite State Machine \ref{img: stateMachine} dargestellt.\\
+Die Anzeige von Pick-Up Station ist voll funktionsfähig, es sind keine Fehler bekannt. 
+
+\paragraph{Aktueller Warenbestand}
+Dem Administrator wird eine Möglichkeit angeboten, kritische Warenbestände zu bemerken. In einer Tabelle sieht er alle Inventuren, welche weniger als fünf Produkte umfassen. \\
+Das Senden von Benachrichtigungen in diesem Fall wurde nur konzeptuell umgesetzt. Daher ist dieses Requirement nicht erfüllt, es wäre hier Nacharbeit zu leisten. 
+
+\paragraph{Hinzufügen und Bearbeiten von Artikeln}
+Für das Hinzufügen von Artikel ist keine graphische Oberfläche umgesetzt worden. Selbiges gilt für die Bearbeitung von Produkten.
+
+\paragraph{Abholung}
+Zur Abholung muss der Nutzer einen QR-Code auf der Station mit der \gls{PWA} einlesen. Die Verfügbaren Bestellungen werden in seinem Profil angezeigt, von hier aus kann zum QR-Code Scanner gewechselt werden. \\
+Bei einer erfolgreichen Abholung kommen die Daten korrekt bei der Station an. Das Senden von den Daten über die \ac{UART}-Schnittstelle ist möglich. Dennoch konnte das gesamte Zusammenspiel aufgrund von fehlender Hardware nicht getestet werden. Das Requirement darf aber dennoch als erreicht betrachtet werden, da von der Informatikteil die Daten korrekt an die Elektrotechnik übergibt. 
+
+\subsubsection{Nicht funktionale Anforderungen}
+\paragraph{Mit 5 Klicks bestellen}
+Wird davon ausgegangen, dass der Nutzer bereits angemeldet ist. Zudem wird der Bezahlvorgang nicht dazugerechnet. \\
+Die Anzahl Klicks kann, abhängig vom Anwendungsfall, sehr stark variieren. Im Durchschnitt benötigt der Nutzer zwischen 5-7 Klicks, um eine Bestellung platzieren zu können. Dass Requirements darf als erreicht angesehen werden. 
+
+\paragraph{Internationaler Einsatz}
+Das UI wurde auf Deutsch gestaltet. Um International eingesetzt werden zu können, wäre es nötig, verschiedene Sprachen anzubieten.\\ Die Features haben keine Abhängigkeit zum Standort. Bei der Zeit wird im gesamten System die Zeitzone Europe/Zurich verwendet. Hier wäre es wünschenswert, dass bei der Anzeige im \ac{UI} die aktuelle Zeitzone des Benutzers genutzt wird. \\
+In der momentanen Version ist die Applikation nur im deutschsprachigen Raum sinnvoll nutzbar. 
+
+\paragraph{Kommunikation via HTTPS}
+Die Kommunikation im gesamten System wird via \ac{HTTPS} durchgeführt. Die Verbindung zwischen Backend und Pick-Up Station ist ebenfalls durch \gls{zerotier} verschlüsselt. 
+
+\paragraph{Authentifizierungsmechanismus}
+\ac{JWT} gilt als de-facto Standard beim Sichern von API's. Die Tokens werden zusätzlich mit einem private Key signiert, um sicherzustellen, dass es sich um einen Token von dieser API handelt. Ein Blacklisting von Token ist nicht umgesetzt worden. Der Nutzer wird im Falle von längerer Inaktivität automatisch abgemeldet, der Token aus dem \gls{SessionStorage} entfernt. Die Gültigkeit des Tokens ist mit einer Stunde bewusst gering gehalten. \\
+
+\paragraph{Erweiterbarkeit}
+Es wurden durchgängig die empfohlenen Vorgehensweisen der Frameworks genutzt. Durch die Dokumentation mittels \ac{UML}-Diagrammen von bestimmten Teilbereichen wird die Einarbeitungszeit verringert und das Verständnis erhöht. Im Projekt wurden die gängigsten Clean-Code Ansätze verwendet. 
+
+\paragraph{CI/CD Pipeline}
+Die beiden Hauptbestandteile besitzen eine CI/CD Pipeline. Die Pipeline übernimmt das Erstellen und die Verteilung des Docker Containers auf die produktive Umgebung. Dabei ist es sehr einfach möglich, ein Deployment in eine andere Umgebung durchzuführen. \\
+
+Bei der Deployment-Stage tritt zuweilen das Problem auf, dass diese nicht erfolgreich durchläuft. Der Fehler ist sehr selten und nicht nachvollziehbar. Bei einem Retry von dieser Stage wird der Container erfolgreich auf die produktive Umgebung verteilt. 
+
+\subsubsection{Übersicht}
+\begin{itemize}
+	\item [{$\checkmark$}] PWA-Checklist
+	\item [{$\checkmark$}] Abstimmung auf physische Pick-Up Station
+	\item [{$\checkmark$}] Registrierung und Login
+	\item [{$\checkmark$}] Provides Custom offline page
+	\item [{$\checkmark$}] Is Installable
+\end{itemize}
 \newpage
