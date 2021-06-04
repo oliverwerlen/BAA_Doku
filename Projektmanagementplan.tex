@@ -13,7 +13,7 @@ In nachfolgendem Diagramm sind alle Projektbeteiligten aufgeführt. Die Projektm
 \end{figure}	
 
 \paragraph{Rollen}
-Im Projekt wird nach dem hybriden Projektmanagementvorgehen \ac{SoDa} gearbeitet. Es werden die hier genutzten Rollen beibehalten. 
+Im Projekt wird nach dem hybriden Projektmanagementvorgehen \gls{SoDa} gearbeitet. Es werden die hier genutzten Rollen beibehalten. 
 \begin{itemize}
 	\item Projektleiter/in
 	\item Product Owner
@@ -230,8 +230,9 @@ Bei diesem Projekt besteht eine Konfigurationseinheit aus mehreren Teilen. Dabei
 \begin{itemize}
 \item Spring Applikation
 \item Webapplikation
+\item Raspberry Pi Client
 \end{itemize}
-\paragraph{Release 1}
+\paragraph{Release 1}\label{release1}
 
 \begin{table}[H]
 \setlength\extrarowheight{2pt} % for a bit of visual "breathing space"
@@ -239,9 +240,11 @@ Bei diesem Projekt besteht eine Konfigurationseinheit aus mehreren Teilen. Dabei
 \hline
 \textbf{Typ} &  \textbf{Version}  \\
 \hline
-Spring Applikation & 1.0.0 x\\
+Spring Applikation & 1.0.0 \\
 \hline
 Webapplikation  & 1.0.0\\
+\hline
+Raspberry Pi Client  & 0.0.0\\
 
 \hline
 \end{tabularx}
@@ -250,8 +253,8 @@ Webapplikation  & 1.0.0\\
 
 \paragraph{Testprotokolle}
 Die gesamten Testprotokolle sind im Anhang \ref{testprotokolleBestellung} zu finden. 
-
-\paragraph{Release 2}
+\newpage
+\paragraph{Release 2}\label{release2}
 
 \begin{table}[H]
 	\setlength\extrarowheight{2pt} % for a bit of visual "breathing space"
@@ -271,7 +274,7 @@ Die gesamten Testprotokolle sind im Anhang \ref{testprotokolleBestellung} zu fin
 
 \paragraph{Testprotokolle}
 Die gesamten Testprotokolle sind im Anhang \ref{testprotokolleRealisierungsphase} zu finden. 
-\paragraph{Release 3}
+\paragraph{Release 3}\label{release3}
 
 \begin{table}[H]
 	\setlength\extrarowheight{2pt} % for a bit of visual "breathing space"
@@ -301,7 +304,7 @@ Es handelt sich hier um die Entwicklung eines Prototypen. Die Priorität wird en
 Aus diesem Grund wurden die Unit- und Integrationtests nur konzeptuell umgesetzt. Bei Bedarf können diese erweitert werden. 
 
 \paragraph{Automated Testing der REST-Schnittstelle}
-Zum Testen der REST-Schnittstelle wird dabei in erster Linie Postman genutzt. 
+Zum Testen der \ac{REST}-Schnittstelle wird dabei in erster Linie Postman genutzt. 
 
 \subsubsection{Testdrehbuch}\label{testsvonmeilensteine}
 Wie oben genannt wird auf manuelles Testing gesetzt. 

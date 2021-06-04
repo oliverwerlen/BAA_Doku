@@ -36,6 +36,7 @@ Das Datenbankschema wurde von Intelij generiert.
     \caption[Datenbankschema]{Datenbankschema, Quelle: Autor}
     \label{img: datebankschema}
 \end{figure}
+\newpage
 \subsubsection{Entwurfsentscheide}
 \paragraph{Frontend}
 \subparagraph{Technologien}
@@ -75,6 +76,7 @@ Das Projekt ist in mehrere Packages aufgeteilt.
 	\item Entities
 	\item Repositories
 \end{itemize}
+\newpage
 \subparagraph{Data Transfer Object}\label{DTO}
 Es handelt sich hier um ein Enterprise Application Architecture Pattern von Martin Fowler. Genauer handelt es sich um ein Distribution Pattern. \\
 Durch den Einsatz dieses Patterns können mehr Daten mit einem Aufruf übertragen werden. Ein weiterer Vorteil ist die klare Trennung zwischen zu serialisierendem Objekt und dem Domain Model. In der Regel wird ein Assembler genutzt, um das DTO auf das Domain Model zu mappen. [\cite{dtoFowler}]
@@ -89,6 +91,7 @@ In diesem Projekt stand der Einsatz des DTO-Pattern jedoch im Konflikt mit der R
 Dabei wurde auf REST-Level 3 hingearbeitet \ref{img: richardsonMaturity} und mit \ac{HATEOAS} gearbeitet. Dadurch kann das Backend weiter vom Frontend getrennt werden, da bei eine Anpassung der URL auf dem Server keinen Einfluss auf die Funktionalität des Clients hat. Zudem kann die Verständlichkeit der API verbessert und ein Erweitern vereinfacht werden[\cite{richardsonMaturity}]. 
 \subparagraph{Datenbank}
 Die Datenbank wird durch die Spring Data JPA aus den Entities in diesem Projekt erstellt. 
+\newpage
 \subparagraph{Konfigurationen}
 Im Backend wurden die Konfigurationen im \gls{Propertie-File} vorgenommen. Es wird zwischen produktiver und Entwicklungsumgebung unterschieden. Vertrauliche Daten wurden bei der Dokumentation entfernt
 \begin{verbatim}
@@ -129,7 +132,7 @@ Im Backend wurden die Konfigurationen im \gls{Propertie-File} vorgenommen. Es wi
 \end{itemize}
 \subparagraph{Projektstruktur}
 Bei diesem Projekt wurde die vorgegebene Projektstruktur von Node.js genutzt.
-
+\newpage
 \subsection{Schnittstellen}
 \subsubsection{Externe Schnittstellen}
 \paragraph{REST API}
@@ -148,7 +151,7 @@ Die \href{http://saferpay.github.io/jsonapi/}{JSON-API} von Six wird im offiziel
 
 \paragraph{Jumio API}
 Die Jumio-API wird im \href{https://github.com/Jumio/implementation-guides}{Implementation Guide} beschrieben. 
-
+\newpage
 \subsubsection{Wichtige interne Schnittstellen}
  \paragraph{UART-Übertragung}
  \subparagraph{Steckbrief}
@@ -188,7 +191,7 @@ Eine explizite Fehlerbehandlung ist nicht vorhanden.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.6]{images/readDataUart.png}
+	\includegraphics[scale=0.5]{images/readDataUart.png}
 	\caption[Lesen von Daten via Schnittstelle]{Lesen von Daten via Schnittstelle, Quelle: Autor}
 	\label{img: read}
 \end{figure}

@@ -1,7 +1,7 @@
 % !TEX root = PREN2_Dokumentation.tex
 \section{Evaluation und Validation}\label{Evaluation}
 \subsection{Ziel der Arbeit}
-Durch die progressive Web App «JTI Pick-Up Station» ist es dem Kunden möglich, seine Ware bequem im Onlineshop zu bestellen und direkt und ohne Wartezeit an der gewünschten Pick-Up Station abzuholen. Durch den Prototyp sollen die Funktionalität und Zweckmässigkeit dieses für die Firma neuen Absatzkanals aufgezeigt werden. Im besten Fall findet die Applikation nicht nur in der Schweiz Verwendung, sondern wird von JTI auch in anderen Märkten weltweit eingesetzt. Das Hauptaugenmerk der Arbeit liegt auf der Implementierung eines Prototyps mit den folgenden Schwerpunkten: Bestellung, Kauf, Nutzererfassung, Suche nach Pick-Up Stations und der Abholung an der Station. Bei der Nutzererfassung muss das Alter des Nutzers verifiziert werden. Die Lösung soll so weit als möglich in die Projektpartner-Systeme integriert werden. Hinzu kommt die Recherche von artverwandten Technologien und das Requirements Engineering. \\\\
+Durch die progressive Web App «JTI Pick-Up Station» ist es dem Kunden möglich, seine Ware bequem im Onlineshop zu bestellen und direkt und ohne Wartezeit an der gewünschten Pick-Up Station abzuholen. Durch den Prototyp sollen die Funktionalität und Zweckmässigkeit dieses für die Firma neuen Absatzkanals aufgezeigt werden. Im besten Fall findet die Applikation nicht nur in der Schweiz Verwendung, sondern wird von JTI auch in anderen Märkten weltweit eingesetzt. Das Hauptaugenmerk der Arbeit liegt auf der Implementierung eines Prototyps mit den folgenden Schwerpunkten: Bestellung, Kauf, Nutzererfassung, Suche nach Pick-Up Stations und der Abholung an der Station. Bei der Nutzererfassung muss das Alter des Nutzers verifiziert werden. Die Lösung soll so weit als möglich in die Projektpartner-Systeme integriert werden. Hinzu kommt die Recherche von artverwandten Technologien und das Requirements Engineering. 
 
 \subsection{Validierung der Requirements}
 Das gesamte Funktionsmuster wurde in verschiedene Requirements aufgeteilt. Die genaue Beschreibung der Requirements ist in \ref{RSR} zu finden. Durch die Validierung wird die Funktionsfähigkeit des Funktionsmusters bewiesen. 
@@ -32,14 +32,14 @@ Während dem gesamten Projekt wurde der Kontakt mit der Elektrotechnik gesucht u
 
 \paragraph{Registrierung und Login}
 Es ist dem Nutzer möglich, sich zu registrieren und ein Login durchzuführen. Die Umsetzung dieses Mechanismus wurde durch \ac{JWT} umgesetzt. \\
-Damit der Nutzer sich nach der Registrierung anmelden kann, ist es zwingen nötig, die Altersverifikation erfolgreich abzuschliessen. Erst dann ist ein Login möglich. \\
+Damit der Nutzer sich nach der Registrierung anmelden kann, ist es zwingen nötig, die Altersverifikation erfolgreich abzuschliessen. Erst dann ist ein Login möglich. 
 
 \paragraph{Altersverifikation}
 Die Altersverifikation war einer der zentralen Punkte bei diesem Projekt. Die Implementierung dient als Referenz für andere Projekte des Auftraggebers, bei denen eine Altersverifikation zum Einsatz kommt. \\
 Die Umsetzung der ID-Verifikation verlieft Problemlos und war sehr intuitiv. Um die Altersverifikation durchzuführen, war ein erneuter API-Call nötig. Dass die Daten nicht direkt abgefragt werden könne ist eine Schwäche der Jumio-API. Die Altersverifikation wurde mit verschiedenen Testcases getestet, um die Zuverlässigkeit gewährleisten zu können. Es wurden alle bestanden. 
 
 \paragraph{Bestellung}
-Bei der Umsetzung eines Webshops ist es unumgänglich, dass auch Produkte bestellt werden können. Dem Kunden stehen im Shop verschiedenste Produkte zur Auswahl, abhängig von der ausgewählten Pick-Up Station, mit der entsprechenden Verfügbarkeit. In der installieren Version der \ac{PWA} werden die Packshots initial nicht korrekt angezeigt. \\Vom Auftraggeber wurde der Bezahldienst saferpay von Six Payment vorgegeben. Die Kommunikation mit der API war dabei kein Problem, jedoch führte \ac{CORS} zu Problemen. Es wurde eine Lösung gefunden, die Bezahlung funktioniert einwandfrei. Da es sich um einen Prototypen handelt, wird ein Testsystem verwendet. Die genauen Unterschiede werden in Kapitel \ref{testvslive} beschrieben. \\
+Bei der Umsetzung eines Webshops ist es unumgänglich, dass auch Produkte bestellt werden können. Dem Kunden stehen im Shop verschiedenste Produkte zur Auswahl, abhängig von der ausgewählten Pick-Up Station, mit der entsprechenden Verfügbarkeit. In der installieren Version der \ac{PWA} werden die Packshots initial nicht korrekt angezeigt. \\Vom Auftraggeber wurde der Bezahldienst saferpay von Six Payment vorgegeben. Die Kommunikation mit der API war dabei kein Problem, jedoch führte \ac{CORS} zu Problemen. Es wurde eine Lösung gefunden, die Bezahlung funktioniert einwandfrei. Da es sich um einen Prototypen handelt, wird ein Testsystem verwendet. Die genauen Unterschiede werden in Kapitel \ref{testvslive} beschrieben. 
 
 \paragraph{Pick-Up Station}
 Damit ein Nutzer eine Bestellung platzieren kann, muss er zwingend eine Station ausgewählt haben. Dem Nutzer werden auf der Karte alle Stationen angezeigt. Die Koordinaten, der Name und die Beschreibung werden initial vom Administrator gesetzt. Auf der Station besteht keine Möglichkeit, diese Daten einzugeben. \\Zu einer Station gehört ein Inventar von Produkten. Bei jeder Bestellung wird es angepasst. Dieses Vorgehen ist im finite State Machine \ref{img: stateMachine} dargestellt.\\
@@ -69,7 +69,7 @@ In der momentanen Version ist die Applikation nur im deutschsprachigen Raum sinn
 Die Kommunikation im gesamten System wird via \ac{HTTPS} durchgeführt. Die Verbindung zwischen Backend und Pick-Up Station ist ebenfalls durch \gls{zerotier} verschlüsselt. 
 
 \paragraph{Authentifizierungsmechanismus}
-\ac{JWT} gilt als de-facto Standard beim Sichern von API's. Die Tokens werden zusätzlich mit einem Private Key signiert, um sicherzustellen, dass es sich um einen Token von dieser API handelt. Ein Blacklisting von Token ist nicht umgesetzt worden. Der Nutzer wird bei längerer Inaktivität automatisch abgemeldet, der Token aus dem \gls{SessionStorage} entfernt. Die Gültigkeit des Tokens ist mit einer Stunde bewusst kurz gehalten. \\
+\ac{JWT} gilt als de-facto Standard beim Sichern von API's. Die Tokens werden zusätzlich mit einem Private Key signiert, um sicherzustellen, dass es sich um einen Token von dieser API handelt. Ein Blacklisting von Token ist nicht umgesetzt worden. Der Nutzer wird bei längerer Inaktivität automatisch abgemeldet, der Token aus dem \gls{SessionStorage} entfernt. Die Gültigkeit des Tokens ist mit einer Stunde bewusst kurz gehalten. 
 
 \paragraph{Erweiterbarkeit}
 Es wurden durchgängig die empfohlenen Vorgehensweisen der Frameworks genutzt. Durch die Dokumentation mittels \ac{UML}-Diagrammen von bestimmten Teilbereichen wird die Einarbeitungszeit verringert und das Verständnis erhöht. Im Projekt wurden die gängigsten Clean-Code Ansätze verwendet. 
@@ -78,7 +78,7 @@ Es wurden durchgängig die empfohlenen Vorgehensweisen der Frameworks genutzt. D
 Die beiden Hauptbestandteile besitzen eine CI/CD Pipeline. Die Pipeline übernimmt das Erstellen und die Verteilung des Docker Containers auf die produktive Umgebung. Dabei ist es sehr einfach möglich, ein Deployment in eine andere Umgebung durchzuführen. \\
 
 Bei der Deployment-Stage tritt zuweilen das Problem auf, dass diese nicht erfolgreich durchläuft. Der Fehler ist sehr selten und nicht nachvollziehbar. Bei einem Retry von dieser Stage wird der Container erfolgreich auf die produktive Umgebung verteilt. 
-
+\newpage
 \subsubsection{Übersicht}
 \begin{itemize}
 	\item [{$\checkmark$}] PWA-Checklist

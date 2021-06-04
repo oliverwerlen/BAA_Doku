@@ -2,16 +2,16 @@
 \section{Methoden}
 \subsection{\gls{SoDa}}
 Das Projektmanagement wird mit dem hybriden Projektvorgehen \gls{SoDa} der Hochschule Luzern durchgeführt. 
-\gls{SoDa} wurde dabei bereits schon in vorhergehenden Softwareentwicklungsmodulen eingesetzt und hat sich hier bewährt. Die Userstories werden dabei auch im \gls{GitLab} erfasst.  
+\gls{SoDa} wurde in vorhergehenden Softwareentwicklungsmodulen eingesetzt und hat sich bewährt. Die Userstories werden in \gls{GitLab} erfasst.  
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.5]{images/boardGitlab.png}
+	\includegraphics[width=1\textwidth]{images/boardGitlab.png}
 	\caption[GitLab Board]{GitLab Board,\\ Quelle: Autor}
 	\label{img: GitlLabBoard}
 \end{figure}
-Beim Sprint Review werden die Stories in reviewing mit den definierten Akzeptanzkriterien mit den Resultaten verglichen. Basierend darauf wird entschieden, ob an der \gls{User Story} noch weiter gearbeitet werden, das heisst zurück zu doing oder die Story in done verschoben werden kann. Bei Beginn des nächsten Sprints wird das Vorgehen wiederholt. \\
-Die einzelnen Items sind dabei priorisiert. Elemente mit einer hohen Einstufung werden dabei bei der Bearbeitung vorgezogen. 
-
+Beim Sprint Review werden die Stories in \glqq reviewing\grqq{} mit den definierten Akzeptanzkriterien mit den Resultaten verglichen. Basierend darauf wird entschieden, ob an der \gls{User Story} noch weiter gearbeitet wird, das heisst zurück zu \glqq doing\grqq{} oder die Story in \glqq done\grqq{} verschoben werden kann. Bei Beginn des nächsten Sprints wird das Vorgehen wiederholt. \\
+Die einzelnen Items sind priorisiert. Elemente mit einer hohen Einstufung werden bei der Bearbeitung vorgezogen. 
+\newpage
 \subsection{Domain Driven Design}
 Domain Driven Design ist eine Herangehensweise an die Erstellung von komplexer Software. Sie befasst sich in den meisten Fällen mit Businessproblemen. Dieses Problem wird als Domäne bezeichnet. Die Software ist von Beginn an und durchgängig mit dieser Domäne verknüpft. \\
 Als Domäne wurde in diesem Projekt der Verkauf und die Abholung von Tabakprodukten identifiziert [\cite{domainDrivenDesign}]. 
@@ -27,14 +27,14 @@ Als Resultat wurde die folgende Domäne erstellt:
 \end{figure}
 
 \subsubsection{Model Driven Design}
-Das erstellte Modell ist sehr stark mit der Domäne verknüpft. Basierend darauf wurde die Software designed und implementiert. Domain Driven Design setzt auf verschiedenste Pattern.  
+Das erstellte Modell ist sehr stark mit der Domäne verknüpft. Basierend darauf wurde die Software designed und implementiert. Domain Driven Design setzt auf verschiedenste Pattern [\cite{domainDrivenDesign}].
 \paragraph{Entities}\label{entity}
-Eine Entity hat immer eine Identität. Kann im System eindeutig identifiziert werden. Nicht alle Objekte in einem System sind Entities. Entities sind ressourcenintensiv, da immer sichergestellt werden muss, dass die Entity einzigartig ist.
+Eine Entity hat immer eine Identität. Kann im System eindeutig identifiziert werden. Nicht alle Objekte in einem System sind Entities. Entities sind ressourcenintensiv, da immer sichergestellt werden muss, dass die Entity einzigartig ist [\cite{domainDrivenDesign}].
 \paragraph{Value Objects}
-Es ist nicht in jedem Anwendungsfall nötig, das gesamte Objekt zu erhalten. Ein Value Objekt ist ein Objekt, welches nur einen Teilbereich aus einer Domäne beschreibt. Ohne eine Entity sind Value Objects sehr leichtgewichtig. \\
+Es ist nicht in jedem Anwendungsfall nötig, das gesamte Objekt zu erhalten. Ein Value Objekt ist ein Objekt, welches nur einen Teilbereich aus einer Domäne beschreibt. Ohne eine Entity sind Value Objects sehr leichtgewichtig [\cite{domainDrivenDesign}]. \\
 Es wird sehr stark empfohlen, Value Objects Immutable zu machen. \\
-Value Objects können zudem Referenzen zu anderen Objekten enthalten. \ac{DTO}'s entsprechen Value Objects. 
-
+Value Objects können zudem Referenzen zu anderen Objekten enthalten. \ac{DTO}'s entsprechen Value Objects [\cite{domainDrivenDesign}].
+\newpage
 \paragraph{Services}\label{services}
 Der Service bearbeitet Value Objects oder Entities. Dabei hat er drei Eigenschaften: 
 \begin{enumerate}
@@ -42,12 +42,12 @@ Der Service bearbeitet Value Objects oder Entities. Dabei hat er drei Eigenschaf
 	\item Die Operation verweist auf andere Objekte in der Domäne.
 	\item Die Operation ist statuslos. 
 \end{enumerate}
-
+[\cite{domainDrivenDesign}].
 \paragraph{Repositories}
-Das Repository entkapselt die Persistierung von Objekten und bildet somit die Schnittstelle zwischen Applikation und Datenbank. 
+Das Repository entkapselt die Persistierung von Objekten und bildet somit die Schnittstelle zwischen Applikation und Datenbank [\cite{domainDrivenDesign}].
 
 \subsection{CI/CD}
-Die gesamte \ac{CI/CD} Pipeline wurde für dieses Projekt neu erstellt. Dabei besteht der Prozess aus drei Stages: 
+Die gesamte \ac{CI/CD} Pipeline wurde für dieses Projekt neu erstellt. Der Prozess besteht aus drei Stages: 
 \begin{enumerate}
 	\item build
 	\item package
@@ -55,13 +55,14 @@ Die gesamte \ac{CI/CD} Pipeline wurde für dieses Projekt neu erstellt. Dabei be
 \end{enumerate}
 
 \subsubsection{build}
-Abhängig vom Projekt wird das Projekt gebuilded. Bei der Java Applikation handelt es sich hier um ein maven-package, beim Angular Frontend um ein \glqq ng build -prod\grqq{}. Die resultierenden Artifakte werden für zwei Stunden im GitLab gespeichert. 
+Abhängig vom Projekt wird das Projekt gebuilded. Bei der Java Applikation handelt es sich um ein \glqq maven-package\grqq{}, beim Angular Frontend um ein \glqq ng build -prod\grqq{}. Die resultierenden Artifakte werden für zwei Stunden im GitLab gespeichert. 
 \subsubsection{package}
-In der Package Stage wird das Docker Image aus den vorherigen Artifakten erstellt. Dabei wird das Dockerfile des jeweiligen Produkts genutzt. Der Build wird von einem Shared Runner durchgeführt. Hier werden 4 vom Enterpriselab zur Verfügung gestellt. Anschliessend wird dieses in die Container Registry des GitLab Projekts gepushed. 
+In der Package Stage wird das Docker Image aus den vorherigen Artifakten erstellt. Es wird das Dockerfile des jeweiligen Produkts genutzt. Der Build wird von einem Shared Runner durchgeführt. Hier werden Vier vom Enterpriselab zur Verfügung gestellt. Anschliessend wird dieses in die Container Registry des GitLab Projekts gepushed. 
 \subsubsection{deploy}
-Für das Deployment wurde auf den virtuellen Maschinen ein GitLab Runner installiert. Durch den deployment-Tag wird dieser adressiert. Auf diese Maschine wird ein Login ausgeführt und anschliessend das aktuellste Image heruntergeladen. Es wird der bestehende Container gelöscht und aus dem neuen Image ein neuer Container gestartet. 
-
+Für das Deployment wurde auf den virtuellen Maschinen ein GitLab Runner installiert. Durch den deployment-Tag wird dieser adressiert. Auf diese Maschine wird ein Login ausgeführt und das aktuellste Image heruntergeladen. Es wird der bestehende Container gelöscht und mit dem neuen Image ein neuer Container gestartet. 
+\newpage
 \subsubsection{Sequenzdiagramm}
+Die gesamte CI/CD Pipeline wird im folgenden Sequenzdiagramm dargestellt. 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1\textwidth]{images/sequenceCicd.png}
@@ -71,6 +72,6 @@ Für das Deployment wurde auf den virtuellen Maschinen ein GitLab Runner install
 
 
 \subsubsection{Testing}
-Das Projektziel ist ein Prototyp. Aus diesem Grund wurde der Fokus auf die Funktion gesetzt. Daher wurden die Unit- und Integrationstests nur konzeptuell umgesetzt. Bei Bedarf können diese erweitert werden. 
+Das Projektziel ist ein Prototyp. Aus diesem Grund wurde der Fokus auf die Funktion gesetzt. Unit- und Integrationstests wurden nur konzeptuell umgesetzt. Bei Bedarf können diese erweitert werden. 
 
 \newpage
