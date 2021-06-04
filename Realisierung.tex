@@ -935,8 +935,38 @@ Auf der Elektrotechnikseite wird ein Tiny K22 zur Kommunikation mit der Hardware
 Die Kommunikation zwischen Pi und Tiny läuft via \ac{UART}. Um mit Node mit seriellen Ports arbeiten zu können, wird die Library Serial Port genutzt. 
 Die Verbindung zum \ac{UART}-Port konnte dabei erfolgreich hergestellt werden. Das Schreiben auf den Port war auch möglich, die Daten konnten von der Elektrotechnik erfolgreich und vollständig gelesen werden. \\
 Beim Lesen der Daten wurden immer nur die ersten 4 Byte angezeigt. Auf Anhieb konnte keine Lösung für dieses Problem gefunden werden, daher wurde ein neuer \gls{Github}-Issue im Serial Port Projekt erstellt. 
-\href{https://github.com/serialport/node-serialport/issues/2252}{UART with Raspberry Pi Zero only receiving 4 Bytes}
+\href{https://github.com/serialport/node-serialport/issues/2252}{UART with Raspberry Pi Zero only receiving 4 Bytes}\\\\
 
+Zu einem späteren Zeitpunkt wurde bemerkt, dass das Problem durch den Bluetooth Treiber verursacht wird. Auch wird das Node Package \href{https://www.npmjs.com/package/raspi-serial}{raspi-serial} verwendet. Hier werden die Daten korrekt gelesen und das Inventar kann erstellt werden. \\
+Zudem wird das Lesen mit dem selben Package umgesetzt. Es werden alle OrderItems in einen String verpackt und auf die \ac{UART}-Schnittstelle geschrieben. 
+
+\begin{figure}[H]
+	\begin{subfigure}[b]{0.4\textwidth}
+		\includegraphics[scale=0.4]{images/sendUartFromTiny.jpeg}
+		\caption[Senden von Inventar von Tiny K22]{Senden von Inventar von Tiny K22, \cite{arnoldPhilip:private}}
+		\label{img: sendUart}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[b]{0.4\textwidth}
+		\includegraphics[scale=0.4]{images/uartRead.jpeg}
+		\caption[Empfang von Daten auf Raspberry Pi]{Empfang von Daten auf Raspberry Pi, \cite{arnoldPhilip:private}}
+		\label{img: readUART}
+	\end{subfigure}
+\end{figure} 
+
+\begin{figure}[H]
+	\begin{subfigure}[b]{0.4\textwidth}
+		\includegraphics[scale=0.4]{images/sendOrder.jpeg}
+		\caption[Senden von Bestellung an Tiny K22]{Senden von Bestellung an Tiny K22, Quelle: \cite{arnoldPhilip:private}}
+		\label{img: sendOrder}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[b]{0.4\textwidth}
+		\includegraphics[scale=0.4]{images/uartEmpfangBestellung.jpeg}
+		\caption[Empfang einer Bestellung auf Tiny K22]{Empfang einer Bestellung auf Tiny K22,  \cite{arnoldPhilip:private}}
+		\label{img: uartEmpfangBestellung}
+	\end{subfigure}
+\end{figure} 
 \paragraph{Sprintreview Sprint 8}
 In diesem Sprint konnten die geplanten Userstories umgesetzt werden. 
 
@@ -996,9 +1026,21 @@ Der entscheidende Wert ist dob (Date of Birth). Im Backend wird die Zeitspanne z
 	\caption[Altersverifikation]{Altersverifikation, Quelle: Autor}
 	\label{img: dob}
 \end{figure} 
+ 
+\paragraph{Problem bei Altersverifikation}
+Die obige Abfrage liefert eine Fehlermeldung zurück, wenn sie direkt nach der Altersverifikation ausgeführt wird. Jumio braucht eine bestimmte Zeit, bis die Daten verfügbar sind und abgefragt werden können. Dieser Zeitraum liegt zwischen 45 Sekunden und einer Minute. \\
+Das Alter kann nur mit diesen Daten verifiziert werden, dieser Schritt muss zwingend durchgeführt werden. Um diese Einschränkung der API zu umgehen, wird nach dem success-Callback der Jumio API von Einlesen des Ausweises asynchron eine Minute gewartet. Dies garantiert, dass Jumio die Daten zur Verfügung stellt. In dieser Zeit kann der Nutzer die Applikation nutzen, das Login ist aber erst nach einer Minute möglich. Es wird im eine Meldung angezeigt, in welcher er über das Verifikationsresultat informiert wird. \\\\
 
-Zusätzlich wird der Name auf dem Ausweis mit dem in der Datenbank verglichen. Somit kann sichergestellt werden, dass nicht mit dem Ausweis einer anderen Person die Altersverifikation umgangen wird. \\
-Die Altersverifikation wurde ausführlich getestet. Die entsprechenden Testprotokolle sind unter \ref{altersverifikation} zu finden. 
+
+Das Vorgehen ist von Seiten Jumio's sehr schlecht. Der success-Callback sollte erst gesendet werden, wenn die Daten zur Abfrage bereit sind. Im jetzigen Fall wird success ausgegeben, obschon die Transaction ausstehend oder incomplete ist. Dies führt zu Fehlern bei der Anwendung der API. 
+ \begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{images/jumioIncomplete.PNG}
+	\caption[Jumio Customer Portal Transactions]{Jumio Customer Portal Transactions, Quelle: Autor}
+	\label{img: jumioIncomplete}
+\end{figure} 
+
+Dennoch konnte die Altersverifikation ausführlich getestet werden. Die entsprechenden Testprotokolle sind unter \ref{altersverifikation} zu finden. Aufgrund der Einschränkungen der API dauert die Altersverifikation mit bis zu einer Minute lange. 
 
 \paragraph{Sprintreview Sprint 9}
 In diesem Sprint konnte nur eine der beiden User Stories abgeschlossen werden. Die \gls{User Story} F.1 wird in den nächsten Sprint übernommen. 
@@ -1172,7 +1214,7 @@ Die Realisierungsphase konnte abgeschlossen werden. In der letzten Projektphase 
 	\end{tabularx} 
 	\caption[User Stories Sprint 11]{User Stories Sprint 11,\\ Quelle: Autor}
 \end{table}\label{userStoriesSprint11}
-\paragraph{Anzeigen von kritischen Verfügbarkeiten}
+\paragraph{Anzeigen von kritischen Verfügbarkeiten}\label{verfugbarkeiten}
 Der Administrator soll zumindest Einsicht haben, wenn ein Produkt eine geringe Verfügbarkeit hat. Umgesetzt wird das durch eine neue Methode auf der \ac{REST}-Schnittstelle. Diese liefert alle Inventuren zurück, bei denen weniger als eine bestimmte Anzahl Produkte vorhanden ist. Diese Information wird als Tabelle in dem Administratorenbereich angezeigt. \\
 Um eine bessere Übersicht zu haben, wird neu beim Erstellen einer neuen Station per Default für jedes Produkt ein neues Inventar erstellt. Per Default sind ist die Produktanzahl auf 0 gesetzt. 
 \begin{figure}[H]

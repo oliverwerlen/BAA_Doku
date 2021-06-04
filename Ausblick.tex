@@ -1,4 +1,12 @@
 % !TEX root = PREN2_Dokumentation.tex
 \section{Ausblick}
-
+Die Bachelordiplomarbeit zeigt auf, dass der Absatzkanal für die \ac{JTI} auf diese Art und Weise erschliessbar ist. Die gewünschten Dienste lassen sich integrieren, die rechtlichen Anforderungen einhalten.\\\\
+In diesem Projekt wurde das Vorgehen als Prototyp umgesetzt. Die Entwicklungstätigkeiten wurden entsprechend priorisiert, wobei das automatisierte Testing dieser Strategie zum Opfer fiel. Dennoch ist die Applikation manuell getestet worden, jedoch nur mit einer begrenzten Anzahl von Nutzern. 
+Um ein späteres Refactoring zu vereinfachen, müssen automatisierte Unit- und Integrationstests implementiert und entsprechende Testing Stages hinzugefügt werden. Es sollte eine Test- und Entwicklungsumgebung bereitgestellt werden.
+\\
+Die Usability wurde nur mit sehr wenigen Nutzern getestet. Ein Testing mit einer breiten Nutzergruppe wäre sehr aufschlussreich und würde aufzeigen, wo Nacharbeitet geleistet werden muss. Die Möglichkeit zum Passwortwechsel oder zum erneuten Versuchen der Altersverifikation sollten umgehend hinzugefügt werden. Ebenfalls sollte dem Nutzer nach der erfolgreichen Bezahlung eine Bestätigungsmail gesendet werden. Die Applikation ist momentan auf Deutsch verfügbar. Es müssten entsprechende Versionen für andere Sprachen erstellt werden, damit die Applikation international genutzt werden kann. \\
+Damit die Applikation besser Skalieren kann und um eine bessere Verfügbarkeit zu erreichen, wäre ein Deployment auf einen Kubernetes Cluster sehr zu empfehlen. Die Applikationen liegen bereits als Docker-Container vor, der Aufwand wäre gering. \\
+Der Administrator wurde nur bedingt berücksichtigt. Das konzeptuelle Vorgehen \ref{verfugbarkeiten} würde einen sehr grossen Komfortgewinn bieten. Der Administrator sollte auch die Möglichkeit haben, neue Produkte hinzufügen und auch bearbeiten zu können. 
+Um den vollen Funktionsumfang der Applikation zu ermöglichen, muss mindestens eine physische, voll funktionsfähige Station zur Verfügung stehen. Erst wenn das der Fall ist und dem Nutzer garantiert werden kann, dass er das bezahlte Produkt erhält, kann eine Migration auf ein Livesystem von Sixpayment durchgeführt werden. Es wären auch andere Ansätze möglich, um die Abhängigkeit zur Station zu beheben, beispielsweise eine alternative Abholung im Kiosk. \\\\
+Bei diesen Punkten handelt es sich um kleinere Verbesserungen. Das explorative Testing wird weitere Punkte aufzeigen. Besonders in der Funktionsbreite bietet die Applikation enormes Potential, um den Prozess zu optimieren. 
 \newpage
